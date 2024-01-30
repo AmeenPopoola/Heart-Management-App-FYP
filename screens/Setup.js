@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Setup = () => {
   const [firstName, setFirstName] = useState('');
@@ -8,6 +9,42 @@ const Setup = () => {
   const [emergencyContacts, setEmergencyContacts] = useState([]);
   const [newContactName, setNewContactName] = useState('');
   const [newContactNumber, setNewContactNumber] = useState('');
+
+  const navigation = useNavigation();
+
+  // Load stored data on component mount
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const storedFirstName = await AsyncStorage.getItem('firstName');
+        const storedAge = await AsyncStorage.getItem('age');
+        const storedEmergencyContacts = await AsyncStorage.getItem('emergencyContacts');
+
+        if (storedFirstName) setFirstName(storedFirstName);
+        if (storedAge) setAge(storedAge);
+        if (storedEmergencyContacts) setEmergencyContacts(JSON.parse(storedEmergencyContacts));
+      } catch (error) {
+        console.error('Error loading data from AsyncStorage:', error);
+      }
+    };
+
+    loadData();
+  }, []); // Empty dependency array means this effect runs only once on mount
+
+  // Save data to AsyncStorage when it changes
+  useEffect(() => {
+    const saveData = async () => {
+      try {
+        await AsyncStorage.setItem('firstName', firstName);
+        await AsyncStorage.setItem('age', age);
+        await AsyncStorage.setItem('emergencyContacts', JSON.stringify(emergencyContacts));
+      } catch (error) {
+        console.error('Error saving data to AsyncStorage:', error);
+      }
+    };
+
+    saveData();
+  }, [firstName, age, emergencyContacts]);
 
   const addEmergencyContact = () => {
     if (newContactName && newContactNumber) {
@@ -24,16 +61,13 @@ const Setup = () => {
     </View>
   );
 
-  const navigation = useNavigation();
-
-  const handleDonePress =() => {
+  const handleDonePress = () => {
     navigation.navigate('Home');
-};
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Welcome to the HeartMate App!</Text>
-      
 
       <View style={styles.inputContainer}>
         <Text style={styles.label}>First Name</Text>
@@ -92,11 +126,10 @@ const Setup = () => {
         style={styles.contactsList}
       />
 
-<TouchableOpacity style={styles.button} onPress={handleDonePress}>
+      <TouchableOpacity style={styles.button} onPress={handleDonePress}>
         <Text style={styles.buttonText}>Done</Text>
       </TouchableOpacity>
     </View>
-    
   );
 };
 
