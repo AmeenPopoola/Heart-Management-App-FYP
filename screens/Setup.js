@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFonts, PTSerif_400Regular, PTSerif_700Bold } from '@expo-google-fonts/pt-serif';
 
 const Setup = () => {
   const [firstName, setFirstName] = useState('');
@@ -46,6 +47,14 @@ const Setup = () => {
     saveData();
   }, [firstName, age, emergencyContacts]);
 
+  let [fontsLoaded] = useFonts({
+    PTSerif_400Regular,PTSerif_700Bold
+  });
+  
+  if (!fontsLoaded) {
+    return null;
+  }
+
   const addEmergencyContact = () => {
     if (newContactName && newContactNumber) {
       setEmergencyContacts([...emergencyContacts, { name: newContactName, number: newContactNumber }]);
@@ -54,15 +63,30 @@ const Setup = () => {
     }
   };
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item,index }) => (
     <View style={styles.contactItem}>
+     <View style={styles.contactInfo}>
       <Text style={styles.contactName}>{item.name}</Text>
       <Text style={styles.contactNumber}>{item.number}</Text>
+      </View>
+      <TouchableOpacity
+      style={styles.deleteButton}
+      onPress={() => handleDeleteContact(index)}
+    >
+      <Text style={styles.deleteButtonText}>X</Text>
+    </TouchableOpacity>
     </View>
+    
   );
 
   const handleDonePress = () => {
     navigation.navigate('Home');
+  };
+
+  const handleDeleteContact = (index) => {
+    const updatedContacts = [...emergencyContacts];
+    updatedContacts.splice(index, 1);
+    setEmergencyContacts(updatedContacts);
   };
 
   return (
@@ -103,7 +127,7 @@ const Setup = () => {
       </View>
 
       <View style={styles.inputContainer}>
-        <Text style={styles.label}>Number</Text>
+        <Text style={styles.label}>Phone Number</Text>
         <TextInput
           style={styles.input}
           placeholder="Enter contact number"
@@ -141,6 +165,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF', 
   },
   headerText: {
+    fontFamily: 'PTSerif_700Bold',
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 20,
@@ -149,6 +174,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   label: {
+    fontFamily: 'PTSerif_400Regular',
     fontSize: 14,
     marginBottom: 5,
   },
@@ -167,23 +193,33 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   buttonText: {
+    fontFamily: 'PTSerif_400Regular',
     color: 'white',
     fontSize: 16,
   },
   sectionHeading: {
+    fontFamily: 'PTSerif_700Bold',
     fontSize: 20,
     fontWeight: 'bold',
     marginTop: 20,
     marginBottom: 10,
   },
   contactItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
     padding: 10,
     marginBottom: 10,
   },
+  contactInfo: {
+    flexDirection: 'column',
+    flex: 1,
+  },
   contactName: {
+    fontFamily: 'PTSerif_700Bold',
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 5,
@@ -193,6 +229,18 @@ const styles = StyleSheet.create({
   },
   contactsList: {
     flex: 1,
+  },
+  deleteButton: {
+    backgroundColor: 'red',
+    borderRadius: 20,
+    padding: 7,
+    alignItems: 'center', 
+    justifyContent: 'center',
+  },
+  deleteButtonText: {
+    fontFamily: 'PTSerif_400Regular',
+    color: 'white',
+    fontSize: 12,
   },
 });
 
