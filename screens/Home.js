@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Home = ({navigation}) => {
   const[userFirstName, setUserFirstName] = useState('');
 
+
   useEffect(() => {
     const loadUserData = async () => {
       try {

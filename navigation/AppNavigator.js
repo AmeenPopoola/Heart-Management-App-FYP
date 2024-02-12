@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import BottomTabNavigator from './BottomTabNavigator';
 import Home from '../screens/Home';
 import DefibLocation from '../screens/DefibLocation';
 import Reminder from '../screens/Reminder';
@@ -15,12 +14,17 @@ const Stack = createNativeStackNavigator();
 const AppNavigator = () => {
   return(
       <Stack.Navigator>
+      {/*
+      <Stack.Screen 
+         name="Tabs" 
+         component={BottomTabNavigator} />
+         */}
       <Stack.Screen 
           name="Start" 
           component = {Start}  
           />
           <Stack.Screen 
-          name="Setup" 
+          name="UserInfo" 
           component = {Setup}  
           />
         <Stack.Screen 

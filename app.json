@@ -25,7 +25,8 @@
     },
     "useNextNotificationsApi": true,
     "plugins": [
-      "expo-font"
+      "expo-font",
+      "expo-build-properties"
     ]
   },
   "web": {

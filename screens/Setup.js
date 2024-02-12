@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet , ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts, PTSerif_400Regular, PTSerif_700Bold } from '@expo-google-fonts/pt-serif';
+import RNPickerSelect from 'react-native-picker-select';
+
 
 const Setup = () => {
   const [firstName, setFirstName] = useState('');
   const [age, setAge] = useState('');
+  const [gender , setGender] = useState('');
+  const [height, setHeight] = useState('');
+  const [weight, setWeight] = useState('');
   const [emergencyContacts, setEmergencyContacts] = useState([]);
   const [newContactName, setNewContactName] = useState('');
   const [newContactNumber, setNewContactNumber] = useState('');
+
+  const [errorMessage, setErrorMessage] = useState('');
 
   const navigation = useNavigation();
 
@@ -19,10 +26,16 @@ const Setup = () => {
       try {
         const storedFirstName = await AsyncStorage.getItem('firstName');
         const storedAge = await AsyncStorage.getItem('age');
+        const storedGender = await AsyncStorage.getItem('gender');
+        const storedHeight = await AsyncStorage.getItem('height');
+        const storedWeight = await AsyncStorage.getItem('weight');
         const storedEmergencyContacts = await AsyncStorage.getItem('emergencyContacts');
 
         if (storedFirstName) setFirstName(storedFirstName);
         if (storedAge) setAge(storedAge);
+        if(storedGender) setGender(storedGender);
+        if(storedHeight) setHeight(storedHeight);
+        if(storedWeight) setWeight(storedWeight);
         if (storedEmergencyContacts) setEmergencyContacts(JSON.parse(storedEmergencyContacts));
       } catch (error) {
         console.error('Error loading data from AsyncStorage:', error);
@@ -38,6 +51,9 @@ const Setup = () => {
       try {
         await AsyncStorage.setItem('firstName', firstName);
         await AsyncStorage.setItem('age', age);
+        await AsyncStorage.setItem('gender',gender);
+        await AsyncStorage.setItem('height',height);
+        await AsyncStorage.setItem('weight',weight);
         await AsyncStorage.setItem('emergencyContacts', JSON.stringify(emergencyContacts));
       } catch (error) {
         console.error('Error saving data to AsyncStorage:', error);
@@ -80,6 +96,28 @@ const Setup = () => {
   );
 
   const handleDonePress = () => {
+    if (!firstName) {
+      setErrorMessage('Please fill in your first name!');
+      return;
+    } else if (!age) {
+      setErrorMessage('Please fill in your age!');
+      return;
+    } else if (!gender) {
+      setErrorMessage('Please select your gender!');
+      return;
+    } else if (!height) {
+      setErrorMessage('Please fill in your height');
+      return;
+    } else if (!weight) {
+      setErrorMessage('Please fill in your weight!');
+      return;
+    } else if (emergencyContacts.length === 0) {
+      setErrorMessage('Please input at least one Emergency Contact');
+      return;
+    }
+
+    // If all required fields are filled, clear the error message and navigate to the next screen.
+    setErrorMessage('');
     navigation.navigate('Home');
   };
 
@@ -89,8 +127,17 @@ const Setup = () => {
     setEmergencyContacts(updatedContacts);
   };
 
+
+  const genderOptions = [
+    { label: 'Male', value: 'male' },
+    { label: 'Female', value: 'female' },
+    { label: 'Other', value: 'other' },
+    ];
+  
+
   return (
     <View style={styles.container}>
+    <ScrollView>
       <Text style={styles.headerText}>Welcome to the HeartMate App!</Text>
 
       <View style={styles.inputContainer}>
@@ -114,7 +161,40 @@ const Setup = () => {
         />
       </View>
 
-      <Text style={styles.headerText}>Emergency Contact</Text>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Gender</Text>
+        <RNPickerSelect
+          style={styles.input}
+          placeholder={{label : 'Select Your Gender' , value: null }}
+          items={genderOptions}
+          value={gender}
+          onValueChange={(value) => setGender(value)}
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Weight</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your weight(kg)"
+          keyboardType="numeric"
+          value={weight}
+          onChangeText={setWeight}
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Height</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your height(ft)"
+          keyboardType="numeric"
+          value={height}
+          onChangeText={setHeight}
+        />
+      </View>
+
+      <Text style={styles.headerText}>Emergency Contact Information</Text>
 
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Name</Text>
@@ -148,11 +228,15 @@ const Setup = () => {
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         style={styles.contactsList}
+        horizontal
       />
+
+      <Text style={styles.errorMessage}>{errorMessage}</Text>
 
       <TouchableOpacity style={styles.button} onPress={handleDonePress}>
         <Text style={styles.buttonText}>Done</Text>
       </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 };
@@ -241,6 +325,12 @@ const styles = StyleSheet.create({
     fontFamily: 'PTSerif_400Regular',
     color: 'white',
     fontSize: 12,
+  },
+  errorMessage: {
+    fontFamily: 'PTSerif_400Regular',
+    color: 'red',
+    fontSize: 14,
+    marginBottom: 10,
   },
 });
 
