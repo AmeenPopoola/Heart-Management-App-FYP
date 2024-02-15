@@ -61,7 +61,7 @@ const Setup = () => {
     };
 
     saveData();
-  }, [firstName, age, emergencyContacts]);
+  }, [firstName,age,gender,weight,height,emergencyContacts]);
 
   let [fontsLoaded] = useFonts({
     PTSerif_400Regular,PTSerif_700Bold
@@ -129,9 +129,9 @@ const Setup = () => {
 
 
   const genderOptions = [
-    { label: 'Male', value: 'male' },
-    { label: 'Female', value: 'female' },
-    { label: 'Other', value: 'other' },
+    { label: 'Male', value: 'Male' },
+    { label: 'Female', value: 'Female' },
+    { label: 'Other', value: 'Other' },
     ];
   
 
@@ -187,7 +187,7 @@ const Setup = () => {
         <Text style={styles.label}>Height</Text>
         <TextInput
           style={styles.input}
-          placeholder="Enter your height(ft)"
+          placeholder="Enter your height(cm)"
           keyboardType="numeric"
           value={height}
           onChangeText={setHeight}

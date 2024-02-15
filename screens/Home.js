@@ -33,6 +33,12 @@ const Home = ({navigation}) => {
          title='Go to Reminder'
          onPress={() => navigation.navigate("Reminder")}
           />
+
+        
+      <Button
+         title='Go to Profile'
+         onPress={() => navigation.navigate("Profile")}
+          />
         
         <Button
          title='Call Emergency Services'

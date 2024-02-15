@@ -4,8 +4,8 @@ import BottomTabNavigator from './BottomTabNavigator';
 import Home from '../screens/Home';
 import DefibLocation from '../screens/DefibLocation';
 import Reminder from '../screens/Reminder';
-import Start from '../screens/Start';
-import Setup from '../screens/Setup';
+import Profile from '../screens/Profile';
+import AuthNavigator from './AuthNavigator';
 
 
 
@@ -13,20 +13,9 @@ const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
   return(
-      <Stack.Navigator>
-      {/*
-      <Stack.Screen 
-         name="Tabs" 
-         component={BottomTabNavigator} />
-         */}
-      <Stack.Screen 
-          name="Start" 
-          component = {Start}  
-          />
-          <Stack.Screen 
-          name="UserInfo" 
-          component = {Setup}  
-          />
+      <Stack.Navigator initialRouteName="Auth" options={{ headerShown: false }} >
+      <Stack.Screen name="Auth" component={AuthNavigator} />
+      <Stack.Screen name="Tabs" component={BottomTabNavigator}/>
         <Stack.Screen 
           name="Home" 
           component = {Home}  
@@ -38,6 +27,10 @@ const AppNavigator = () => {
           <Stack.Screen 
           name="Reminder" 
           component =  {Reminder}
+          />
+           <Stack.Screen 
+          name="Profile" 
+          component =  {Profile}
           />
       </Stack.Navigator>
   );
