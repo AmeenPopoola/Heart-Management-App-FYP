@@ -99,8 +99,23 @@ const Setup = () => {
   ];
 
   const handleDonePress = () => {
-    if (!firstName || !age || !gender || !height || !weight || emergencyContacts.length === 0) {
-      setErrorMessage('Please fill in all the required fields.');
+    if (!firstName) {
+      setErrorMessage('Please fill in your first name!');
+      return;
+    } else if (!age) {
+      setErrorMessage('Please fill in your age!');
+      return;
+    } else if (!gender) {
+      setErrorMessage('Please select your gender!');
+      return;
+    } else if (!height) {
+      setErrorMessage('Please fill in your height');
+      return;
+    } else if (!weight) {
+      setErrorMessage('Please fill in your weight!');
+      return;
+    } else if (emergencyContacts.length === 0) {
+      setErrorMessage('Please input at least one Emergency Contact');
       return;
     }
 
