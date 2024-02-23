@@ -1,20 +1,22 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, Image, StyleSheet,TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useFonts, PTSerif_400Regular, PTSerif_700Bold } from '@expo-google-fonts/pt-serif';
+import StartButton from '../components/user-setup-process/Start/StartButton';
+
 
 const Start = () => {
-
   const navigation = useNavigation();
 
-  const handleStartPress =() => {
+  const handleStartPress = () => {
     navigation.navigate('Setup');
   };
 
   let [fontsLoaded] = useFonts({
-    PTSerif_400Regular,PTSerif_700Bold
+    PTSerif_400Regular,
+    PTSerif_700Bold,
   });
-  
+
   if (!fontsLoaded) {
     return null;
   }
@@ -24,14 +26,13 @@ const Start = () => {
       <Image source={require('../assets/images/logo.png')} style={styles.logo} />
       <Text style={styles.headerText}>HeartMate</Text>
       <Text style={styles.welcomeText}>
-        Welcome to HeartMate,an application for managing your heart health!
+        Welcome to HeartMate, an application for managing your heart health!
       </Text>
-      <TouchableOpacity style={styles.startButton} onPress={handleStartPress}>
-        <Text style={styles.startButtonText}>Let's Start</Text>
-      </TouchableOpacity>
+      <StartButton onPress={handleStartPress} />
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
     container: {
@@ -58,20 +59,6 @@ const styles = StyleSheet.create({
       fontFamily: 'PTSerif_400Regular',
       color: '#000000', 
     },
-    startButton: {
-      backgroundColor: '#000000', 
-      padding: 20,
-      borderRadius: 5,
-      width:'95%',
-      position: 'absolute',
-      bottom:'15%',
-      },
-      startButtonText: {
-        fontSize: 18,
-        fontFamily: 'PTSerif_400Regular',
-        color: '#FFFFFF', 
-        textAlign: 'center',
-      },
   });
 
 export default Start;

@@ -4,6 +4,7 @@ import Start from '../screens/Start';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Setup from '../screens/Setup';
 import Home from '../screens/Home';
+import AppNavigator from './AppNavigator';
 
 
 const Stack = createNativeStackNavigator();
@@ -36,7 +37,7 @@ const AuthNavigator = () => {
   return (
     <Stack.Navigator>
     {userDataExists ? (
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="AppNav" component={AppNavigator}  options={{ headerShown: false }} />
     ) : (
       <Stack.Screen name="Start" component={Start} />
     )}

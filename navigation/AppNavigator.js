@@ -5,7 +5,7 @@ import Home from '../screens/Home';
 import DefibLocation from '../screens/DefibLocation';
 import Reminder from '../screens/Reminder';
 import Profile from '../screens/Profile';
-import AuthNavigator from './AuthNavigator';
+
 
 
 
@@ -13,9 +13,8 @@ const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
   return(
-      <Stack.Navigator initialRouteName="Auth" options={{ headerShown: false }} >
-      <Stack.Screen name="Auth" component={AuthNavigator} />
-      <Stack.Screen name="Tabs" component={BottomTabNavigator}/>
+      <Stack.Navigator >
+      <Stack.Screen name="Tabs" component={BottomTabNavigator}  options={{ headerShown: false }} />
         <Stack.Screen 
           name="Home" 
           component = {Home}  
