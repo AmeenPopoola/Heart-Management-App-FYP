@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
-import { useFonts, PTSerif_400Regular } from '@expo-google-fonts/pt-serif';
+import { useFonts, PTSerif_400Regular,PTSerif_700Bold } from '@expo-google-fonts/pt-serif';
 
 const TextInputWithLabel = ({ label, value, placeholder, keyboardType, onChangeText }) => {
     let [fontsLoaded] = useFonts({
         PTSerif_400Regular,
+        PTSerif_700Bold
       });
     
       if (!fontsLoaded) {
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   label: {
-    fontFamily: 'PTSerif_400Regular',
+    fontFamily: 'PTSerif_700Bold',
     fontSize: 14,
     marginBottom: 5,
   },

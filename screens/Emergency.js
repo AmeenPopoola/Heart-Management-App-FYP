@@ -11,7 +11,7 @@ const Emergency = ({navigation}) => {
           />
           <Button
          title='Go to Profile'
-         onPress={() => navigation.navigate("Profile")}
+         onPress={() => navigation.navigate("Home")}
           />
     </View>
   );

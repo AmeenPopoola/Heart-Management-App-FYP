@@ -9,9 +9,11 @@ import ContactList from '../components/user-setup-process/UserInfoSetup/ContactL
 import EmergencyContactForm from '../components/user-setup-process/UserInfoSetup/EmergencyContactForm';
 import TextInputWithLabel from '../components/user-setup-process/UserInfoSetup/TextInputWithLabel';
 
-import pickerStyles from './styles/PickerStyles';
+import pickerStyles from '../styles/PickerStyles';
+import { usePTSerifFonts } from '../styles/FontStyles';
 
 import { addEmergencyContact, deleteEmergencyContact } from '../functions/user-setup-process/UserInfoSetup/utils';
+
 
 const Setup = () => {
   const [firstName, setFirstName] = useState('');
@@ -71,10 +73,7 @@ const Setup = () => {
     saveData();
   }, [firstName, age, gender, weight, height, emergencyContacts]);
 
-  let [fontsLoaded] = useFonts({
-    PTSerif_400Regular,
-    PTSerif_700Bold,
-  });
+  let [fontsLoaded] = usePTSerifFonts();
 
   if (!fontsLoaded) {
     return null;

@@ -5,6 +5,7 @@ import Home from '../screens/Home';
 import DefibLocation from '../screens/DefibLocation';
 import Reminder from '../screens/Reminder';
 import Profile from '../screens/Profile';
+import HeartRate from '../screens/HeartRate';
 
 
 
@@ -30,6 +31,10 @@ const AppNavigator = () => {
            <Stack.Screen 
           name="Profile" 
           component =  {Profile}
+          />
+          <Stack.Screen 
+          name="HeartRate" 
+          component =  {HeartRate}
           />
       </Stack.Navigator>
   );
