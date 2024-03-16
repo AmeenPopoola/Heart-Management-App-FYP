@@ -6,6 +6,7 @@ import DefibLocation from '../screens/DefibLocation';
 import Reminder from '../screens/Reminder';
 import Profile from '../screens/Profile';
 import HeartRate from '../screens/HeartRate';
+import Dashboard from '../screens/Dashboard';
 
 
 
@@ -14,7 +15,7 @@ const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
   return(
-      <Stack.Navigator >
+      <Stack.Navigator screenOptions={{ headerShown: false }} >
       <Stack.Screen name="Tabs" component={BottomTabNavigator}  options={{ headerShown: false }} />
         <Stack.Screen 
           name="Home" 

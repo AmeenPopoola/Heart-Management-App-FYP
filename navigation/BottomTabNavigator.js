@@ -12,9 +12,9 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Dashboard" component={Dashboard} />
-      <Tab.Screen name="Emergency" component={Emergency} />
-      <Tab.Screen name="Tips" component={Tips} />
+      <Tab.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }}/>
+      <Tab.Screen name="Emergency" component={Emergency} options={{ headerShown: false }}/>
+      <Tab.Screen name="Tips" component={Tips} options={{ headerShown: false }}/>
     </Tab.Navigator>
   );
 };

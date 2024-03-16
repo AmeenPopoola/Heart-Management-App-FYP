@@ -1,6 +1,7 @@
 import React , {useEffect,useState} from 'react';
-import { View, Text } from 'react-native';
+import { View, Text,Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
 
 const Profile = () => {
@@ -10,6 +11,8 @@ const Profile = () => {
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
   const [emergencyContacts, setEmergencyContacts] = useState([]);
+
+  const navigation = useNavigation();
     
     useEffect(() => {
         const loadUserData = async () => {
@@ -36,6 +39,11 @@ const Profile = () => {
         loadUserData();
       },[]);
 
+      const handleEditProfile = () => {
+        // Navigate to the Setup screen
+        navigation.navigate('Setup');
+      };
+
   return (
     <View>
       <Text>This is Your Profile</Text>
@@ -52,6 +60,8 @@ const Profile = () => {
           <Text>Number: {contact.number}</Text>
         </View>
       ))}
+
+      <Button title="Edit Profile" onPress={handleEditProfile} />
     </View>
   );
 };

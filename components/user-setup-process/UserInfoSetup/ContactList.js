@@ -2,6 +2,10 @@ import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 
 const ContactList = ({ emergencyContacts, onDeleteContact }) => {
+
+  console.log('Received emergencyContacts:', emergencyContacts);
+
+
   const renderItem = ({ item, index }) => (
     <View style={styles.contactItem}>
       <View style={styles.contactInfo}>

@@ -7,9 +7,11 @@ const EmergencyContactForm = ({ onAddEmergencyContact }) => {
 
   const handleAddContact = () => {
     if (newContactName && newContactNumber) {
+      console.log('Adding new contact:', { name: newContactName, number: newContactNumber });
       onAddEmergencyContact({ name: newContactName, number: newContactNumber });
       setNewContactName('');
       setNewContactNumber('');
+      console.log('Updated emergencyContacts:', emergencyContacts);
     }
   };
 

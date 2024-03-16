@@ -1,3 +1,4 @@
+
 export const addEmergencyContact = (emergencyContacts, newContact) => {
     return [...emergencyContacts, newContact];
   };
