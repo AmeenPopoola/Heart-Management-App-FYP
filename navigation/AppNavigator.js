@@ -7,6 +7,7 @@ import Reminder from '../screens/Reminder';
 import Profile from '../screens/Profile';
 import HeartRate from '../screens/HeartRate';
 import Dashboard from '../screens/Dashboard';
+import DailyTasks from '../screens/DailyTasks';
 
 
 
@@ -36,6 +37,10 @@ const AppNavigator = () => {
           <Stack.Screen 
           name="HeartRate" 
           component =  {HeartRate}
+          />
+          <Stack.Screen 
+          name="DailyTasks" 
+          component =  {DailyTasks}
           />
       </Stack.Navigator>
   );
