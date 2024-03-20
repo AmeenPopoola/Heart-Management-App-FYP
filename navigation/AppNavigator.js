@@ -8,6 +8,7 @@ import Profile from '../screens/Profile';
 import HeartRate from '../screens/HeartRate';
 import Dashboard from '../screens/Dashboard';
 import DailyTasks from '../screens/DailyTasks';
+import HRHistory from '../screens/HRHistory';
 
 
 
@@ -41,6 +42,10 @@ const AppNavigator = () => {
           <Stack.Screen 
           name="DailyTasks" 
           component =  {DailyTasks}
+          />
+          <Stack.Screen 
+          name="HRHistory" 
+          component =  {HRHistory}
           />
       </Stack.Navigator>
   );
