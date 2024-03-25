@@ -190,6 +190,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+    marginTop:30,
   },
   addReminderContainer: {
     flexDirection: 'row',

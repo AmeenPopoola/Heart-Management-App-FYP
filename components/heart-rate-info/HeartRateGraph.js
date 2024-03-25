@@ -83,7 +83,7 @@ if (heartRateData.length === 0) {
           backgroundGradientFrom: '#FFFFFF',
           backgroundGradientTo: '#FFFFFF',
           decimalPlaces: 0, // precision of the y-axis labels
-          color: (opacity = 1) => `rgba(0, 123, 255, ${opacity})`,
+          color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`,
           labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
           style: {
             borderRadius: 16,
@@ -91,7 +91,7 @@ if (heartRateData.length === 0) {
           propsForDots: {
             r: '4',
             strokeWidth: '2',
-            stroke: '#007BFF',
+            stroke: '#F21E1E',
           },
         }}
         bezier

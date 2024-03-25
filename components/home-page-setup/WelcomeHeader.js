@@ -3,9 +3,16 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useFonts, PTSerif_700Bold, PTSerif_400Regular } from '@expo-google-fonts/pt-serif';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { useNavigation } from '@react-navigation/native';
 
 export default function WelcomeHeader() {
   const [userFirstName, setUserFirstName] = useState('');
+
+  const navigation = useNavigation();
+
+  const handleSettingsPress = () => {
+    navigation.navigate('Settings'); 
+  };
 
   const [fontsLoaded] = useFonts({
     PTSerif_400Regular,
@@ -36,7 +43,7 @@ export default function WelcomeHeader() {
         <Text style={{ fontSize: 20, fontFamily: 'PTSerif_700Bold' }}>Hello,</Text>
         <Text style={{ fontSize: 24, fontFamily: 'PTSerif_700Bold' }}>{userFirstName}</Text>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity  onPress={handleSettingsPress}>
         <Icon name="setting" size={24} color="black" />
       </TouchableOpacity>
     </View>

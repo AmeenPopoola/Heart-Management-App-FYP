@@ -44,6 +44,11 @@ export const useHeartRateViewModel = () => {
       Alert.alert('Error', 'Please enter a valid number for Heart Rate.');
       return;
     }
+
+    if (enteredBPM < 50 || enteredBPM > 220) {
+      Alert.alert('Error', 'Please enter a heart rate between 50 and 220 bpm.');
+      return;
+    }
   
     // Determine the band width based on user's age
     let lowerLimit, upperLimit;

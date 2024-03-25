@@ -66,7 +66,7 @@ const Dashboard = () => {
           size={200}
           width={10}
           fill={(progress / 100) * 100}
-          tintColor="#007BFF"
+          tintColor="#F21E1E"
           backgroundColor="#e6e6e6">
           {(fill) => (
             <Text style={styles.progressText}>
@@ -112,6 +112,7 @@ const Dashboard = () => {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 10,
     padding: 20,
     backgroundColor: 'white', // Set background color to white
   },
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
     fontFamily: 'PTSerif_400Regular',
   },
   button: {
-    backgroundColor: '#007BFF',
+    backgroundColor: '#F21E1E',
     padding: 15,
     borderRadius: 5,
     marginTop: 20,
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   viewHistoryButton: {
-    backgroundColor: '#007BFF',
+    backgroundColor: '#F21E1E',
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 5,

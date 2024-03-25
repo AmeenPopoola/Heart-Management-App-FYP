@@ -81,7 +81,7 @@ const useSetupViewModel = () => {
 
     // If all required fields are filled, clear the error message and navigate to the next screen.
     setErrorMessage('');
-    navigation.navigate('Dashboard');
+    navigation.navigate('AppNavigator');
   };
 
   return {

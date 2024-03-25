@@ -5,7 +5,7 @@ import { useFonts, PTSerif_400Regular } from '@expo-google-fonts/pt-serif';
 export const ButtonStyles = StyleSheet.create({
   
   button: {
-    backgroundColor: '#007BFF',
+    backgroundColor: '#F21E1E',
     borderRadius: 5,
     padding: 15,
     alignItems: 'center',

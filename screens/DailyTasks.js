@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   completeTaskButton: {
-    backgroundColor: '#007BFF',
+    backgroundColor: '#F21E1E',
     padding: 8,
     borderRadius: 5,
     left:8,
