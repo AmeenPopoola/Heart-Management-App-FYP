@@ -1,7 +1,10 @@
 import React, { useEffect,useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
+import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/AntDesign';
+
 
 
 let defibLocations = [
@@ -219,6 +222,8 @@ let defibLocations = [
 const DefibLocation = () => {
     const [currLocation, setCurrLocation] = useState(null);
     const [initialRegion, setInitialRegion] = useState(null);
+
+    const navigation = useNavigation();
   
     useEffect(() => {
       const getLocation = async () => {
@@ -276,11 +281,21 @@ const DefibLocation = () => {
   
     return (
       <View style={styles.container}>
+      <View style={styles.headerContainer}>
+       <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <Icon name="back" size={24} color="black" />
+        <Text style={styles.backButtonText}>Back</Text>
+      </TouchableOpacity>
+        <Text style={styles.header}>Defibrillator Map</Text>
+        </View>
         {initialRegion && (
           <MapView
             style={styles.map}
             onRegionChange={onRegionChange}
-            initialRegion={initialRegion} // Remove the extra curly braces
+            initialRegion={initialRegion}
           >
             {currLocation && (
               <Marker
@@ -289,7 +304,7 @@ const DefibLocation = () => {
                   longitude: currLocation.longitude,
                 }}
                 title="Your Location"
-                pinColor = "blue"
+                pinColor="blue"
               />
             )}
             {showDefibLocations()}
@@ -298,18 +313,29 @@ const DefibLocation = () => {
       </View>
     );
   };
-
-export default DefibLocation
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  map: {
-    width: '100%',
-    height: '100%',
-  },
-});
+  
+  export default DefibLocation;
+  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop:20,
+    },
+    headerContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: 10,
+    },
+    header: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginBottom: 10,
+    },
+    map: {
+      width: '100%',
+      height: '80%',
+    },
+  });

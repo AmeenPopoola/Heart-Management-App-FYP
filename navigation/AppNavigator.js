@@ -10,6 +10,7 @@ import Dashboard from '../screens/Dashboard';
 import DailyTasks from '../screens/DailyTasks';
 import HRHistory from '../screens/HRHistory';
 import Settings from '../screens/Settings';
+import ContactView from '../screens/ContactView';
 
 
 
@@ -51,6 +52,10 @@ const AppNavigator = () => {
           <Stack.Screen 
           name="Settings" 
           component =  {Settings}
+          />
+          <Stack.Screen 
+          name="ContactView" 
+          component =  {ContactView}
           />
       </Stack.Navigator>
   );
