@@ -24,7 +24,7 @@ const HeartRateGraph = () => {
     fetchHeartRateData();
   }, []);
 
-  // Format timestamps to display as "7th Mar"
+  
   const formatTimestamp = (timestamp) => {
     const date = new Date(timestamp);
     const day = date.getDate();

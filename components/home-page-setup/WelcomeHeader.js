@@ -43,8 +43,9 @@ export default function WelcomeHeader() {
         <Text style={{ fontSize: 20, fontFamily: 'PTSerif_700Bold' }}>Hello,</Text>
         <Text style={{ fontSize: 24, fontFamily: 'PTSerif_700Bold' }}>{userFirstName}</Text>
       </View>
-      <TouchableOpacity  onPress={handleSettingsPress}>
+      <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} onPress={handleSettingsPress}>
         <Icon name="setting" size={24} color="black" />
+        <Text style={{ fontSize: 16, fontFamily: 'PTSerif_400Regular', marginLeft: 5 }}>Settings</Text>
       </TouchableOpacity>
     </View>
   );

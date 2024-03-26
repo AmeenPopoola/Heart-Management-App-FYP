@@ -61,6 +61,7 @@ const Dashboard = () => {
   return (
     <ScrollView style={styles.container}>
       <WelcomeHeader />
+      <View style={styles.sectionContainer}>
       <View style={styles.progressContainer}>
         <CircularProgress
           size={200}
@@ -78,34 +79,41 @@ const Dashboard = () => {
       <TouchableOpacity style={styles.button} onPress={handleCompleteDailyTasks}>
         <Text style={styles.buttonText}>Complete Daily Tasks</Text>
       </TouchableOpacity>
+      </View>
+
+      {/*Latest Trends Section*/}
       <Text style={styles.header}>Latest Trends</Text>
       <View style={styles.dataContainer}>
-        <View style={styles.sectionHeaderContainer}>
-          <Text style={styles.sectionHeader}>Heart Rate</Text>
-          <TouchableOpacity style={styles.viewHistoryButton} onPress={handleViewHeartRateHistory}>
-            <Text style={styles.viewHistoryButtonText}>View History</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.data}>
-          <HeartRateGraph/>
-        </View>
-      </View>
+  {/* Heart Section */}
+  <View style={styles.sectionHeaderContainer}>
+    <Text style={styles.sectionHeader}>Heart Rate</Text>
+    <TouchableOpacity style={styles.viewHistoryButton} onPress={handleViewHeartRateHistory}>
+      <Text style={styles.viewHistoryButtonText}>View History</Text>
+    </TouchableOpacity>
+  </View>
+  <View style={styles.data}>
+    <HeartRateGraph/>
+  </View>
+</View>
+      
+      
       <View style={styles.dataContainer}>
-        <View style={styles.sectionHeaderContainer}>
-          <Text style={styles.sectionHeader}>Blood Pressure</Text>
-          <TouchableOpacity style={styles.viewHistoryButton} onPress={handleViewBloodPressureHistory}>
-            <Text style={styles.viewHistoryButtonText}>View History</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.data}>
-          {bloodPressureData.map((item, index) => (
-            <View key={index} style={styles.dataItem}>
-              <Text>{item.systolic}/{item.diastolic}</Text>
-              <Text>{item.timestamp}</Text>
-            </View>
-          ))}
-        </View>
+  {/* Blood Pressure Section */}
+  <View style={styles.sectionHeaderContainer}>
+    <Text style={styles.sectionHeader}>Blood Pressure</Text>
+    <TouchableOpacity style={styles.viewHistoryButton} onPress={handleViewBloodPressureHistory}>
+      <Text style={styles.viewHistoryButtonText}>View History</Text>
+    </TouchableOpacity>
+  </View>
+  <View style={styles.data}>
+    {bloodPressureData.map((item, index) => (
+      <View key={index} style={styles.dataItem}>
+        <Text>{item.systolic}/{item.diastolic}</Text>
+        <Text>{item.timestamp}</Text>
       </View>
+    ))}
+  </View>
+</View>
     </ScrollView>
   );
 };
@@ -115,6 +123,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     padding: 20,
     backgroundColor: 'white', // Set background color to white
+  },
+  sectionContainer: {
+    backgroundColor: '#f0f0f0', // Grey background color
+    padding: 20,
+    borderRadius: 8,
+    marginBottom: 5, // Adjust as needed
   },
   progressContainer: {
     alignItems: 'center',
@@ -167,6 +181,8 @@ const styles = StyleSheet.create({
   },
   dataContainer: {
     marginTop: 10,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 8,
   },
   data: {
     marginTop: 5,
