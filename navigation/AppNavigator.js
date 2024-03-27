@@ -11,6 +11,8 @@ import DailyTasks from '../screens/DailyTasks';
 import HRHistory from '../screens/HRHistory';
 import Settings from '../screens/Settings';
 import ContactView from '../screens/ContactView';
+import BloodPressure from '../screens/BloodPressure';
+import BPHistory from '../screens/BPHistory';
 
 
 
@@ -50,12 +52,20 @@ const AppNavigator = () => {
           component =  {HRHistory}
           />
           <Stack.Screen 
+          name="BPHistory" 
+          component =  {BPHistory}
+          />
+          <Stack.Screen 
           name="Settings" 
           component =  {Settings}
           />
           <Stack.Screen 
           name="ContactView" 
           component =  {ContactView}
+          />
+          <Stack.Screen 
+          name="BloodPressure" 
+          component =  {BloodPressure}
           />
       </Stack.Navigator>
   );

@@ -18,7 +18,7 @@ const Dashboard = () => {
       const fetchData = async () => {
         try {
           const storedHeartRateData = await AsyncStorage.getItem('heartRateResults');
-          const storedBloodPressureData = await AsyncStorage.getItem('bloodPressureResults');
+          const storedBloodPressureData = await AsyncStorage.getItem('bpRecords');
           if (storedHeartRateData && storedBloodPressureData) {
             const parsedHeartRateData = JSON.parse(storedHeartRateData);
             const parsedBloodPressureData = JSON.parse(storedBloodPressureData);
@@ -59,6 +59,7 @@ const Dashboard = () => {
 
 
   return (
+    <View style={{ flex: 1 }}>
     <ScrollView style={styles.container}>
       <WelcomeHeader />
       <View style={styles.sectionContainer}>
@@ -106,15 +107,17 @@ const Dashboard = () => {
     </TouchableOpacity>
   </View>
   <View style={styles.data}>
-    {bloodPressureData.map((item, index) => (
-      <View key={index} style={styles.dataItem}>
-        <Text>{item.systolic}/{item.diastolic}</Text>
-        <Text>{item.timestamp}</Text>
-      </View>
-    ))}
-  </View>
+  {bloodPressureData.length > 0 && (
+    <View style={styles.dataItem}>
+      <Text style={styles.dataItemText}>Last Reading: {bloodPressureData[bloodPressureData.length - 1].systolic}/{bloodPressureData[bloodPressureData.length - 1].diastolic} hhMg</Text>
+      <Text style={styles.dataItemText}>Time: {bloodPressureData[bloodPressureData.length - 1].time}</Text>
+      <Text style={styles.dataItemText}>Blood Pressure Category: {bloodPressureData[bloodPressureData.length - 1].category}</Text>
+    </View>
+  )}
+</View>
 </View>
     </ScrollView>
+    </View>
   );
 };
 
@@ -123,6 +126,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     padding: 20,
     backgroundColor: 'white', // Set background color to white
+    paddingBottom: 60,
   },
   sectionContainer: {
     backgroundColor: '#f0f0f0', // Grey background color
@@ -188,11 +192,15 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   dataItem: {
-    flexDirection: 'row',
     justifyContent: 'space-between',
     borderBottomWidth: 1,
     borderColor: '#ccc',
     paddingVertical: 10,
+    marginBottom:20,
+  },
+  dataItemText: {
+    fontFamily: 'PTSerif_400Regular',
+    fontSize:16,
   },
 });
 
