@@ -10,6 +10,7 @@ export const ButtonStyles = StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     marginTop: 20,
+    marginBottom: 10,
   },
   buttonText: {
     fontFamily: 'PTSerif_400Regular',
