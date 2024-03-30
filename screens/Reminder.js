@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, Platform, TimePickerAndroid, Modal, TextInput,FlatList } from 'react-native';
+import { View, Text, Button, StyleSheet, Platform, TimePickerAndroid, Modal, TextInput,FlatList, TouchableOpacity } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as Notifications from 'expo-notifications';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { useNavigation } from '@react-navigation/native';
+import { useFonts,PTSerif_400Regular,PTSerif_700Bold } from '@expo-google-fonts/pt-serif';
 
 const Reminder = () => {
   const [notificationTime, setNotificationTime] = useState(new Date());
@@ -51,6 +53,8 @@ const Reminder = () => {
       setShowPicker(true);
     }
   };
+
+  const navigation = useNavigation();
 
   const handleTimeChange = (event, selectedDate) => {
     setShowPicker(Platform.OS === 'ios');
@@ -115,8 +119,24 @@ const Reminder = () => {
     </View>
   );
 
+  let [fontsLoaded] = useFonts({
+    PTSerif_400Regular,
+    PTSerif_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
+    <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <Icon name="back" size={24} color="black" />
+        <Text style={styles.backButtonText}>Back</Text>
+      </TouchableOpacity>
       {/* Medication Reminder Section */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Medication Reminder</Text>
@@ -182,13 +202,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    marginTop: 10,
   },
   section: {
     marginBottom: 20,
+    backgroundColor: '#f0f0f0', // Light grey box background color
+    padding: 10,
+    borderRadius: 10,
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'PTSerif_700Bold',
     marginBottom: 10,
     marginTop:30,
   },
@@ -209,7 +233,7 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontFamily: 'PTSerif_700Bold',
     marginBottom: 20,
   },
   input: {
@@ -226,6 +250,19 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
     borderRadius: 5,
+  },
+  backButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 30,
+    left: 20,
+    zIndex: 1,
+  },
+  backButtonText: {
+    fontFamily: 'PTSerif_400Regular',
+    fontSize: 16,
+    marginLeft: 5,
   },
 });
 

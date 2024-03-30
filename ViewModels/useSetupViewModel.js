@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import UserProfile from '../Models/UserProfile';
 
+
 const useSetupViewModel = () => {
   const [firstName, setFirstName] = useState('');
   const [age, setAge] = useState('');
@@ -81,7 +82,7 @@ const useSetupViewModel = () => {
 
     // If all required fields are filled, clear the error message and navigate to the next screen.
     setErrorMessage('');
-    navigation.navigate('AppNavigator');
+    navigation.navigate('MainApp');
   };
 
   return {

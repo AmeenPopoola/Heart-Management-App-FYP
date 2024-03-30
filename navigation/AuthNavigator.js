@@ -3,7 +3,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Start from '../screens/Start';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Setup from '../screens/Setup';
-import Home from '../screens/Home';
 import AppNavigator from './AppNavigator';
 
 
@@ -42,6 +41,7 @@ const AuthNavigator = () => {
       <Stack.Screen name="Start" component={Start} />
     )}
     <Stack.Screen name="Setup" component={Setup} />
+    <Stack.Screen name="MainApp" component={AppNavigator} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 };
