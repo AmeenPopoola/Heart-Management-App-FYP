@@ -71,7 +71,7 @@ const Settings = () => {
                 <View style={[styles.rowIcon, themeStyles.rowIcon]}>
                   <FeatherIcon name="user" size={20} color="#fff" />
                 </View>
-                <Text style={[styles.rowLabel, themeStyles.rowLabel]}>Edit Profile</Text>
+                <Text style={[styles.rowLabel, themeStyles.rowLabel]}>View Profile</Text>
               </TouchableOpacity>
             </View>
   
