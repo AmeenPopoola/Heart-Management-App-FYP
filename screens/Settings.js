@@ -4,7 +4,7 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts, PTSerif_400Regular, PTSerif_700Bold } from '@expo-google-fonts/pt-serif';
-import { lightThemeStyles,darkThemeStyles } from '../styles/themeStyles';
+import { lightThemeStyles,darkThemeStyles } from '../styles/Settings/themeStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
