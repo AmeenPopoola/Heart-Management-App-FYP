@@ -1,19 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, Platform, TimePickerAndroid, Modal, TextInput,FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, Button, StyleSheet, Platform, TimePickerAndroid, Modal, FlatList, TouchableOpacity } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as Notifications from 'expo-notifications';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
-import { useFonts,PTSerif_400Regular,PTSerif_700Bold } from '@expo-google-fonts/pt-serif';
+import { useFonts, PTSerif_400Regular, PTSerif_700Bold } from '@expo-google-fonts/pt-serif';
+import { darkThemeStyles ,lightThemeStyles } from '../styles/Reminder/reminderStyles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Reminder = () => {
   const [notificationTime, setNotificationTime] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
   const [showAddReminderModal, setShowAddReminderModal] = useState(false);
-  const [reminderTitle, setReminderTitle] = useState('');
+  const [selectedReminderType, setSelectedReminderType] = useState(null);
   const [medicationReminders, setMedicationReminders] = useState([]);
   const [bloodPressureReminders, setBloodPressureReminders] = useState([]);
   const [heartRateReminders, setHeartRateReminders] = useState([]);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const loadInfo = async () => {
+      try {
+        const storedTheme = await AsyncStorage.getItem('themeState');
+        const medicationReminders = await AsyncStorage.getItem('medicationReminders');
+        const bloodPressureReminders = await AsyncStorage.getItem('bloodPressureReminders');
+        const heartRateReminders = await AsyncStorage.getItem('heartRateReminders');
+
+        if (storedTheme !== null) {
+          const parsedTheme = JSON.parse(storedTheme);
+          setIsDarkMode(parsedTheme);
+        } 
+        if (medicationReminders !== null) {
+          setMedicationReminders(JSON.parse(medicationReminders));
+        }
+        if (bloodPressureReminders !== null) {
+          setBloodPressureReminders(JSON.parse(bloodPressureReminders));
+        }
+        if (heartRateReminders !== null) {
+          setHeartRateReminders(JSON.parse(heartRateReminders));
+        }
+      } catch (error) {
+        console.error('Error loading info:', error);
+      }
+    };
+
+    loadInfo();
+  }, []);
 
   useEffect(() => {
     const getNotificationPermission = async () => {
@@ -31,27 +64,8 @@ const Reminder = () => {
     getNotificationPermission();
   }, []);
 
-  const showTimePicker = async () => {
-    if (Platform.OS === 'android') {
-      try {
-        const { action, hour, minute } = await TimePickerAndroid.open({
-          hour: notificationTime.getHours(),
-          minute: notificationTime.getMinutes(),
-          is24Hour: true,
-        });
-
-        if (action !== TimePickerAndroid.dismissedAction) {
-          const selectedTime = new Date();
-          selectedTime.setHours(hour);
-          selectedTime.setMinutes(minute);
-          setNotificationTime(selectedTime);
-        }
-      } catch (error) {
-        console.error('Error opening time picker:', error.message);
-      }
-    } else {
-      setShowPicker(true);
-    }
+  const showTimePicker = () => {
+    setShowPicker(true);
   };
 
   const navigation = useNavigation();
@@ -74,48 +88,75 @@ const Reminder = () => {
     });
   };
 
-  const addReminder = (reminderType) => {
-    const newReminder = {
-      id: Date.now().toString(),
-      title: reminderTitle || "You've got a reminder!",
-      time: notificationTime.toLocaleTimeString(),
-      notificationTime: notificationTime,
-    };
-
-    // Trigger notification immediately
-    triggerNotification(reminderType, newReminder);
-
-    // Update reminders state based on the reminder type
-    switch (reminderType) {
+  const addReminder = async () => {
+    let reminderTitle = '';
+    switch (selectedReminderType) {
       case 'Medication':
-        setMedicationReminders((prevReminders) => [...prevReminders, newReminder]);
+        reminderTitle = "Time to take your medication";
         break;
       case 'Blood Pressure':
-        setBloodPressureReminders((prevReminders) => [...prevReminders, newReminder]);
+        reminderTitle = "Time to take your Blood Pressure";
         break;
       case 'Heart Rate':
-        setHeartRateReminders((prevReminders) => [...prevReminders, newReminder]);
+        reminderTitle = "Time to check your Heart Rate";
         break;
       default:
         break;
     }
-
-    // Reset reminder title and close modal
-    setReminderTitle('');
+  
+    const newReminder = {
+      id: Date.now().toString(),
+      title: reminderTitle,
+      time: notificationTime.toLocaleTimeString(),
+      notificationTime: notificationTime,
+    };
+  
+    // Trigger notification immediately
+    triggerNotification(selectedReminderType, newReminder);
+  
+    // Update reminders state based on the reminder type
+    switch (selectedReminderType) {
+      case 'Medication':
+        setMedicationReminders((prevReminders) => [...prevReminders, newReminder]);
+        await AsyncStorage.setItem('medicationReminders', JSON.stringify([...medicationReminders, newReminder]));
+        break;
+      case 'Blood Pressure':
+        setBloodPressureReminders((prevReminders) => [...prevReminders, newReminder]);
+        await AsyncStorage.setItem('medicationReminders', JSON.stringify([...medicationReminders, newReminder]));
+        break;
+      case 'Heart Rate':
+        setHeartRateReminders((prevReminders) => [...prevReminders, newReminder]);
+        await AsyncStorage.setItem('medicationReminders', JSON.stringify([...medicationReminders, newReminder]));
+        break;
+      default:
+        break;
+    }
+  
+    // Close modal
     setShowAddReminderModal(false);
   };
 
   const renderReminderItem = ({ item }) => (
     <View style={styles.reminderItem}>
-      <Text>{item.title}</Text>
-      <Text>Time: {item.time}</Text>
+      <View style={styles.reminderInfoContainer}>
+        <Text style={styles.reminderInfo}>Time: {item.time}</Text>
+      </View>
+      <TouchableOpacity onPress={() => removeReminder(item.id)}>
+        <Icon name="closecircle" size={24} color="red" />
+      </TouchableOpacity>
     </View>
   );
 
-  const renderAddReminderButton = (sectionTitle) => (
+  const removeReminder = (id) => {
+    setMedicationReminders((prevReminders) => prevReminders.filter((reminder) => reminder.id !== id));
+    setBloodPressureReminders((prevReminders) => prevReminders.filter((reminder) => reminder.id !== id));
+    setHeartRateReminders((prevReminders) => prevReminders.filter((reminder) => reminder.id !== id));
+  };
+
+  const renderAddReminderButton = (sectionTitle, reminderType) => (
     <View style={styles.addReminderContainer}>
-      <Icon name="pluscircle" onPress={() => setShowAddReminderModal(true)} size={24} color="#841584" />
-      <Text style={styles.addReminderText} onPress={() => setShowAddReminderModal(true)}>Add Reminder for {sectionTitle}</Text>
+      <Icon name="pluscircle" onPress={() => {setShowAddReminderModal(true); setSelectedReminderType(reminderType); }} size={24} color="red" />
+      <Text style={styles.addReminderText} onPress={() => { setShowAddReminderModal(true); setSelectedReminderType(reminderType); }}>Add Reminder for {sectionTitle}</Text>
     </View>
   );
 
@@ -128,19 +169,23 @@ const Reminder = () => {
     return null;
   }
 
+  const styles = isDarkMode ? darkThemeStyles : lightThemeStyles;
+
   return (
     <View style={styles.container}>
-    <TouchableOpacity
+      {/* Back Button */}
+      <TouchableOpacity
         style={styles.backButton}
         onPress={() => navigation.goBack()}
       >
         <Icon name="back" size={24} color="black" />
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
+
       {/* Medication Reminder Section */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Medication Reminder</Text>
-        {renderAddReminderButton('Medication')}
+        {renderAddReminderButton('Medication', 'Medication')}
         <FlatList
           data={medicationReminders}
           keyExtractor={(item) => item.id}
@@ -151,7 +196,7 @@ const Reminder = () => {
       {/* Blood Pressure Reminder Section */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Blood Pressure Reminder</Text>
-        {renderAddReminderButton('Blood Pressure')}
+        {renderAddReminderButton('Blood Pressure', 'Blood Pressure')}
         <FlatList
           data={bloodPressureReminders}
           keyExtractor={(item) => item.id}
@@ -162,7 +207,7 @@ const Reminder = () => {
       {/* Heart Rate Reminder Section */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Heart Rate Reminder</Text>
-        {renderAddReminderButton('Heart Rate')}
+        {renderAddReminderButton('Heart Rate', 'Heart Rate')}
         <FlatList
           data={heartRateReminders}
           keyExtractor={(item) => item.id}
@@ -173,14 +218,10 @@ const Reminder = () => {
       <Modal visible={showAddReminderModal} animationType="slide" transparent={true}>
         <View style={styles.modalContainer}>
           <Text style={styles.modalTitle}>Add Reminder</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Reminder Title"
-            value={reminderTitle}
-            onChangeText={(text) => setReminderTitle(text)}
-          />
-          <Button onPress={showTimePicker} title="Set Reminder Time" color="#841584" accessibilityLabel="Set Reminder Time" />
-          {Platform.OS === 'ios' && showPicker && (
+          <TouchableOpacity onPress={showTimePicker} style={styles.setTimeButton}>
+            <Text style={styles.setTimeText}>Set Reminder Time</Text>
+          </TouchableOpacity>
+          {showPicker && (
             <DateTimePicker
               testID="dateTimePicker"
               value={notificationTime}
@@ -190,7 +231,7 @@ const Reminder = () => {
               onChange={handleTimeChange}
             />
           )}
-          <Button onPress={() => addReminder('')} title="Add Reminder" color="#841584" accessibilityLabel="Add Reminder" />
+          <Button onPress={addReminder} title={`Add Reminder for ${selectedReminderType}`} color="#841584" accessibilityLabel={`Add Reminder for ${selectedReminderType}`} />
           <Button onPress={() => setShowAddReminderModal(false)} title="Cancel" color="#841584" accessibilityLabel="Cancel" />
         </View>
       </Modal>
@@ -198,72 +239,5 @@ const Reminder = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    marginTop: 10,
-  },
-  section: {
-    marginBottom: 20,
-    backgroundColor: '#f0f0f0', // Light grey box background color
-    padding: 10,
-    borderRadius: 10,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontFamily: 'PTSerif_700Bold',
-    marginBottom: 10,
-    marginTop:30,
-  },
-  addReminderContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  addReminderText: {
-    marginLeft: 10,
-    color: '#841584',
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalTitle: {
-    fontSize: 24,
-    fontFamily: 'PTSerif_700Bold',
-    marginBottom: 20,
-  },
-  input: {
-    height: 40,
-    width: '80%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 20,
-    padding: 10,
-  },
-  reminderItem: {
-    padding: 10,
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 5,
-  },
-  backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 30,
-    left: 20,
-    zIndex: 1,
-  },
-  backButtonText: {
-    fontFamily: 'PTSerif_400Regular',
-    fontSize: 16,
-    marginLeft: 5,
-  },
-});
 
 export default Reminder;
