@@ -33,7 +33,7 @@ export const useHeartRateViewModel = () => {
 
   const updateCurrentDate = () => {
     const date = new Date();
-    const formattedDate = `${date.toDateString()} ${date.toLocaleTimeString()}`;
+    const formattedDate = `${date.toDateString()} ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
     setCurrentDate(formattedDate);
   };
   

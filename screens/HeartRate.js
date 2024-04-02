@@ -7,6 +7,8 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { Video } from 'expo-av';
 import { useHeartRateViewModel } from '../ViewModels/useHeartRateViewModel';
+import { darkThemeButtonStyles,lightThemeButtonStyles } from '../styles/buttonStyles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HeartRate = () => {
   const { heartRate, setHeartRate, userAge, currentDate, handleEnterHeartRate } = useHeartRateViewModel();
@@ -15,6 +17,22 @@ const HeartRate = () => {
   const [isPlaying, setIsPlaying] = useState(true); // State to manage video playing/pausing
   const [timer, setTimer] = useState(30);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const loadTheme = async () => {
+      try {
+        const storedTheme = await AsyncStorage.getItem('themeState');
+        if (storedTheme !== null) {
+          const parsedTheme = JSON.parse(storedTheme);
+          setIsDarkMode(parsedTheme);
+        }
+      } catch (error) {
+        console.error('Error loading theme:', error);
+      }
+    };
+    loadTheme();
+    }, []);
 
   useEffect(() => {
     if (isTimerRunning) {
@@ -56,6 +74,8 @@ const HeartRate = () => {
       setIsPlaying(!isPlaying);
     }
   };
+
+  const ButtonStyles = isDarkMode ? darkThemeButtonStyles : lightThemeButtonStyles;
 
   return (
     <View style={styles.container}>

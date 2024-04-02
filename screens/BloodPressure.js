@@ -2,27 +2,50 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/AntDesign';
-import ButtonStyles from '../styles/buttonStyles';
+import { useFonts,PTSerif_400Regular_Italic,PTSerif_400Regular,PTSerif_700Bold} from '@expo-google-fonts/pt-serif';
+import { lightThemeStyles,darkThemeStyles } from '../styles/BloodPressure/bPStyles';
+import { lightThemeButtonStyles,darkThemeButtonStyles } from '../styles/buttonStyles';
+
 
 const BloodPressure = ({ navigation }) => {
     const [systolic, setSystolic] = useState('');
     const [diastolic, setDiastolic] = useState('');
     const [age, setAge] = useState('');
     const [bpRecords, setBpRecords] = useState([]);
+    const [currentDateTime, setCurrentDateTime] = useState('');
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
 
     useEffect(() => {
         const loadUserData = async () => {
             try {
                 const storedAge = await AsyncStorage.getItem('age');
+                const storedTheme = await AsyncStorage.getItem('themeState');
                 if (storedAge) {
                     setAge(storedAge);
                 }
+                if (storedTheme !== null) {
+                    const parsedTheme = JSON.parse(storedTheme);
+                    setIsDarkMode(parsedTheme);
+                  };
             } catch (error) {
                 console.error('Error loading user data:', error);
             }
         };
         loadUserData();
     }, []);
+
+   useEffect(() => {
+    const updateCurrentDate = () => {
+        const date = new Date();
+        const formattedDate = `${date.toDateString()} ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+        setCurrentDateTime(formattedDate);
+    };
+    
+    const interval = setInterval(updateCurrentDate, 10000); // Update every second
+
+    return () => clearInterval(interval);
+}, []);
 
     const checkBloodPressureCategory = (systolic, diastolic) => {
         if (age >= 80) {
@@ -46,79 +69,85 @@ const BloodPressure = ({ navigation }) => {
 
     const handleCalculateBP = async () => {
         if (systolic && diastolic) {
-            const category = checkBloodPressureCategory(systolic, diastolic);
-            const time = new Date().toLocaleString();
-            const newRecord = { systolic, diastolic, category, time };
-            const updatedRecords = [...bpRecords, newRecord];
-            setBpRecords(updatedRecords);
-            try {
-                await AsyncStorage.setItem('bpRecords', JSON.stringify(updatedRecords));
-            } catch (error) {
-                console.error('Error saving blood pressure records:', error);
-            }
-        }
-    };
+        const category = checkBloodPressureCategory(systolic, diastolic);
+        const time = new Date().toLocaleString();
+        const newRecord = { systolic, diastolic, category, time };
 
-    return (
-        <View style={styles.container}>
-            <TouchableOpacity
-                style={styles.backButton}
-                onPress={() => navigation.goBack()}
-            >
-                <Icon name="back" size={24} color="black" />
-                <Text style={styles.backButtonText}>Back</Text>
-            </TouchableOpacity>
-            <TextInput
-                style={styles.input}
-                placeholder="Enter Systolic Pressure(mmHg)"
-                keyboardType="numeric"
-                value={systolic}
-                onChangeText={text => setSystolic(text)}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Enter Diastolic Pressure(mmHg)"
-                keyboardType="numeric"
-                value={diastolic}
-                onChangeText={text => setDiastolic(text)}
-            />
-            <TouchableOpacity
-                style={ButtonStyles.button}
-                onPress={handleCalculateBP}
-            >
-                <Text style={ButtonStyles.buttonText}>Enter Blood Pressure</Text>
-            </TouchableOpacity>
+        try {
+            // Retrieve existing records from AsyncStorage
+            const storedRecords = await AsyncStorage.getItem('bpRecords');
+            let updatedRecords = [];
+
+            if (storedRecords) {
+                // Parse existing records
+                updatedRecords = JSON.parse(storedRecords);
+            }
+
+            // Add the new record to the beginning of the records array
+            updatedRecords.unshift(newRecord);
+
+            // Store the updated records back to AsyncStorage
+            await AsyncStorage.setItem('bpRecords', JSON.stringify(updatedRecords));
+
+            // Update the state with the new records
+            setBpRecords(updatedRecords);
+        } catch (error) {
+            console.error('Error saving blood pressure records:', error);
+        }
+    }
+};
+
+    const [fontsLoaded] = useFonts({
+        PTSerif_400Regular,
+        PTSerif_700Bold,
+        PTSerif_400Regular_Italic,
+      });
+
+      if (!fontsLoaded) {
+        return null;
+      }
+
+      const styles = isDarkMode ? darkThemeStyles : lightThemeStyles;
+      const ButtonStyles = isDarkMode ? darkThemeButtonStyles : lightThemeButtonStyles;
+
+     return (
+        <View style={styles.pageContainer}>
+        <TouchableOpacity
+                    style={styles.backButton}
+                    onPress={() => navigation.goBack()}
+                >
+                    <Icon name="back" size={24} color={styles.backButtonText.color} />
+                    <Text style={styles.backButtonText}>Back</Text>
+                </TouchableOpacity>
+            <View style={styles.contentContainer}>
+                <Text style={styles.dateTime}>{currentDateTime}</Text>
+                <Text style={styles.note}>You can perform blood pressure tests at home using your own blood pressure monitor.</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Enter Systolic Pressure(mmHg)"
+                    keyboardType="numeric"
+                    value={systolic}
+                    onChangeText={text => setSystolic(text)}
+                    placeholderTextColor={styles.placeholderText.color}
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Enter Diastolic Pressure(mmHg)"
+                    keyboardType="numeric"
+                    value={diastolic}
+                    onChangeText={text => setDiastolic(text)}
+                    placeholderTextColor={styles.placeholderText.color}
+                />
+                <TouchableOpacity
+                    style={[ButtonStyles.button, styles.button]} // Apply both buttonStyles and styles
+                    onPress={handleCalculateBP}
+                >
+                    <Text style={[ButtonStyles.buttonText, styles.buttonText]}>Enter Blood Pressure</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-    },
-    input: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-        padding: 10,
-        marginBottom: 10,
-        width: '100%',
-    },
-    backButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        position: 'absolute',
-        top: 50,
-        left: 20,
-    },
-    backButtonText: {
-        fontFamily: 'PTSerif_400Regular',
-        fontSize: 16,
-        marginLeft: 5,
-    },
-});
 
 export default BloodPressure;

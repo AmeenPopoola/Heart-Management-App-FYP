@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity, TextInput, Image,FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import ButtonStyles from '../styles/buttonStyles';
+import { lightThemeButtonStyles,darkThemeButtonStyles } from '../styles/buttonStyles';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useFonts, PTSerif_400Regular, PTSerif_700Bold } from '@expo-google-fonts/pt-serif';
 import { darkThemeStyles,lightThemeStyles } from '../styles/Profile/profileStyles';
@@ -63,6 +63,8 @@ const Profile = () => {
   }
 
   const styles = isDarkMode ? darkThemeStyles : lightThemeStyles;
+  const ButtonStyles = isDarkMode ? darkThemeButtonStyles : lightThemeButtonStyles;
+
 
   return (
     <View style={styles.container}>
