@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 const DailyTasks = () => {
   const [heartRateChecked, setHeartRateChecked] = useState(false);
   const [bloodPressureChecked, setBloodPressureChecked] = useState(false);
+  const [medicationChecked, setMedicationChecked] = useState(false);
 
   const navigation = useNavigation();
 
@@ -22,6 +23,13 @@ const DailyTasks = () => {
     setBloodPressureChecked(!bloodPressureChecked);
     if (!bloodPressureChecked) {
       navigation.navigate('BloodPressure'); // Navigate to BloodPressurePage if task is completed
+    }
+  };
+
+  const handleMedicationToggle = () => {
+    setMedicationChecked(!medicationChecked);
+    if (!medicationChecked) {
+      navigation.navigate('Medication'); // Navigate to MedicationPage if task is completed
     }
   };
 
@@ -71,7 +79,15 @@ const DailyTasks = () => {
         />
         {renderCompleteTaskButton(bloodPressureChecked, handleBloodPressureToggle)}
       </View>
+      <View style={styles.taskContainer}>
+        <Text style={styles.taskText}>Take Medication</Text>
+        <Checkbox
+          value={medicationChecked}
+          onValueChange={handleMedicationToggle}
+        />
+        {renderCompleteTaskButton(medicationChecked, handleMedicationToggle)}
     </View>
+  </View>
   );
 };
 

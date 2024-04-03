@@ -47,7 +47,7 @@ const BottomTabNavigator = () => {
             iconName = 'home';
           } else if (route.name === 'Emergency') {
             iconName = 'lifebuoy';
-          } else if (route.name === 'Tips') {
+          } else if (route.name === 'Info') {
             iconName = 'info-with-circle';
           }
 
@@ -76,11 +76,11 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Tips"
+        name="Info"
         component={Tips}
         options={{
           headerShown: false,
-          tabBarLabel: 'Tips',
+          tabBarLabel: 'Info',
         }}
       />
     </Tab.Navigator>
