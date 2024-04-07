@@ -4,7 +4,8 @@ import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
-
+import { lightThemeStyles,darkThemeStyles } from '../styles/Emergency/defibStyles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 let defibLocations = [
@@ -222,6 +223,23 @@ let defibLocations = [
 const DefibLocation = () => {
     const [currLocation, setCurrLocation] = useState(null);
     const [initialRegion, setInitialRegion] = useState(null);
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
+    useEffect(() => {
+      const loadTheme = async () => {
+        try {
+          const storedTheme = await AsyncStorage.getItem('themeState');
+          if (storedTheme !== null) {
+            const parsedTheme = JSON.parse(storedTheme);
+            setIsDarkMode(parsedTheme);
+          }
+        } catch (error) {
+          console.error('Error loading theme:', error);
+        }
+      };
+  
+      loadTheme();
+    }, []);
 
     const navigation = useNavigation();
   
@@ -278,7 +296,9 @@ const DefibLocation = () => {
         );
       });
     };
-  
+
+    const styles = isDarkMode ? darkThemeStyles : lightThemeStyles;
+
     return (
       <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -286,7 +306,7 @@ const DefibLocation = () => {
         style={styles.backButton}
         onPress={() => navigation.goBack()}
       >
-        <Icon name="back" size={24} color="black" />
+        <Icon name="back" size={24} color={styles.backButtonText.color} />
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
         <Text style={styles.header}>Defibrillator Map</Text>
@@ -316,26 +336,3 @@ const DefibLocation = () => {
   
   export default DefibLocation;
   
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginTop:20,
-    },
-    headerContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginBottom: 10,
-    },
-    header: {
-      fontSize: 20,
-      fontWeight: 'bold',
-      marginBottom: 10,
-    },
-    map: {
-      width: '100%',
-      height: '80%',
-    },
-  });

@@ -2,14 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet,Text } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { lightThemeStyles,darkThemeStyles } from '../../styles/graphStyles';
 
 const HeartRateGraph = () => {
   const [heartRateData, setHeartRateData] = useState([]);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const fetchHeartRateData = async () => {
       try {
         const storedData = await AsyncStorage.getItem('heartRateResults');
+        const storedTheme = await AsyncStorage.getItem('themeState');
+        if (storedTheme !== null) {
+          const parsedTheme = JSON.parse(storedTheme);
+          setIsDarkMode(parsedTheme);
+        }
         if (storedData) {
           const parsedData = JSON.parse(storedData);
           // Get the last 5 results
@@ -67,6 +74,8 @@ if (heartRateData.length === 0) {
     return <Text>Invalid data values</Text>;
   }
 
+  const styles = isDarkMode ? darkThemeStyles : lightThemeStyles;
+
   return (
     <View style={styles.container}>
       <LineChart
@@ -79,12 +88,12 @@ if (heartRateData.length === 0) {
         yAxisSuffix=" bpm"
         yAxisInterval={50}
         chartConfig={{
-          backgroundColor: '#FFFFFF',
-          backgroundGradientFrom: '#FFFFFF',
-          backgroundGradientTo: '#FFFFFF',
+          backgroundColor:  isDarkMode ? '#333333' : '#FFFFFF',
+          backgroundGradientFrom:  isDarkMode ? '#333333' : '#FFFFFF',
+          backgroundGradientTo:  isDarkMode ? '#333333' : '#FFFFFF',
           decimalPlaces: 0, // precision of the y-axis labels
           color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`,
-          labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+          labelColor: (opacity = 1) => `rgba(${isDarkMode ? '255, 255, 255' : '0, 0, 0'}, ${opacity})`,
           style: {
             borderRadius: 16,
           },
@@ -104,12 +113,5 @@ if (heartRateData.length === 0) {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#FFFFFF',
-  },
-});
 
 export default HeartRateGraph;

@@ -1,9 +1,11 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet, ScrollView } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { useFonts, PTSerif_400Regular, PTSerif_700Bold } from '@expo-google-fonts/pt-serif';
 import useSetupViewModel from '../ViewModels/useSetupViewModel';
 import TextInputWithLabel from '../components/user-setup-process/UserInfoSetup/TextInputWithLabel';
+import { lightThemeStyles,darkThemeStyles } from '../styles/Setup/setupStyles';
 
 const Setup = () => {
   const {
@@ -27,6 +29,25 @@ const Setup = () => {
     setNewContactName,
     setNewContactNumber,
   } = useSetupViewModel();
+
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const loadTheme = async () => {
+      try {
+        const storedTheme = await AsyncStorage.getItem('themeState');
+        if (storedTheme !== null) {
+          const parsedTheme = JSON.parse(storedTheme);
+          setIsDarkMode(parsedTheme);
+        }
+      } catch (error) {
+        console.error('Error loading theme:', error);
+      }
+    };
+
+    loadTheme();
+  }, []);
 
   let [fontsLoaded] = useFonts({ PTSerif_400Regular, PTSerif_700Bold });
 
@@ -54,6 +75,8 @@ const Setup = () => {
       </TouchableOpacity>
     </View>
   );
+
+  const styles = isDarkMode ? darkThemeStyles : lightThemeStyles;
 
   return (
     <View style={styles.container}>

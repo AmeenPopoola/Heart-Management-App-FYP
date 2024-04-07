@@ -1,13 +1,33 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import { View, Text, Button, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity,Linking } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Map from 'react-native-vector-icons/Entypo';
 import { useFonts, PTSerif_700Bold, PTSerif_400Regular } from '@expo-google-fonts/pt-serif';
 import { useNavigation } from '@react-navigation/native';
+import { lightThemeStyles,darkThemeStyles } from '../styles/Emergency/emergencyStyles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Emergency = () => {
 
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
   const navigation = useNavigation();
+
+  useEffect(() => {
+    const loadTheme = async () => {
+      try {
+        const storedTheme = await AsyncStorage.getItem('themeState');
+        if (storedTheme !== null) {
+          const parsedTheme = JSON.parse(storedTheme);
+          setIsDarkMode(parsedTheme);
+        }
+      } catch (error) {
+        console.error('Error loading theme:', error);
+      }
+    };
+
+    loadTheme();
+  }, []);
 
   const handleCallEmergencyServices = () => {
     Linking.openURL('tel:999');
@@ -32,6 +52,8 @@ const Emergency = () => {
   if (!fontsLoaded) {
     return null;
   }
+
+  const styles = isDarkMode ? darkThemeStyles : lightThemeStyles;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -67,45 +89,5 @@ const Emergency = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    marginTop:20,
-    paddingHorizontal: 20,
-  },
-  scrollViewContent: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    paddingVertical: 20,
-    paddingHorizontal: 20,
-  },
-  section: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-    backgroundColor: '#ccc',
-    borderRadius: 10,
-  },
-  iconContainer: {
-    alignItems: 'center',
-  },
-  iconBackground: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    backgroundColor: 'red',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  cardText: {
-    fontFamily: 'PTSerif_400Regular',
-    fontSize: 18,
-    color: 'black',
-    textAlign: 'center',
-  },
-});
 
 export default Emergency;

@@ -6,6 +6,8 @@ import { useNavigation, useIsFocused } from '@react-navigation/native';
 import WelcomeHeader from '../components/home-page-setup/WelcomeHeader';
 import { CircularProgress } from 'react-native-circular-progress';
 import HeartRateGraph from '../components/heart-rate-info/HeartRateGraph';
+import { lightThemeStyles,darkThemeStyles } from '../styles/Dashboard/dashboardStyles';
+
 
 const Dashboard = () => {
   const navigation = useNavigation();
@@ -13,10 +15,12 @@ const Dashboard = () => {
   const [heartRateData, setHeartRateData] = useState([]);
   const [bloodPressureData, setBloodPressureData] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
       const fetchData = async () => {
         try {
+          const storedTheme = await AsyncStorage.getItem('themeState');
           const storedHeartRateData = await AsyncStorage.getItem('heartRateResults');
           const storedBloodPressureData = await AsyncStorage.getItem('bpRecords');
           if (storedHeartRateData && storedBloodPressureData) {
@@ -25,6 +29,10 @@ const Dashboard = () => {
             setHeartRateData(parsedHeartRateData);
             setBloodPressureData(parsedBloodPressureData);
             setDataLoaded(true);
+          if (storedTheme !== null) {
+              const parsedTheme = JSON.parse(storedTheme);
+              setIsDarkMode(parsedTheme);
+            };
           }
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -56,6 +64,8 @@ const Dashboard = () => {
   if (!fontsLoaded) {
     return null;
   }
+
+  const styles = isDarkMode ? darkThemeStyles : lightThemeStyles;
 
 
   return (
@@ -121,87 +131,5 @@ const Dashboard = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 10,
-    padding: 20,
-    backgroundColor: 'white', // Set background color to white
-    paddingBottom: 60,
-  },
-  sectionContainer: {
-    backgroundColor: '#f0f0f0', // Grey background color
-    padding: 20,
-    borderRadius: 8,
-    marginBottom: 5, // Adjust as needed
-  },
-  progressContainer: {
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  progressText: {
-    marginTop: 10,
-    fontSize: 16,
-    fontFamily: 'PTSerif_400Regular',
-  },
-  button: {
-    backgroundColor: '#F21E1E',
-    padding: 15,
-    borderRadius: 5,
-    marginTop: 20,
-  },
-  buttonText: {
-    color: 'white',
-    textAlign: 'center',
-    fontFamily: 'PTSerif_400Regular',
-    fontSize: 16,
-  },
-  header: {
-    marginTop: 15,
-    color: 'black',
-    fontFamily: 'PTSerif_700Bold',
-    fontSize: 20,
-  },
-  sectionHeaderContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  sectionHeader: {
-    color: 'black',
-    fontFamily: 'PTSerif_700Bold',
-    fontSize: 17,
-  },
-  viewHistoryButton: {
-    backgroundColor: '#F21E1E',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 5,
-  },
-  viewHistoryButtonText: {
-    color: 'white',
-    fontFamily: 'PTSerif_400Regular',
-    fontSize: 14,
-  },
-  dataContainer: {
-    marginTop: 10,
-    backgroundColor: '#f5f5f5',
-    borderRadius: 8,
-  },
-  data: {
-    marginTop: 5,
-  },
-  dataItem: {
-    justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderColor: '#ccc',
-    paddingVertical: 10,
-    marginBottom:20,
-  },
-  dataItemText: {
-    fontFamily: 'PTSerif_400Regular',
-    fontSize:16,
-  },
-});
 
 export default Dashboard;

@@ -2,13 +2,14 @@ import React, { useState, useRef,useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { useFonts, PTSerif_700Bold, PTSerif_400Regular } from '@expo-google-fonts/pt-serif';
 import TextInputWithLabel from '../components/user-setup-process/UserInfoSetup/TextInputWithLabel';
-import ButtonStyles from '../styles/buttonStyles';
+import { lightThemeStyles,darkThemeStyles } from '../styles/HeartRate/hrStyles';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { Video } from 'expo-av';
 import { useHeartRateViewModel } from '../ViewModels/useHeartRateViewModel';
 import { darkThemeButtonStyles,lightThemeButtonStyles } from '../styles/buttonStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const HeartRate = () => {
   const { heartRate, setHeartRate, userAge, currentDate, handleEnterHeartRate } = useHeartRateViewModel();
@@ -75,6 +76,7 @@ const HeartRate = () => {
     }
   };
 
+  const styles = isDarkMode ? darkThemeStyles : lightThemeStyles;
   const ButtonStyles = isDarkMode ? darkThemeButtonStyles : lightThemeButtonStyles;
 
   return (
@@ -84,7 +86,7 @@ const HeartRate = () => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Icon name="back" size={24} color="black" />
+          <Icon name="back" size={24} color={styles.backButtonText.color} />
           <Text style={styles.backButtonText}>Back</Text>
         </TouchableOpacity>
         <Text style={styles.currentDate}>{currentDate}</Text>

@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Checkbox } from 'expo-checkbox';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useFonts, PTSerif_400Regular, PTSerif_700Bold } from '@expo-google-fonts/pt-serif';
 import { useNavigation } from '@react-navigation/native';
+import { lightThemeStyles,darkThemeStyles } from '../styles/DailyTasks/taskStyles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const DailyTasks = () => {
   const [heartRateChecked, setHeartRateChecked] = useState(false);
   const [bloodPressureChecked, setBloodPressureChecked] = useState(false);
   const [medicationChecked, setMedicationChecked] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const navigation = useNavigation();
+
+  useEffect(() => {
+    const loadTheme = async () => {
+      try {
+        const storedTheme = await AsyncStorage.getItem('themeState');
+        if (storedTheme !== null) {
+          const parsedTheme = JSON.parse(storedTheme);
+          setIsDarkMode(parsedTheme);
+        }
+      } catch (error) {
+        console.error('Error loading theme:', error);
+      }
+    };
+
+    loadTheme();
+  }, []);
 
   const handleHeartRateToggle = () => {
     setHeartRateChecked(!heartRateChecked);
@@ -42,6 +61,8 @@ const DailyTasks = () => {
     return null;
   }
 
+  const styles = isDarkMode ? darkThemeStyles : lightThemeStyles;
+
   const renderCompleteTaskButton = (checked, onPress) => {
     if (!checked) {
       return (
@@ -59,7 +80,7 @@ const DailyTasks = () => {
         style={styles.backButton}
         onPress={() => navigation.goBack()}
       >
-        <Icon name="back" size={24} color="black" />
+        <Icon name="back" size={24} color={styles.backButtonText.color} />
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
       <Text style={styles.header}>Complete Your Daily Tasks!</Text>
@@ -91,52 +112,5 @@ const DailyTasks = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  taskContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 50,
-    left: 20,
-  },
-  header: {
-    fontFamily: 'PTSerif_700Bold',
-    fontSize: 20,
-    marginBottom: 20,
-  },
-  backButtonText: {
-    fontFamily: 'PTSerif_400Regular',
-    fontSize: 16,
-    marginLeft: 5,
-  },
-  taskText: {
-    fontFamily: 'PTSerif_400Regular',
-    fontSize: 16,
-    marginRight: 10,
-  },
-  completeTaskButton: {
-    backgroundColor: '#F21E1E',
-    padding: 8,
-    borderRadius: 5,
-    left:8,
-  },
-  completeTaskButtonText: {
-    color: 'white',
-    fontFamily: 'PTSerif_400Regular',
-    fontSize: 16,
-  },
-});
 
 export default DailyTasks;

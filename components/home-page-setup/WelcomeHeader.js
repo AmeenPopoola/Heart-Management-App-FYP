@@ -4,9 +4,11 @@ import { useFonts, PTSerif_700Bold, PTSerif_400Regular } from '@expo-google-font
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
+import { lightThemeStyles,darkThemeStyles } from '../../styles/Dashboard/welcomeStyles';
 
 export default function WelcomeHeader() {
   const [userFirstName, setUserFirstName] = useState('');
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const navigation = useNavigation();
 
@@ -23,9 +25,14 @@ export default function WelcomeHeader() {
     const loadUserData = async () => {
       try {
         const storedFirstName = await AsyncStorage.getItem('firstName');
+        const storedTheme = await AsyncStorage.getItem('themeState');
         if (storedFirstName) {
           setUserFirstName(storedFirstName);
         }
+        if (storedTheme !== null) {
+          const parsedTheme = JSON.parse(storedTheme);
+          setIsDarkMode(parsedTheme);
+        };
       } catch (error) {
         console.error('Error loading user data:', error);
       }
@@ -37,26 +44,20 @@ export default function WelcomeHeader() {
     return null;
   }
 
+  const styles = isDarkMode ? darkThemeStyles : lightThemeStyles;
+
+
   return (
     <View style={styles.container}>
       <View>
-        <Text style={{ fontSize: 20, fontFamily: 'PTSerif_700Bold' }}>Hello,</Text>
-        <Text style={{ fontSize: 24, fontFamily: 'PTSerif_700Bold' }}>{userFirstName}</Text>
+        <Text style={styles.text}>Hello,</Text>
+        <Text style={styles.text}>{userFirstName}</Text>
       </View>
-      <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} onPress={handleSettingsPress}>
-        <Icon name="setting" size={24} color="black" />
-        <Text style={{ fontSize: 16, fontFamily: 'PTSerif_400Regular', marginLeft: 5 }}>Settings</Text>
+      <TouchableOpacity style={styles.settingsButton} onPress={handleSettingsPress}>
+        <Icon name="setting" size={24} color={styles.settingsText.color} />
+        <Text style={styles.settingsText}>Settings</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-  }
-});
