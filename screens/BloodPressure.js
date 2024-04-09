@@ -91,6 +91,8 @@ const BloodPressure = ({ navigation }) => {
 
             // Update the state with the new records
             setBpRecords(updatedRecords);
+
+            navigation.navigate('BPResult', { resultData: newRecord });
         } catch (error) {
             console.error('Error saving blood pressure records:', error);
         }

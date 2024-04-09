@@ -12,6 +12,8 @@ import Settings from '../screens/Settings';
 import ContactView from '../screens/ContactView';
 import BloodPressure from '../screens/BloodPressure';
 import BPHistory from '../screens/BPHistory';
+import HRResult from '../screens/HRResult';
+import BPResult from '../screens/BPResult';
 
 
 
@@ -61,6 +63,14 @@ const AppNavigator = () => {
           <Stack.Screen 
           name="BloodPressure" 
           component =  {BloodPressure}
+          />
+          <Stack.Screen 
+          name="HRResult" 
+          component =  {HRResult}
+          />
+          <Stack.Screen 
+          name="BPResult" 
+          component =  {BPResult}
           />
       </Stack.Navigator>
   );

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
 export const useHeartRateViewModel = () => {
   const [heartRate, setHeartRate] = useState('');
   const [userAge, setUserAge] = useState('');
   const [currentDate, setCurrentDate] = useState('');
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     // Load user age from AsyncStorage
@@ -84,6 +87,8 @@ export const useHeartRateViewModel = () => {
         const results = storedResults ? JSON.parse(storedResults) : [];
         results.push(resultData);
         await AsyncStorage.setItem('heartRateResults', JSON.stringify(results));
+
+        navigation.navigate('HRResult', { resultData });
       } catch (error) {
         console.error('Error saving heart rate result to AsyncStorage:', error);
       }
@@ -107,7 +112,7 @@ export const useHeartRateViewModel = () => {
         console.error('Error saving heart rate result to AsyncStorage:', error);
       }
   
-      // Show error message
+      navigation.navigate('HRResult', { resultData });
       Alert.alert('Error', 'Entered Heart Rate is outside the allowed range for the given age.');
     }
   };
