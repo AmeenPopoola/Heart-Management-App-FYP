@@ -46,6 +46,19 @@ export const lightThemeStyles = StyleSheet.create({
       fontFamily: 'PTSerif_400Regular',
       fontSize: 16,
     },
+    completedTaskContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    completeAgainButton: {
+      marginLeft: 10,
+      backgroundColor: 'lightgrey',
+      padding: 5,
+      borderRadius: 5,
+    },
+    completeAgainButtonText: {
+      color: 'black',
+    },
   });
 
   export const darkThemeStyles = {
@@ -100,5 +113,14 @@ export const lightThemeStyles = StyleSheet.create({
       color: '#FFFFFF',
       fontFamily: 'PTSerif_400Regular',
       fontSize: 16,
+    },
+    completeAgainButton: {
+      marginLeft: 10,
+      backgroundColor: 'lightgrey',
+      padding: 5,
+      borderRadius: 5,
+    },
+    completeAgainButtonText: {
+      color: 'black',
     },
   };

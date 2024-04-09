@@ -35,7 +35,7 @@
     "expo-permissions": "~14.2.1",
     "expo-status-bar": "~1.11.1",
     "expo-video-player": "^2.2.0",
-    "firebase": "^10.7.2",
+    "firebase": "^10.10.0",
     "healthicons-react-native": "^1.4.0",
     "location": "^0.0.1",
     "nativewind": "^2.0.11",

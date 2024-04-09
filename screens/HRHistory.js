@@ -54,13 +54,13 @@ const HRHistory = () => {
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
       <Text style={styles.header}>Heart Rate History</Text>
-      <Text style={styles.listHeader}>BPM          Date</Text>
+      <Text style={styles.listHeader}>BPM                      Date</Text>
       <FlatList
         data={heartRateHistory}
         renderItem={({ item }) => (
           <View style={styles.item}>
             <Text style={styles.itemText}>{item.heartRate} bpm</Text>
-            <Text style={styles.itemText}>{item.timestamp}</Text>
+            <Text style={styles.itemText}>{new Date(item.timestamp).toLocaleString()}</Text>
             <View style={[styles.square, { backgroundColor: item.isWithinRange ? 'green' : 'red' }]} />
           </View>
         )}

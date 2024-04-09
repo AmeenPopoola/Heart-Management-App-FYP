@@ -1,54 +1,93 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Checkbox } from 'expo-checkbox';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useFonts, PTSerif_400Regular, PTSerif_700Bold } from '@expo-google-fonts/pt-serif';
 import { useNavigation } from '@react-navigation/native';
-import { lightThemeStyles,darkThemeStyles } from '../styles/DailyTasks/taskStyles';
+import { lightThemeStyles, darkThemeStyles } from '../styles/DailyTasks/taskStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Checkbox } from 'expo-checkbox';
 
 const DailyTasks = () => {
-  const [heartRateChecked, setHeartRateChecked] = useState(false);
-  const [bloodPressureChecked, setBloodPressureChecked] = useState(false);
-  const [medicationChecked, setMedicationChecked] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [completedTasks, setCompletedTasks] = useState([]);
+  const [heartRateHistory, setHeartRateHistory] = useState([]);
+  const [bPHistory, setBPHistory] = useState([]);
+  const [isMedicationTaken, setIsMedicationTaken] = useState(false);
+  const [completedTasksCount, setCompletedTasksCount] = useState(0);
 
   const navigation = useNavigation();
 
   useEffect(() => {
-    const loadTheme = async () => {
+    const fetchHistory = async () => {
       try {
+        const storedHRData = await AsyncStorage.getItem('heartRateResults');
+        const storedBPData = await AsyncStorage.getItem('bpRecords');
         const storedTheme = await AsyncStorage.getItem('themeState');
+
+        if (storedBPData !== null) {
+          const records = JSON.parse(storedBPData);
+          setBPHistory(records);
+        }
         if (storedTheme !== null) {
           const parsedTheme = JSON.parse(storedTheme);
           setIsDarkMode(parsedTheme);
         }
+        if (storedHRData) {
+          const parsedData = JSON.parse(storedHRData);
+          setHeartRateHistory(parsedData);
+        }
       } catch (error) {
-        console.error('Error loading theme:', error);
+        console.error('Error fetching history:', error);
       }
     };
-
-    loadTheme();
+    fetchHistory();
   }, []);
 
-  const handleHeartRateToggle = () => {
-    setHeartRateChecked(!heartRateChecked);
-    if (!heartRateChecked) {
-      navigation.navigate('HeartRate'); // Navigate to HeartRatePage if task is completed
-    }
-  };
+  const currentDateString = new Date().toLocaleString().split(',')[0]; // Get current date in ISO string format
 
-  const handleBloodPressureToggle = () => {
-    setBloodPressureChecked(!bloodPressureChecked);
-    if (!bloodPressureChecked) {
-      navigation.navigate('BloodPressure'); // Navigate to BloodPressurePage if task is completed
-    }
-  };
+    const lastHeartRateResult = heartRateHistory.length > 0 ? heartRateHistory[heartRateHistory.length - 1] : null;
+    const lastHeartRateDateString = lastHeartRateResult ? new Date(lastHeartRateResult.timestamp).toLocaleString().split(',')[0] : null;
 
-  const handleMedicationToggle = () => {
-    setMedicationChecked(!medicationChecked);
-    if (!medicationChecked) {
-      navigation.navigate('Medication'); // Navigate to MedicationPage if task is completed
+    const lastBloodPressureResult = bPHistory.length > 0 ? bPHistory[bPHistory.length - 1] : null;
+    const lastBloodPressureDateString = lastBloodPressureResult ? lastBloodPressureResult.time.split(',')[0] : null;
+
+
+    console.log(lastBloodPressureDateString);
+    console.log(lastHeartRateDateString);
+
+    useEffect(() => {
+      if (lastHeartRateDateString === currentDateString) {
+        setCompletedTasksCount(prevCount => prevCount + 1);
+      }
+    
+      // Check if the last blood pressure result matches the current date
+      if (lastBloodPressureDateString === currentDateString) {
+        setCompletedTasksCount(prevCount => prevCount + 1);
+      }
+    }, [heartRateHistory, bPHistory]);
+
+    console.log(completedTasksCount);
+
+    useEffect(() => {
+      // Save the completed tasks count in AsyncStorage
+      AsyncStorage.setItem('completedTasksCount', completedTasksCount.toString());
+    }, [completedTasksCount]);
+
+  const handleTaskCompletion = (taskName) => {
+    setCompletedTasks([...completedTasks, taskName]);
+
+    // Increment completedTasksCount if the medication checkbox is checked
+    if (taskName === 'Medication' && isMedicationTaken) {
+      setCompletedTasksCount(completedTasksCount + 1);
+    }
+
+    // Save the completed tasks in AsyncStorage or any other storage mechanism
+    // You can add your logic here to save completed tasks
+
+    if (taskName === 'HeartRate') {
+      navigation.navigate('HeartRate');
+    } else if (taskName === 'BloodPressure') {
+      navigation.navigate('BloodPressure');
     }
   };
 
@@ -56,20 +95,65 @@ const DailyTasks = () => {
     PTSerif_400Regular,
     PTSerif_700Bold,
   });
-  
+
   if (!fontsLoaded) {
     return null;
   }
+  
 
   const styles = isDarkMode ? darkThemeStyles : lightThemeStyles;
 
-  const renderCompleteTaskButton = (checked, onPress) => {
-    if (!checked) {
-      return (
-        <TouchableOpacity style={styles.completeTaskButton} onPress={onPress}>
-          <Text style={styles.completeTaskButtonText}>Complete Task</Text>
-        </TouchableOpacity>
-      );
+  const handleMedicationToggle = () => {
+    setIsMedicationTaken(!isMedicationTaken);
+    AsyncStorage.setItem('isMedicationTaken', JSON.stringify(!isMedicationTaken));
+    // If medication is checked, increment completedTasksCount
+    if (!isMedicationTaken) {
+      setCompletedTasksCount(completedTasksCount + 1);
+    } else {
+    // If medication is unchecked, decrement completedTasksCount
+    setCompletedTasksCount(completedTasksCount - 1);
+  }
+  };
+
+  const renderCompleteTaskButton = (taskName, onPress) => {
+
+    
+    if (!completedTasks.includes(taskName)) {
+      if (taskName === 'HeartRate' && lastHeartRateDateString === currentDateString) {
+        // If the last heart rate result has the same date as the current date
+        return (
+          <View style={styles.completedTaskContainer}>
+            <Icon name="checkcircle" size={24} color={styles.completeTaskButton.color} />
+            <TouchableOpacity style={styles.completeAgainButton} onPress={onPress}>
+              <Text style={styles.completeAgainButtonText}>Complete Again</Text>
+            </TouchableOpacity>
+          </View>
+        );
+      } else if (taskName === 'BloodPressure' && lastBloodPressureDateString === currentDateString) {
+        // If the last blood pressure result has the same date as the current date
+        return (
+          <View style={styles.completedTaskContainer}>
+            <Icon name="checkcircle" size={24} color={styles.completeTaskButton.color} />
+            <TouchableOpacity style={styles.completeAgainButton} onPress={onPress}>
+              <Text style={styles.completeAgainButtonText}>Complete Again</Text>
+            </TouchableOpacity>
+          </View>
+        );
+      } else if (taskName === 'Medication') {
+        return (
+          <Checkbox
+            value={isMedicationTaken}
+            onValueChange={handleMedicationToggle}
+          />
+        );
+      } else {
+        // If the task is not completed or not a heart rate task or there's no heart rate result for today
+        return (
+          <TouchableOpacity style={styles.completeTaskButton} onPress={onPress}>
+            <Text style={styles.completeTaskButtonText}>Complete Task</Text>
+          </TouchableOpacity>
+        );
+      }
     }
     return null;
   };
@@ -84,33 +168,21 @@ const DailyTasks = () => {
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
       <Text style={styles.header}>Complete Your Daily Tasks!</Text>
+      <Text style={styles.completedTasksCount}>Completed Tasks: {completedTasksCount}</Text>
       <View style={styles.taskContainer}>
         <Text style={styles.taskText}>Measure Heart Rate</Text>
-        <Checkbox
-          value={heartRateChecked}
-          onValueChange={handleHeartRateToggle}
-        />
-        {renderCompleteTaskButton(heartRateChecked, handleHeartRateToggle)}
+        {renderCompleteTaskButton('HeartRate', () => handleTaskCompletion('HeartRate'))}
       </View>
       <View style={styles.taskContainer}>
         <Text style={styles.taskText}>Measure Blood Pressure</Text>
-        <Checkbox
-          value={bloodPressureChecked}
-          onValueChange={handleBloodPressureToggle}
-        />
-        {renderCompleteTaskButton(bloodPressureChecked, handleBloodPressureToggle)}
+        {renderCompleteTaskButton('BloodPressure', () => handleTaskCompletion('BloodPressure'))}
       </View>
       <View style={styles.taskContainer}>
         <Text style={styles.taskText}>Take Medication</Text>
-        <Checkbox
-          value={medicationChecked}
-          onValueChange={handleMedicationToggle}
-        />
-        {renderCompleteTaskButton(medicationChecked, handleMedicationToggle)}
+        {renderCompleteTaskButton('Medication', () => handleTaskCompletion('Medication'))}
+      </View>
     </View>
-  </View>
   );
 };
-
 
 export default DailyTasks;

@@ -84,7 +84,7 @@ const BloodPressure = ({ navigation }) => {
             }
 
             // Add the new record to the beginning of the records array
-            updatedRecords.unshift(newRecord);
+            updatedRecords.push(newRecord);
 
             // Store the updated records back to AsyncStorage
             await AsyncStorage.setItem('bpRecords', JSON.stringify(updatedRecords));

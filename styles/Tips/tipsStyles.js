@@ -8,7 +8,7 @@ export const lightThemeStyles = StyleSheet.create({
       flex: 1,
       backgroundColor: 'white',
       flexDirection: 'column', // Arrange children vertically
-      marginTop:20,
+      marginTop:30,
     },
     section: {
       flex: 1, // Each section occupies equal space
@@ -66,7 +66,7 @@ export const lightThemeStyles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#121212', // Dark background color
       flexDirection: 'column', // Arrange children vertically
-      marginTop: 20,
+      marginTop: 30,
     },
     section: {
       flex: 1, // Each section occupies equal space

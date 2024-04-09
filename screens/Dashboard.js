@@ -16,6 +16,8 @@ const Dashboard = () => {
   const [bloodPressureData, setBloodPressureData] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [taskCount, setTaskCount] = useState(0);
+  
 
     useEffect(() => {
       const fetchData = async () => {
@@ -23,11 +25,15 @@ const Dashboard = () => {
           const storedTheme = await AsyncStorage.getItem('themeState');
           const storedHeartRateData = await AsyncStorage.getItem('heartRateResults');
           const storedBloodPressureData = await AsyncStorage.getItem('bpRecords');
-          if (storedHeartRateData && storedBloodPressureData) {
+          const storedTaskCount = await AsyncStorage.getItem('completedTasksCount');
+          if (storedHeartRateData && storedBloodPressureData && storedTaskCount) {
             const parsedHeartRateData = JSON.parse(storedHeartRateData);
             const parsedBloodPressureData = JSON.parse(storedBloodPressureData);
+            const parsedTaskCount = JSON.parse(storedTaskCount);
+
             setHeartRateData(parsedHeartRateData);
             setBloodPressureData(parsedBloodPressureData);
+            setTaskCount(parsedTaskCount);
             setDataLoaded(true);
           if (storedTheme !== null) {
               const parsedTheme = JSON.parse(storedTheme);
@@ -45,7 +51,7 @@ const Dashboard = () => {
   // Dummy data for progress
   const dailyTasksCompleted = 2;
   const totalDailyTasks = 3;
-  const progress = (dailyTasksCompleted / totalDailyTasks) * 100;
+  const progress = (taskCount / totalDailyTasks) * 100;
 
   const handleCompleteDailyTasks = () => {
     navigation.navigate('DailyTasks');
@@ -66,6 +72,8 @@ const Dashboard = () => {
   }
 
   const styles = isDarkMode ? darkThemeStyles : lightThemeStyles;
+
+  
 
 
   return (

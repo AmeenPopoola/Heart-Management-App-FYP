@@ -32,6 +32,7 @@ const BPHistory = () => {
         loadData();
     }, []);
 
+
     const renderSquare = (category) => {
         let squareColor;
         switch (category) {

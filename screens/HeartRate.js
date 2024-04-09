@@ -2,7 +2,7 @@ import React, { useState, useRef,useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { useFonts, PTSerif_700Bold, PTSerif_400Regular } from '@expo-google-fonts/pt-serif';
 import TextInputWithLabel from '../components/user-setup-process/UserInfoSetup/TextInputWithLabel';
-import { lightThemeStyles,darkThemeStyles } from '../styles/HeartRate/hrStyles';
+import { lightThemeStyles,darkThemeStyles } from '../styles/HeartRate/hRStyles';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { Video } from 'expo-av';

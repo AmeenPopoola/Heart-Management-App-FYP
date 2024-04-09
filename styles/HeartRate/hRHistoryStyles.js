@@ -29,7 +29,6 @@ export const lightThemeStyles = StyleSheet.create({
     listHeader: {
       fontFamily: 'PTSerif_700Bold',
       fontSize: 16,
-      marginTop: 60,
       marginBottom: 10,
     },
     item: {
