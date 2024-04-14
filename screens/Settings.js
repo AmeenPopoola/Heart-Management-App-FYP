@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Settings = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
   
     const navigation = useNavigation();
   
@@ -36,6 +37,16 @@ const Settings = () => {
     const handleReminderPress = () => {
       navigation.navigate("Reminder")
     };
+
+    const handleLoginPress = () => {
+      navigation.navigate("Login")
+    };
+
+    const handleSignUpPress = () => {
+      navigation.navigate("SignUp")
+    };
+
+    
   
     const handleThemeSwitch = () => {
       const newThemeState = !isDarkMode;
@@ -65,6 +76,28 @@ const Settings = () => {
               <Icon name="back" size={24} color={themeStyles.backButtonText.color} />
               <Text style={[styles.backButtonText, themeStyles.backButtonText]}>Back</Text>
             </TouchableOpacity>
+
+            {/* Account Section */}
+            <View style={[styles.section, themeStyles.section]}>
+              <Text style={[styles.sectionTitle, themeStyles.sectionTitle]}>Account</Text>
+              {isLoggedIn ? ( // Render based on sign-in state
+                <TouchableOpacity style={[styles.row, themeStyles.row]} onPress={handleLoginPress}>
+                  <View style={[styles.rowIcon, themeStyles.rowIcon]}>
+                    <FeatherIcon name="log-out" size={20} color="#fff" />
+                  </View>
+                  <Text style={[styles.rowLabel, themeStyles.rowLabel]}>Log Out</Text>
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity style={[styles.row, themeStyles.row]} onPress={handleLoginPress}>
+                  <View style={[styles.rowIcon, themeStyles.rowIcon]}>
+                    <FeatherIcon name="user-plus" size={20} color="#fff" />
+                  </View>
+                  <Text style={[styles.rowLabel, themeStyles.rowLabel]}>Sign Up</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+
+
             <View style={styles.section}>
               <Text style={[styles.sectionTitle, themeStyles.sectionTitle]}>Profile</Text>
               <TouchableOpacity style={[styles.row, themeStyles.row]} onPress={handleProfilePress}>
