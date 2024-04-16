@@ -6,11 +6,12 @@ export const lightThemeStyles = StyleSheet.create({
         backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:20,
+        marginTop:25,
     },
     videoContainer: {
       justifyContent: 'center',
       alignItems: 'center',
+      marginBottom:10,
   },
   video: {
       width: 300,
