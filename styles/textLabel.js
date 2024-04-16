@@ -36,7 +36,6 @@ export const darkThemeStyles = StyleSheet.create({
       padding: 10,
       color: '#FFFFFF', // Adjusted text color for dark mode
       backgroundColor: '#333333', // Adjusted background color for dark mode
-      placeholderTextColor: '#FFFFFF', // Corrected placeholder text color for dark mode
     },
   });
   
