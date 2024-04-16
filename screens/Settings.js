@@ -88,7 +88,7 @@ const Settings = () => {
                   <Text style={[styles.rowLabel, themeStyles.rowLabel]}>Log Out</Text>
                 </TouchableOpacity>
               ) : (
-                <TouchableOpacity style={[styles.row, themeStyles.row]} onPress={handleLoginPress}>
+                <TouchableOpacity style={[styles.row, themeStyles.row]} onPress={handleSignUpPress}>
                   <View style={[styles.rowIcon, themeStyles.rowIcon]}>
                     <FeatherIcon name="user-plus" size={20} color="#fff" />
                   </View>

@@ -246,8 +246,8 @@ const Reminder = () => {
               onChange={handleTimeChange}
             />
           )}
-          <Button onPress={addReminder} title={`Add Reminder for ${selectedReminderType}`} color="#841584" accessibilityLabel={`Add Reminder for ${selectedReminderType}`} />
-          <Button onPress={() => setShowAddReminderModal(false)} title="Cancel" color="#841584" accessibilityLabel="Cancel" />
+          <Button onPress={addReminder} title={`Add Reminder for ${selectedReminderType}`} color="#F21E1E" accessibilityLabel={`Add Reminder for ${selectedReminderType}`} />
+          <Button onPress={() => setShowAddReminderModal(false)} title="Cancel" color="#F21E1E" accessibilityLabel="Cancel" />
         </View>
       </Modal>
     </View>

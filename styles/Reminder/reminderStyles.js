@@ -71,7 +71,7 @@ export const lightThemeStyles = StyleSheet.create({
     marginLeft: 5,
   },
   setTimeButton: {
-    backgroundColor: '#841584',
+    backgroundColor: '#F21E1E',
     padding: 10,
     borderRadius: 5,
     marginBottom: 10,
@@ -158,7 +158,7 @@ export const darkThemeStyles = StyleSheet.create({
     color: '#fff', // White text color
   },
   setTimeButton: {
-    backgroundColor: '#841584',
+    backgroundColor: '#F21E1E',
     padding: 10,
     borderRadius: 5,
     marginBottom: 10,
