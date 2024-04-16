@@ -5,7 +5,8 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { useFonts,PTSerif_400Regular_Italic,PTSerif_400Regular,PTSerif_700Bold} from '@expo-google-fonts/pt-serif';
 import { lightThemeStyles,darkThemeStyles } from '../styles/BloodPressure/bPStyles';
 import { lightThemeButtonStyles,darkThemeButtonStyles } from '../styles/buttonStyles';
-
+import { db } from '../firebaseConfig'; 
+import { doc, updateDoc,getDoc } from 'firebase/firestore';
 
 const BloodPressure = ({ navigation }) => {
     const [systolic, setSystolic] = useState('');
@@ -14,6 +15,8 @@ const BloodPressure = ({ navigation }) => {
     const [bpRecords, setBpRecords] = useState([]);
     const [currentDateTime, setCurrentDateTime] = useState('');
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const [uid,setUid] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
     useEffect(() => {
@@ -21,6 +24,11 @@ const BloodPressure = ({ navigation }) => {
             try {
                 const storedAge = await AsyncStorage.getItem('age');
                 const storedTheme = await AsyncStorage.getItem('themeState');
+                const storedUID = await AsyncStorage.getItem('uid');
+                const userLoggedIn = await AsyncStorage.getItem('isLoggedIn');
+
+                setIsLoggedIn(!!userLoggedIn);
+                if(storedUID) setUid(storedUID);
                 if (storedAge) {
                     setAge(storedAge);
                 }
@@ -69,35 +77,30 @@ const BloodPressure = ({ navigation }) => {
 
     const handleCalculateBP = async () => {
         if (systolic && diastolic) {
-        const category = checkBloodPressureCategory(systolic, diastolic);
-        const time = new Date().toLocaleString();
-        const newRecord = { systolic, diastolic, category, time };
-
-        try {
-            // Retrieve existing records from AsyncStorage
-            const storedRecords = await AsyncStorage.getItem('bpRecords');
-            let updatedRecords = [];
-
-            if (storedRecords) {
-                // Parse existing records
-                updatedRecords = JSON.parse(storedRecords);
+            const category = checkBloodPressureCategory(systolic, diastolic);
+            const time = new Date().toLocaleString();
+            const newRecord = { systolic, diastolic, category, time };
+    
+            try {
+                // Retrieve existing records from Firestore
+                const userBPReadingsRef = doc(db, 'userBPReadings', uid);
+                const userBPReadingsSnapshot = await getDoc(userBPReadingsRef);
+                const existingBloodPressureData = userBPReadingsSnapshot.data().bloodPressureData || [];
+    
+                // Add the new record to the existing data
+                const updatedBloodPressureData = [...existingBloodPressureData, newRecord];
+    
+                // Update the document with the updated data
+                await updateDoc(userBPReadingsRef, {
+                    bloodPressureData: updatedBloodPressureData,
+                });
+    
+                navigation.navigate('BPResult', { resultData: newRecord });
+            } catch (error) {
+                console.error('Error saving blood pressure records:', error);
             }
-
-            // Add the new record to the beginning of the records array
-            updatedRecords.push(newRecord);
-
-            // Store the updated records back to AsyncStorage
-            await AsyncStorage.setItem('bpRecords', JSON.stringify(updatedRecords));
-
-            // Update the state with the new records
-            setBpRecords(updatedRecords);
-
-            navigation.navigate('BPResult', { resultData: newRecord });
-        } catch (error) {
-            console.error('Error saving blood pressure records:', error);
         }
-    }
-};
+    };
 
     const [fontsLoaded] = useFonts({
         PTSerif_400Regular,

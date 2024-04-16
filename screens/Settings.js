@@ -26,8 +26,18 @@ const Settings = () => {
           console.error('Error loading theme:', error);
         }
       };
+
+      const checkLoginStatus = async () => {
+        try {
+          const userLoggedIn = await AsyncStorage.getItem('isLoggedIn');
+          setIsLoggedIn(!!userLoggedIn); // Convert to boolean
+        } catch (error) {
+          console.error('Error checking login status:', error);
+        }
+      };
   
       loadTheme();
+      checkLoginStatus();
     }, []);
   
     const handleProfilePress = () => {
@@ -40,6 +50,14 @@ const Settings = () => {
 
     const handleLoginPress = () => {
       navigation.navigate("Login")
+    };
+
+    const handleLogout = async () => {
+      // Perform logout actions here
+    
+      // Set isLoggedIn to false
+      setIsLoggedIn(false);
+      AsyncStorage.setItem('isLoggedIn', 'false');
     };
 
     const handleSignUpPress = () => {
@@ -81,7 +99,7 @@ const Settings = () => {
             <View style={[styles.section, themeStyles.section]}>
               <Text style={[styles.sectionTitle, themeStyles.sectionTitle]}>Account</Text>
               {isLoggedIn ? ( // Render based on sign-in state
-                <TouchableOpacity style={[styles.row, themeStyles.row]} onPress={handleLoginPress}>
+                <TouchableOpacity style={[styles.row, themeStyles.row]} onPress={handleLogout}>
                   <View style={[styles.rowIcon, themeStyles.rowIcon]}>
                     <FeatherIcon name="log-out" size={20} color="#fff" />
                   </View>

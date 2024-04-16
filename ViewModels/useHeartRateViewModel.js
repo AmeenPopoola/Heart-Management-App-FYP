@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import { db } from '../firebaseConfig'; 
+import { doc, updateDoc,getDoc } from 'firebase/firestore';
 
 export const useHeartRateViewModel = () => {
   const [heartRate, setHeartRate] = useState('');
   const [userAge, setUserAge] = useState('');
   const [currentDate, setCurrentDate] = useState('');
+  const [uid,setUid] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigation = useNavigation();
 
@@ -15,6 +19,11 @@ export const useHeartRateViewModel = () => {
     const loadUserData = async () => {
       try {
         const storedAge = await AsyncStorage.getItem('age');
+        const storedUID = await AsyncStorage.getItem('uid');
+        const userLoggedIn = await AsyncStorage.getItem('isLoggedIn');
+
+        setIsLoggedIn(!!userLoggedIn);
+        if(storedUID) setUid(storedUID);
         if (storedAge) setUserAge(storedAge);
       } catch (error) {
         console.error('Error loading user data:', error);
@@ -70,8 +79,7 @@ export const useHeartRateViewModel = () => {
     }
   
     // Check if entered BPM is within the band width
-    const currentDate = new Date();
-    const timestamp = currentDate.toISOString();
+    const timestamp = new Date().toISOString();
   
     // Check if entered BPM is within the band width
     if (enteredBPM >= lowerLimit && enteredBPM <= upperLimit) {
@@ -88,13 +96,24 @@ export const useHeartRateViewModel = () => {
         results.push(resultData);
         await AsyncStorage.setItem('heartRateResults', JSON.stringify(results));
 
+        if (isLoggedIn) {
+          // Upload heart rate data to Firestore
+          const userHRReadingsRef = doc(db, 'userHRReadings', uid);
+          const userHRReadingsSnapshot = await getDoc(userHRReadingsRef);
+          const existingHeartRateData = userHRReadingsSnapshot.data().heartRateData || [];
+
+
+          // Update the document by adding new heart rate results to the 'heartRateData' array
+          await updateDoc(userHRReadingsRef, {
+            heartRateData: [...existingHeartRateData, resultData],
+          });
+        }
+
         navigation.navigate('HRResult', { resultData });
+        Alert.alert('Success', 'Entered Heart Rate is within the band width!');
       } catch (error) {
         console.error('Error saving heart rate result to AsyncStorage:', error);
       }
-  
-      // Show success message
-      Alert.alert('Success', 'Entered Heart Rate is within the band width!');
     } else {
       const resultData = {
         heartRate: enteredBPM,
@@ -108,21 +127,29 @@ export const useHeartRateViewModel = () => {
         const results = storedResults ? JSON.parse(storedResults) : [];
         results.push(resultData);
         await AsyncStorage.setItem('heartRateResults', JSON.stringify(results));
+
+        if (isLoggedIn) {
+          const userHRReadingsRef = doc(db, 'userHRReadings', uid);
+
+          // Update the document by adding new heart rate results to the 'heartRateData' array
+          await updateDoc(userHRReadingsRef, {
+            heartRateData: [...existingHeartRateData, newHeartRateResult],
+          });
+        }
+
+        navigation.navigate('HRResult', { resultData });
+        Alert.alert('Error', 'Entered Heart Rate is outside the allowed range for the given age.');
       } catch (error) {
         console.error('Error saving heart rate result to AsyncStorage:', error);
       }
-  
-      navigation.navigate('HRResult', { resultData });
-      Alert.alert('Error', 'Entered Heart Rate is outside the allowed range for the given age.');
     }
   };
 
-
-      return {
-        heartRate,
-        setHeartRate,
-        userAge,
-        currentDate,
-        handleEnterHeartRate,
-      };
-    };
+  return {
+    heartRate,
+    setHeartRate,
+    userAge,
+    currentDate,
+    handleEnterHeartRate,
+  };
+};

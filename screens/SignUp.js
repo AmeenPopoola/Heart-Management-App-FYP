@@ -6,9 +6,11 @@ import SignUpForm from "../components/sign-up/SignUpForm";
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useState,useEffect } from "react";
 
 const SignUp = () => {
   const navigation = useNavigation();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Function to upload heart rate data to Firestore
   const uploadHeartRateDataToFirestore = async (uid, heartRateData) => {
@@ -124,6 +126,14 @@ const SignUp = () => {
       };
       await setDoc(doc(db, "users", user.uid), userData);
       console.log("User data added to Firestore");
+
+      setIsLoggedIn(true);
+      AsyncStorage.setItem('isLoggedIn', 'true');
+      AsyncStorage.setItem('uid', user.uid);
+
+      const userUid = user.uid;
+console.log('User UID:', userUid);
+
 
       navigation.navigate('Dashboard');
     } catch (error) {
