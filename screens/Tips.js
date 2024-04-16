@@ -3,6 +3,7 @@ import { View, Text, StyleSheet,TouchableOpacity,Image,Linking,ScrollView } from
 import Heart from 'react-native-vector-icons/FontAwesome';
 import Blood from 'react-native-vector-icons/Fontisto';
 import Health from 'react-native-vector-icons/MaterialIcons';
+import {useIsFocused } from '@react-navigation/native';
 import { useFonts, PTSerif_400Regular, PTSerif_700Bold } from '@expo-google-fonts/pt-serif';
 import { lightThemeStyles,darkThemeStyles } from '../styles/Tips/tipsStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -10,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Tips = () => {
 
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
     const loadTheme = async () => {
@@ -25,7 +27,7 @@ const Tips = () => {
     };
 
     loadTheme();
-  }, []);
+  }, [isDarkMode,isFocused]);
 
   let [fontsLoaded] = useFonts({
     PTSerif_400Regular,

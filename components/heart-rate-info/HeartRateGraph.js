@@ -29,7 +29,7 @@ const HeartRateGraph = () => {
     };
 
     fetchHeartRateData();
-  }, []);
+  }, [heartRateData, isDarkMode]);
 
   
   const formatTimestamp = (timestamp) => {
@@ -39,8 +39,6 @@ const HeartRateGraph = () => {
     const formattedDate = `${day}${getOrdinalSuffix(day)} ${month}`;
     return formattedDate;
   };
-
-console.log('Heart Rate Data:', heartRateData);
 
 
 // Handle empty data or other error cases

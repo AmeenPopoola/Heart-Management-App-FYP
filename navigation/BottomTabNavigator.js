@@ -4,6 +4,7 @@ import Dashboard from '../screens/Dashboard';
 import Emergency from '../screens/Emergency';
 import Tips from '../screens/Tips';
 import Icon from 'react-native-vector-icons/Entypo';
+import { useIsFocused } from '@react-navigation/native';
 import { useFonts, PTSerif_700Bold, PTSerif_400Regular } from '@expo-google-fonts/pt-serif';
 import { lightThemeStyles,darkThemeStyles } from '../styles/BottomTabNav/tabStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -11,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
+  const isFocused = useIsFocused();
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const BottomTabNavigator = () => {
     };
 
     loadTheme();
-  }, []);
+  }, [isFocused,isDarkMode]);
 
   const themeStyles = isDarkMode ? darkThemeStyles : lightThemeStyles;
 

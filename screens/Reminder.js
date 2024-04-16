@@ -122,11 +122,11 @@ const Reminder = () => {
         break;
       case 'Blood Pressure':
         setBloodPressureReminders((prevReminders) => [...prevReminders, newReminder]);
-        await AsyncStorage.setItem('medicationReminders', JSON.stringify([...medicationReminders, newReminder]));
+        await AsyncStorage.setItem('bloodPressureReminders', JSON.stringify([...bloodPressureReminders, newReminder]));
         break;
       case 'Heart Rate':
         setHeartRateReminders((prevReminders) => [...prevReminders, newReminder]);
-        await AsyncStorage.setItem('medicationReminders', JSON.stringify([...medicationReminders, newReminder]));
+        await AsyncStorage.setItem('heartRateReminders', JSON.stringify([...heartRateReminders, newReminder]));
         break;
       default:
         break;
@@ -147,10 +147,25 @@ const Reminder = () => {
     </View>
   );
 
-  const removeReminder = (id) => {
-    setMedicationReminders((prevReminders) => prevReminders.filter((reminder) => reminder.id !== id));
-    setBloodPressureReminders((prevReminders) => prevReminders.filter((reminder) => reminder.id !== id));
-    setHeartRateReminders((prevReminders) => prevReminders.filter((reminder) => reminder.id !== id));
+  const removeReminder = async (id) => {
+    // Filter out the reminder with the specified ID from each reminder type
+    const updatedMedicationReminders = medicationReminders.filter((reminder) => reminder.id !== id);
+    const updatedBloodPressureReminders = bloodPressureReminders.filter((reminder) => reminder.id !== id);
+    const updatedHeartRateReminders = heartRateReminders.filter((reminder) => reminder.id !== id);
+  
+    // Update state
+    setMedicationReminders(updatedMedicationReminders);
+    setBloodPressureReminders(updatedBloodPressureReminders);
+    setHeartRateReminders(updatedHeartRateReminders);
+  
+    // Update AsyncStorage
+    try {
+      await AsyncStorage.setItem('medicationReminders', JSON.stringify(updatedMedicationReminders));
+      await AsyncStorage.setItem('bloodPressureReminders', JSON.stringify(updatedBloodPressureReminders));
+      await AsyncStorage.setItem('heartRateReminders', JSON.stringify(updatedHeartRateReminders));
+    } catch (error) {
+      console.error('Error removing reminder:', error);
+    }
   };
 
   const renderAddReminderButton = (sectionTitle, reminderType) => (

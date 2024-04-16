@@ -3,12 +3,13 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useFonts, PTSerif_700Bold, PTSerif_400Regular } from '@expo-google-fonts/pt-serif';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation,useIsFocused} from '@react-navigation/native';
 import { lightThemeStyles,darkThemeStyles } from '../../styles/Dashboard/welcomeStyles';
 
 export default function WelcomeHeader() {
   const [userFirstName, setUserFirstName] = useState('');
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const isFocused = useIsFocused();
 
   const navigation = useNavigation();
 
@@ -38,7 +39,7 @@ export default function WelcomeHeader() {
       }
     };
     loadUserData();
-  }, []);
+  }, [isFocused,isDarkMode]);
 
   if (!fontsLoaded) {
     return null;

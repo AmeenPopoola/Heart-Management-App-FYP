@@ -46,10 +46,9 @@ const Dashboard = () => {
       };
   
       fetchData();
-    }, [isFocused]);
+    }, [isFocused,isDarkMode]);
 
-  // Dummy data for progress
-  const dailyTasksCompleted = 2;
+
   const totalDailyTasks = 3;
   const progress = (taskCount / totalDailyTasks) * 100;
 
