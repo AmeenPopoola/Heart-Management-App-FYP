@@ -8,10 +8,23 @@ export const lightThemeStyles = StyleSheet.create({
         alignItems: 'center',
         marginTop:20,
     },
+    videoContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
+  video: {
+      width: 300,
+      height: 200,
+  },
+  heading: {
+    fontFamily: 'PTSerif_700Bold',
+    fontSize: 24,
+    marginBottom: 10,
+},
     contentContainer: {
         backgroundColor: '#f0f0f0',
         borderRadius: 10,
-        padding: 20,
+        padding: 10,
         width: '80%',
     },
     input: {
@@ -58,8 +71,23 @@ export const lightThemeStyles = StyleSheet.create({
         backgroundColor: '#121212', // Dark background color
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 20,
+        marginTop: 25,
       },
+      videoContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom:10,
+    },
+    video: {
+        width: 300,
+        height: 200,
+    },
+    heading: {
+      fontFamily: 'PTSerif_700Bold',
+      fontSize: 19,
+      marginBottom: 10,
+      color: '#ffffff',
+  },
       contentContainer: {
         backgroundColor: '#292929', // Darker content background color
         borderRadius: 10,

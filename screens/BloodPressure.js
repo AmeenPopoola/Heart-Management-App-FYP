@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { Video } from 'expo-av';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet,ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useFonts,PTSerif_400Regular_Italic,PTSerif_400Regular,PTSerif_700Bold} from '@expo-google-fonts/pt-serif';
@@ -7,6 +8,7 @@ import { lightThemeStyles,darkThemeStyles } from '../styles/BloodPressure/bPStyl
 import { lightThemeButtonStyles,darkThemeButtonStyles } from '../styles/buttonStyles';
 import { db } from '../firebaseConfig'; 
 import { doc, updateDoc,getDoc } from 'firebase/firestore';
+
 
 const BloodPressure = ({ navigation }) => {
     const [systolic, setSystolic] = useState('');
@@ -17,6 +19,9 @@ const BloodPressure = ({ navigation }) => {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [uid,setUid] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(true);
+
+    const videoRef = useRef(null);
 
 
     useEffect(() => {
@@ -102,6 +107,17 @@ const BloodPressure = ({ navigation }) => {
         }
     };
 
+    const togglePlayPause = () => {
+        if (videoRef.current) {
+          if (isPlaying) {
+            videoRef.current.pauseAsync();
+          } else {
+            videoRef.current.playAsync();
+          }
+          setIsPlaying(!isPlaying);
+        }
+      };
+
     const [fontsLoaded] = useFonts({
         PTSerif_400Regular,
         PTSerif_700Bold,
@@ -115,21 +131,38 @@ const BloodPressure = ({ navigation }) => {
       const styles = isDarkMode ? darkThemeStyles : lightThemeStyles;
       const ButtonStyles = isDarkMode ? darkThemeButtonStyles : lightThemeButtonStyles;
 
-     return (
-        <View style={styles.pageContainer}>
-        <TouchableOpacity
-                    style={styles.backButton}
-                    onPress={() => navigation.goBack()}
-                >
-                    <Icon name="back" size={24} color={styles.backButtonText.color} />
-                    <Text style={styles.backButtonText}>Back</Text>
+      return (
+        <ScrollView  contentContainerStyle={styles.pageContainer}>
+            <TouchableOpacity
+                style={styles.backButton}
+                onPress={() => navigation.goBack()}
+            >
+                <Icon name="back" size={24} color={styles.backButtonText.color} />
+                <Text style={styles.backButtonText}>Back</Text>
+            </TouchableOpacity>
+            <View style={styles.videoContainer}>
+                <Text style={styles.heading}>How To Take Your Blood Pressure</Text>
+                <TouchableOpacity onPress={togglePlayPause}>
+                <Video
+                  ref={videoRef}
+                  source={require('../assets/videos/BloodPressureInstructions.mp4')} // Replace with the actual video URI
+                  rate={1.0}
+                  volume={1.0}
+                  isMuted={false}
+                  resizeMode="cover"
+                  shouldPlay={isPlaying} // Control playing status
+                  isLooping
+                  style={styles.video}
+                  positionMillis={83000}
+                />
                 </TouchableOpacity>
+            </View>
             <View style={styles.contentContainer}>
                 <Text style={styles.dateTime}>{currentDateTime}</Text>
                 <Text style={styles.note}>You can perform blood pressure tests at home using your own blood pressure monitor.</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder="Enter Systolic Pressure(mmHg)"
+                    placeholder="Enter Systolic Pressure (mmHg)"
                     keyboardType="numeric"
                     value={systolic}
                     onChangeText={text => setSystolic(text)}
@@ -137,7 +170,7 @@ const BloodPressure = ({ navigation }) => {
                 />
                 <TextInput
                     style={styles.input}
-                    placeholder="Enter Diastolic Pressure(mmHg)"
+                    placeholder="Enter Diastolic Pressure (mmHg)"
                     keyboardType="numeric"
                     value={diastolic}
                     onChangeText={text => setDiastolic(text)}
@@ -150,7 +183,7 @@ const BloodPressure = ({ navigation }) => {
                     <Text style={[ButtonStyles.buttonText, styles.buttonText]}>Enter Blood Pressure</Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </ScrollView>
     );
 };
 
