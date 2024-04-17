@@ -12,6 +12,10 @@ const Start = () => {
     navigation.navigate('Setup');
   };
 
+  const handleLoginPress = () => {
+    navigation.navigate('Login');
+  };
+
   let [fontsLoaded] = useFonts({
     PTSerif_400Regular,
     PTSerif_700Bold,
@@ -27,6 +31,9 @@ const Start = () => {
       <Text style={styles.headerText}>HeartMate</Text>
       <Text style={styles.welcomeText}>
         Welcome to HeartMate, an application for managing your heart health!
+      </Text>
+      <Text style={styles.loginText} onPress={handleLoginPress}>
+        Already Have An Account? Login Here
       </Text>
       <StartButton onPress={handleStartPress} />
     </View>
@@ -58,6 +65,14 @@ const styles = StyleSheet.create({
       fontSize: 20,
       fontFamily: 'PTSerif_400Regular',
       color: '#000000', 
+      marginBottom: 20,
+    },
+    loginText: {
+      fontSize: 16,
+      fontFamily: 'PTSerif_400Regular',
+      color: '#0000FF',
+      textDecorationLine: 'underline',
+      marginBottom: 20,
     },
   });
 

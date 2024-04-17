@@ -86,27 +86,44 @@ const BloodPressure = ({ navigation }) => {
             const time = new Date().toLocaleString();
             const newRecord = { systolic, diastolic, category, time };
     
-            try {
-                // Retrieve existing records from Firestore
-                const userBPReadingsRef = doc(db, 'userBPReadings', uid);
-                const userBPReadingsSnapshot = await getDoc(userBPReadingsRef);
-                const existingBloodPressureData = userBPReadingsSnapshot.data().bloodPressureData || [];
+            const storedRecords = await AsyncStorage.getItem('bpRecords');
+            let updatedRecords = [];
     
-                // Add the new record to the existing data
-                const updatedBloodPressureData = [...existingBloodPressureData, newRecord];
+            if (storedRecords) {
+                // Parse existing records
+                updatedRecords = JSON.parse(storedRecords);
+                updatedRecords.push(newRecord);
     
-                // Update the document with the updated data
-                await updateDoc(userBPReadingsRef, {
-                    bloodPressureData: updatedBloodPressureData,
-                });
+                // Store the updated records back to AsyncStorage
+                await AsyncStorage.setItem('bpRecords', JSON.stringify(updatedRecords));
     
-                navigation.navigate('BPResult', { resultData: newRecord });
-            } catch (error) {
-                console.error('Error saving blood pressure records:', error);
+                // Update the state with the new records
+                setBpRecords(updatedRecords);
             }
+    
+            if (isLoggedIn) {
+                try { // Add missing try block
+                    // Retrieve existing records from Firestore
+                    const userBPReadingsRef = doc(db, 'userBPReadings', uid);
+                    const userBPReadingsSnapshot = await getDoc(userBPReadingsRef);
+                    const existingBloodPressureData = userBPReadingsSnapshot.data().bloodPressureData || [];
+    
+                    // Add the new record to the existing data
+                    const updatedBloodPressureData = [...existingBloodPressureData, newRecord];
+    
+                    // Update the document with the updated data
+                    await updateDoc(userBPReadingsRef, {
+                        bloodPressureData: updatedBloodPressureData,
+                    });
+                } catch (error) {
+                    console.error('Error saving blood pressure records:', error);
+                }
+            }
+    
+            navigation.navigate('BPResult', { resultData: newRecord });
         }
     };
-
+    
     const togglePlayPause = () => {
         if (videoRef.current) {
           if (isPlaying) {

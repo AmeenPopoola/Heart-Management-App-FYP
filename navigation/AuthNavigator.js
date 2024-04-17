@@ -4,6 +4,7 @@ import Start from '../screens/Start';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Setup from '../screens/Setup';
 import AppNavigator from './AppNavigator';
+import Login from '../screens/Login';
 
 
 const Stack = createNativeStackNavigator();
@@ -42,6 +43,7 @@ const AuthNavigator = () => {
     )}
     <Stack.Screen name="Setup" component={Setup} />
     <Stack.Screen name="MainApp" component={AppNavigator} options={{ headerShown: false }} />
+    <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 };

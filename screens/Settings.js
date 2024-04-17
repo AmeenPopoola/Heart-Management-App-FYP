@@ -97,23 +97,31 @@ const Settings = () => {
 
             {/* Account Section */}
             <View style={[styles.section, themeStyles.section]}>
-              <Text style={[styles.sectionTitle, themeStyles.sectionTitle]}>Account</Text>
-              {isLoggedIn ? ( // Render based on sign-in state
-                <TouchableOpacity style={[styles.row, themeStyles.row]} onPress={handleLogout}>
-                  <View style={[styles.rowIcon, themeStyles.rowIcon]}>
-                    <FeatherIcon name="log-out" size={20} color="#fff" />
-                  </View>
-                  <Text style={[styles.rowLabel, themeStyles.rowLabel]}>Log Out</Text>
-                </TouchableOpacity>
-              ) : (
-                <TouchableOpacity style={[styles.row, themeStyles.row]} onPress={handleSignUpPress}>
-                  <View style={[styles.rowIcon, themeStyles.rowIcon]}>
-                    <FeatherIcon name="user-plus" size={20} color="#fff" />
-                  </View>
-                  <Text style={[styles.rowLabel, themeStyles.rowLabel]}>Sign Up</Text>
-                </TouchableOpacity>
-              )}
-            </View>
+  <Text style={[styles.sectionTitle, themeStyles.sectionTitle]}>Account</Text>
+  {isLoggedIn ? ( // Render based on sign-in state
+    <TouchableOpacity style={[styles.row, themeStyles.row]} onPress={handleLogout}>
+      <View style={[styles.rowIcon, themeStyles.rowIcon]}>
+        <FeatherIcon name="log-out" size={20} color="#fff" />
+      </View>
+      <Text style={[styles.rowLabel, themeStyles.rowLabel]}>Log Out</Text>
+    </TouchableOpacity>
+  ) : (
+    <View>
+      <TouchableOpacity style={[styles.row, themeStyles.row]} onPress={handleSignUpPress}>
+        <View style={[styles.rowIcon, themeStyles.rowIcon]}>
+          <FeatherIcon name="user-plus" size={20} color="#fff" />
+        </View>
+        <Text style={[styles.rowLabel, themeStyles.rowLabel]}>Sign Up</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={[styles.row, themeStyles.row]} onPress={handleLoginPress}>
+        <View style={[styles.rowIcon, themeStyles.rowIcon]}>
+          <FeatherIcon name="log-in" size={20} color="#fff" />
+        </View>
+        <Text style={[styles.rowLabel, themeStyles.rowLabel]}>Login</Text>
+      </TouchableOpacity>
+    </View>
+  )}
+</View>
 
 
             <View style={styles.section}>
