@@ -30,7 +30,7 @@ export const useHeartRateViewModel = () => {
       }
     };
     loadUserData();
-  }, []);
+  }, [isLoggedIn]);
 
   useEffect(() => {
     // Update the current date initially
