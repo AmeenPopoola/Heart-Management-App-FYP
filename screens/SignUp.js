@@ -143,11 +143,10 @@ console.log('User UID:', userUid);
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-        <Icon name="back" size={24} color={styles.backButtonText.color} />
-        <Text style={styles.backButtonText}>Back</Text>
+    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+        <Icon name="back" size={24} color="black" />
       </TouchableOpacity>
-      
+      <Text style={styles.heading}>Signing Up Always You To Access Your Data On Any Device When You Login!</Text>
       <View style={styles.formContainer}>
         <SignUpForm onSignUp={handleSignUp} />
       </View>
@@ -163,24 +162,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginTop:20,
   },
+  heading: {
+    fontSize: 18,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  formContainer: {
+    width: '100%',
+    maxWidth: 400, // Example max width for the form container
+  },
   backButton: {
     position: 'absolute',
     top: 20,
     left: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  backButtonText: {
-    fontFamily: 'PTSerif_400Regular',
-    fontSize: 16,
-    marginLeft: 5,
-  },
-  formContainer: {
-    width: '100%',
-    height: 40,
-    borderWidth: 1,
-    marginBottom: 20,
-    paddingHorizontal: 10,
+    zIndex: 999, // Ensure the button is above other components
   },
 });
 

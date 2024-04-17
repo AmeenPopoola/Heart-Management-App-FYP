@@ -35,7 +35,7 @@ const AuthNavigator = () => {
   },[]);
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }} >
     {userDataExists ? (
       <Stack.Screen name="AppNav" component={AppNavigator}  options={{ headerShown: false }} />
     ) : (

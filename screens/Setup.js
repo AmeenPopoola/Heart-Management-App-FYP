@@ -6,6 +6,8 @@ import { useFonts, PTSerif_400Regular, PTSerif_700Bold } from '@expo-google-font
 import useSetupViewModel from '../ViewModels/useSetupViewModel';
 import TextInputWithLabel from '../components/user-setup-process/UserInfoSetup/TextInputWithLabel';
 import { lightThemeStyles,darkThemeStyles } from '../styles/Setup/setupStyles';
+import Icon from 'react-native-vector-icons/AntDesign';
+import { useNavigation } from '@react-navigation/native';
 
 const Setup = () => {
   const {
@@ -32,6 +34,8 @@ const Setup = () => {
 
 
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     const loadTheme = async () => {
@@ -81,8 +85,11 @@ const Setup = () => {
   return (
     <View style={styles.container}>
       <ScrollView>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+        <Icon name="back" size={24} color="black" />
+        <Text style={styles.backButtonText}>Back</Text>
+      </TouchableOpacity>
         <Text style={styles.headerText}>Welcome to the HeartMate App!</Text>
-
         <View style={styles.inputContainer}>
           <Text style={styles.label}>First Name</Text>
           <TextInput
@@ -184,98 +191,7 @@ const Setup = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    justifyContent: 'center',
-    backgroundColor: '#FFFFFF',
-  },
-  headerText: {
-    fontFamily: 'PTSerif_700Bold',
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  inputContainer: {
-    marginBottom: 12,
-  },
-  label: {
-    fontFamily: 'PTSerif_400Regular',
-    fontSize: 14,
-    marginBottom: 5,
-  },
-  input: {
-    height: 40,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    padding: 10,
-  },
-  button: {
-    backgroundColor: '#007BFF',
-    borderRadius: 5,
-    padding: 15,
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  buttonText: {
-    fontFamily: 'PTSerif_400Regular',
-    color: 'white',
-    fontSize: 16,
-  },
-  sectionHeading: {
-    fontFamily: 'PTSerif_700Bold',
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginTop: 20,
-    marginBottom: 10,
-  },
-  contactItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-  },
-  contactInfo: {
-    flexDirection: 'column',
-    flex: 1,
-  },
-  contactName: {
-    fontFamily: 'PTSerif_700Bold',
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  contactNumber: {
-    fontSize: 16,
-  },
-  contactsList: {
-    flex: 1,
-  },
-  deleteButton: {
-    backgroundColor: 'red',
-    borderRadius: 20,
-    padding: 7,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  deleteButtonText: {
-    fontFamily: 'PTSerif_400Regular',
-    color: 'white',
-    fontSize: 12,
-  },
-  errorMessage: {
-    fontFamily: 'PTSerif_400Regular',
-    color: 'red',
-    fontSize: 14,
-    marginBottom: 10,
-  },
-});
+
 
 export default Setup;
 

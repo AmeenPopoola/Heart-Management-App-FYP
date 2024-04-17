@@ -6,6 +6,7 @@ export const lightThemeStyles = StyleSheet.create({
       padding: 20,
       justifyContent: 'center',
       backgroundColor: '#FFFFFF',
+      marginTop:20,
     },
     headerText: {
       fontFamily: 'PTSerif_700Bold',
@@ -16,6 +17,15 @@ export const lightThemeStyles = StyleSheet.create({
     inputContainer: {
       marginBottom: 12,
     },
+    backButton: {
+      flexDirection: 'row',
+      alignItems: 'center',
+  },
+  backButtonText: {
+      fontFamily: 'PTSerif_400Regular',
+      fontSize: 16,
+      marginLeft: 5,
+  },
     label: {
       fontFamily: 'PTSerif_400Regular',
       fontSize: 14,

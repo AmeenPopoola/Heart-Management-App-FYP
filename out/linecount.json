@@ -1,0 +1,839 @@
+{
+    "extension": "linecount",
+    "version": "0.1.7",
+    "workspace": "c:\\Users\\ameen\\newFYP\\Heart-Management-App-FYP",
+    "linecount": [
+        {
+            "version": "0.1.7",
+            "counttime": "2024-04-17 00:31:49",
+            "filesum": 135,
+            "codesum": 24972,
+            "commentsum": 257,
+            "blanksum": 607,
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "%ProgramData%\\Microsoft\\Windows\\UUS\\State\\_active.uusver"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": ".expo\\devices.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\assert\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\async_hooks\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\buffer\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\child_process\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\cluster\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\console\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\constants\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\crypto\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\dgram\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\diagnostics_channel\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\dns\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\domain\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\events\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\fs\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\fs\\promises\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\http2\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\http\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\https\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\inspector\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\module\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\net\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\os\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\path\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\perf_hooks\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\process\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\punycode\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\querystring\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\readline\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\repl\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\stream\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\string_decoder\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\timers\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\tls\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\trace_events\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\tty\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\url\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\util\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\v8\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\vm\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\wasi\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\worker_threads\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\externals\\zlib\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\polyfill.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\polyfill.native.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 3,
+                    "filename": ".expo\\metro\\shims\\react-native-web\\dist\\cjs\\exports\\AppRegistry\\AppContainer.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\shims\\react-native-web\\dist\\cjs\\exports\\BackHandler\\index.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 7,
+                    "comment": 3,
+                    "filename": ".expo\\metro\\shims\\react-native-web\\dist\\exports\\AppRegistry\\AppContainer.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": ".expo\\metro\\shims\\react-native-web\\dist\\exports\\BackHandler\\index.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": ".expo\\README.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": ".expo\\settings.json"
+                },
+                {
+                    "blank": 8,
+                    "code": 27,
+                    "comment": 1,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 6,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "App.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "app.json"
+                },
+                {
+                    "filename": "assets\\images\\adaptive-icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "assets\\images\\blood_drop.svg"
+                },
+                {
+                    "filename": "assets\\images\\daily_tasks.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "assets\\images\\emergency_features.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "assets\\images\\favicon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "assets\\images\\femaleImage.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "assets\\images\\icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "assets\\images\\logo.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "assets\\images\\maleImage.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "assets\\images\\splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "assets\\images\\tips_info.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "assets\\videos\\BloodPressureInstructions.mp4",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "assets\\videos\\HeartRateInstructions.mp4",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "babel.config.js"
+                },
+                {
+                    "blank": 14,
+                    "code": 97,
+                    "comment": 6,
+                    "filename": "components\\heart-rate-info\\HeartRateGraph.js"
+                },
+                {
+                    "blank": 10,
+                    "code": 54,
+                    "comment": 0,
+                    "filename": "components\\home-page-setup\\WelcomeHeader.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 45,
+                    "comment": 0,
+                    "filename": "components\\sign-up\\SignUpForm.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "components\\user-setup-process\\Start\\StartButton.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 69,
+                    "comment": 0,
+                    "filename": "components\\user-setup-process\\UserInfoSetup\\ContactList.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 81,
+                    "comment": 0,
+                    "filename": "components\\user-setup-process\\UserInfoSetup\\EmergencyContactForm.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 43,
+                    "comment": 0,
+                    "filename": "components\\user-setup-process\\UserInfoSetup\\TextInputWithLabel.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 13,
+                    "comment": 2,
+                    "filename": "firebaseConfig.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 1,
+                    "filename": "functions\\dailytasks-process\\taskUtils.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 22,
+                    "comment": 1,
+                    "filename": "functions\\db-data-loading\\DefibData.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "functions\\user-setup-process\\UserInfoSetup\\utils.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "Models\\HeartRateModel.js"
+                },
+                {
+                    "blank": 13,
+                    "code": 47,
+                    "comment": 6,
+                    "filename": "Models\\UserProfile.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "navigation\\AdminNav.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 89,
+                    "comment": 0,
+                    "filename": "navigation\\AppNavigator.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "navigation\\AuthNavigator.js"
+                },
+                {
+                    "blank": 11,
+                    "code": 81,
+                    "comment": 1,
+                    "filename": "navigation\\BottomTabNavigator.js"
+                },
+                {
+                    "blank": 19,
+                    "code": 19237,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 71,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "react-native.config.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 12,
+                    "code": 153,
+                    "comment": 5,
+                    "filename": "screens\\AdminDefib.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "screens\\AdminHome.js"
+                },
+                {
+                    "blank": 22,
+                    "code": 166,
+                    "comment": 7,
+                    "filename": "screens\\BloodPressure.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 79,
+                    "comment": 0,
+                    "filename": "screens\\BPHistory.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 83,
+                    "comment": 2,
+                    "filename": "screens\\BPResult.js"
+                },
+                {
+                    "blank": 12,
+                    "code": 75,
+                    "comment": 1,
+                    "filename": "screens\\ContactView.js"
+                },
+                {
+                    "blank": 29,
+                    "code": 149,
+                    "comment": 13,
+                    "filename": "screens\\DailyTasks.js"
+                },
+                {
+                    "blank": 23,
+                    "code": 119,
+                    "comment": 0,
+                    "filename": "screens\\Dashboard.js"
+                },
+                {
+                    "blank": 21,
+                    "code": 122,
+                    "comment": 1,
+                    "filename": "screens\\DefibLocation.js"
+                },
+                {
+                    "blank": 17,
+                    "code": 75,
+                    "comment": 2,
+                    "filename": "screens\\Emergency.js"
+                },
+                {
+                    "blank": 16,
+                    "code": 136,
+                    "comment": 7,
+                    "filename": "screens\\HeartRate.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 64,
+                    "comment": 0,
+                    "filename": "screens\\HRHistory.js"
+                },
+                {
+                    "blank": 13,
+                    "code": 60,
+                    "comment": 3,
+                    "filename": "screens\\HRResult.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 76,
+                    "comment": 5,
+                    "filename": "screens\\Login.js"
+                },
+                {
+                    "blank": 18,
+                    "code": 130,
+                    "comment": 1,
+                    "filename": "screens\\Profile.js"
+                },
+                {
+                    "blank": 33,
+                    "code": 218,
+                    "comment": 7,
+                    "filename": "screens\\Reminder.js"
+                },
+                {
+                    "blank": 25,
+                    "code": 191,
+                    "comment": 4,
+                    "filename": "screens\\Settings.js"
+                },
+                {
+                    "blank": 27,
+                    "code": 254,
+                    "comment": 0,
+                    "filename": "screens\\Setup.js"
+                },
+                {
+                    "blank": 27,
+                    "code": 147,
+                    "comment": 14,
+                    "filename": "screens\\SignUp.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 55,
+                    "comment": 0,
+                    "filename": "screens\\Start.js"
+                },
+                {
+                    "blank": 29,
+                    "code": 193,
+                    "comment": 3,
+                    "filename": "screens\\Tips.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 104,
+                    "comment": 22,
+                    "filename": "styles\\BloodPressure\\bPHistoryStyles.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 135,
+                    "comment": 11,
+                    "filename": "styles\\BloodPressure\\bPStyles.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 22,
+                    "comment": 4,
+                    "filename": "styles\\BottomTabNav\\tabStyles.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 31,
+                    "comment": 4,
+                    "filename": "styles\\buttonStyles.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 124,
+                    "comment": 8,
+                    "filename": "styles\\DailyTasks\\taskStyles.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 167,
+                    "comment": 13,
+                    "filename": "styles\\Dashboard\\dashboardStyles.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 63,
+                    "comment": 0,
+                    "filename": "styles\\Dashboard\\welcomeStyles.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 150,
+                    "comment": 10,
+                    "filename": "styles\\Emergency\\contactStyles.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 59,
+                    "comment": 4,
+                    "filename": "styles\\Emergency\\defibStyles.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 81,
+                    "comment": 4,
+                    "filename": "styles\\Emergency\\emergencyStyles.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "styles\\FontStyles.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 15,
+                    "comment": 2,
+                    "filename": "styles\\graphStyles.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 105,
+                    "comment": 6,
+                    "filename": "styles\\HeartRate\\hRHistoryStyles.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 127,
+                    "comment": 10,
+                    "filename": "styles\\HeartRate\\hRStyles.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "styles\\PickerStyles.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 158,
+                    "comment": 3,
+                    "filename": "styles\\Profile\\profileStyles.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 169,
+                    "comment": 10,
+                    "filename": "styles\\Reminder\\reminderStyles.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 59,
+                    "comment": 0,
+                    "filename": "styles\\Settings\\themeStyles.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 191,
+                    "comment": 11,
+                    "filename": "styles\\Setup\\setupStyles.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 39,
+                    "comment": 4,
+                    "filename": "styles\\textLabel.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 117,
+                    "comment": 11,
+                    "filename": "styles\\Tips\\tipsStyles.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 1,
+                    "filename": "tailwind.config.js"
+                },
+                {
+                    "blank": 23,
+                    "code": 119,
+                    "comment": 13,
+                    "filename": "ViewModels\\useHeartRateViewModel.js"
+                },
+                {
+                    "blank": 18,
+                    "code": 119,
+                    "comment": 7,
+                    "filename": "ViewModels\\useSetupViewModel.js"
+                }
+            ]
+        }
+    ]
+}

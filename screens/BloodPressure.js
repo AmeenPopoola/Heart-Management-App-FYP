@@ -46,7 +46,9 @@ const BloodPressure = ({ navigation }) => {
             }
         };
         loadUserData();
-    }, []);
+    }, [isLoggedIn]);
+
+    console.log(isLoggedIn);
 
    useEffect(() => {
     const updateCurrentDate = () => {
@@ -123,7 +125,7 @@ const BloodPressure = ({ navigation }) => {
             navigation.navigate('BPResult', { resultData: newRecord });
         }
     };
-    
+
     const togglePlayPause = () => {
         if (videoRef.current) {
           if (isPlaying) {

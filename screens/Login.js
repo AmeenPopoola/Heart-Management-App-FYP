@@ -93,7 +93,7 @@ const Login = () => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-        <Icon name="arrow-back" size={24} color="black" />
+        <Icon name="back" size={24} color="black" />
       </TouchableOpacity>
       <Text style={styles.label}>Email</Text>
       <TextInput
@@ -118,8 +118,10 @@ const Login = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center', // Center content vertically
+    alignItems: 'center', // Center content horizontally
     paddingHorizontal: 20,
-    paddingTop: 20, // Adjust as needed
+    marginTop:20,
   },
   label: {
     fontSize: 16,

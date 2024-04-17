@@ -73,23 +73,25 @@ const DailyTasks = () => {
       AsyncStorage.setItem('completedTasksCount', completedTasksCount.toString());
     }, [completedTasksCount]);
 
-  const handleTaskCompletion = (taskName) => {
-    setCompletedTasks([...completedTasks, taskName]);
-
-    // Increment completedTasksCount if the medication checkbox is checked
-    if (taskName === 'Medication' && isMedicationTaken) {
-      setCompletedTasksCount(completedTasksCount + 1);
-    }
-
-    // Save the completed tasks in AsyncStorage or any other storage mechanism
-    // You can add your logic here to save completed tasks
-
-    if (taskName === 'HeartRate') {
-      navigation.navigate('HeartRate');
-    } else if (taskName === 'BloodPressure') {
-      navigation.navigate('BloodPressure');
-    }
-  };
+    const handleTaskCompletion = (taskName) => {
+      // Remove the completed task from the completedTasks array
+      const updatedCompletedTasks = completedTasks.filter((task) => task !== taskName);
+      setCompletedTasks(updatedCompletedTasks);
+    
+      // Decrement completedTasksCount if the task is marked as incomplete
+      
+    
+      // Other task completion logic...
+    
+      // Save the completed tasks in AsyncStorage or any other storage mechanism
+      // You can add your logic here to save completed tasks
+    
+      if (taskName === 'HeartRate') {
+        navigation.navigate('HeartRate');
+      } else if (taskName === 'BloodPressure') {
+        navigation.navigate('BloodPressure');
+      }
+    };
 
   let [fontsLoaded] = useFonts({
     PTSerif_400Regular,

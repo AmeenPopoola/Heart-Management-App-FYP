@@ -11,7 +11,7 @@ const SignUpForm = ({ onSignUp }) => {
 
   return (
     <View style={styles.container}>
-      <Text>Email:</Text> 
+      <Text>Enter Your Email:</Text> 
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -20,7 +20,7 @@ const SignUpForm = ({ onSignUp }) => {
         autoCapitalize="none"
         keyboardType="email-address"
       />
-      <Text>Password:</Text>
+      <Text>Enter Your Password:</Text>
       <TextInput
         style={styles.input}
         placeholder="Password"
