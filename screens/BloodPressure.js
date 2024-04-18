@@ -48,7 +48,6 @@ const BloodPressure = ({ navigation }) => {
         loadUserData();
     }, [isLoggedIn]);
 
-    console.log(isLoggedIn);
 
    useEffect(() => {
     const updateCurrentDate = () => {
@@ -94,6 +93,7 @@ const BloodPressure = ({ navigation }) => {
             if (storedRecords) {
                 // Parse existing records
                 updatedRecords = JSON.parse(storedRecords);
+            }
                 updatedRecords.push(newRecord);
     
                 // Store the updated records back to AsyncStorage
@@ -101,8 +101,7 @@ const BloodPressure = ({ navigation }) => {
     
                 // Update the state with the new records
                 setBpRecords(updatedRecords);
-            }
-    
+                
             if (isLoggedIn) {
                 try { // Add missing try block
                     // Retrieve existing records from Firestore

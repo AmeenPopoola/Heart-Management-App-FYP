@@ -34,7 +34,7 @@ const HRResult = ({ route }) => {
   // Determine the text and color based on whether the result is good or bad
   let textColor = isWithinRange ? 'green' : 'red';
   let message = isWithinRange ? 'Good Result, Keep Taking Good Care Of Your Heart!' : 
-              'Bad Result: Tips to lower heart rate: 1. Practice deep breathing exercises. 2. Get regular exercise. 3. Reduce stress levels. If bad results persist, contact your doctor.';
+              'Bad Result: Tips to lower heart rate: 1. Practice deep breathing exercises. 2. Get regular exercise. 3. Reduce stress levels. If high heart rate for three days in a row, Contact Doctor.';
 
               
   const goToDashboard = () => {
