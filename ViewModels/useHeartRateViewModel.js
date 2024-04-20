@@ -130,10 +130,12 @@ export const useHeartRateViewModel = () => {
 
         if (isLoggedIn) {
           const userHRReadingsRef = doc(db, 'userHRReadings', uid);
+          const userHRReadingsSnapshot = await getDoc(userHRReadingsRef);
+          const existingHeartRateData = userHRReadingsSnapshot.data().heartRateData || [];
 
           // Update the document by adding new heart rate results to the 'heartRateData' array
           await updateDoc(userHRReadingsRef, {
-            heartRateData: [...existingHeartRateData, newHeartRateResult],
+            heartRateData: [...existingHeartRateData, resultData],
           });
         }
 

@@ -30,7 +30,7 @@ const BPHistory = () => {
             }
         };
         loadData();
-    }, []);
+    }, [bpRecords]);
 
 
     const renderSquare = (category) => {

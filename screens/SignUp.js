@@ -146,7 +146,7 @@ console.log('User UID:', userUid);
     <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Icon name="back" size={24} color="black" />
       </TouchableOpacity>
-      <Text style={styles.heading}>Signing Up Always You To Access Your Data On Any Device When You Login!</Text>
+      <Text style={styles.heading}>Signing Up Allows You To Access Your Data On Any Device When You Login!</Text>
       <View style={styles.formContainer}>
         <SignUpForm onSignUp={handleSignUp} />
       </View>

@@ -145,3 +145,150 @@ tailwind.config.js, code is 7, comment is 1, blank is 1.
 ViewModels\useHeartRateViewModel.js, code is 119, comment is 13, blank is 23.
 ViewModels\useSetupViewModel.js, code is 119, comment is 7, blank is 18.
 ===============================================================================
+===============================================================================
+EXTENSION NAME : linecount
+EXTENSION VERSION : 0.1.7
+-------------------------------------------------------------------------------
+count time : 2024-04-17 22:10:34
+count workspace : c:\Users\ameen\newFYP\Heart-Management-App-FYP
+total files : 135
+total code lines : 24976
+total comment lines : 270
+total blank lines : 619
+
+%ProgramData%\Microsoft\Windows\UUS\State\_active.uusver, code is 1, comment is 0, blank is 0.
+.expo\devices.json, code is 3, comment is 0, blank is 0.
+.expo\metro\externals\assert\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\async_hooks\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\buffer\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\child_process\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\cluster\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\console\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\constants\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\crypto\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\dgram\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\diagnostics_channel\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\dns\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\domain\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\events\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\fs\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\fs\promises\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\http2\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\http\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\https\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\inspector\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\module\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\net\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\os\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\path\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\perf_hooks\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\process\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\punycode\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\querystring\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\readline\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\repl\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\stream\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\string_decoder\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\timers\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\tls\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\trace_events\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\tty\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\url\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\util\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\v8\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\vm\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\wasi\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\worker_threads\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\externals\zlib\index.js, code is 1, comment is 0, blank is 0.
+.expo\metro\polyfill.js, code is 1, comment is 0, blank is 0.
+.expo\metro\polyfill.native.js, code is 1, comment is 0, blank is 0.
+.expo\metro\shims\react-native-web\dist\cjs\exports\AppRegistry\AppContainer.js, code is 8, comment is 3, blank is 2.
+.expo\metro\shims\react-native-web\dist\cjs\exports\BackHandler\index.js, code is 10, comment is 0, blank is 0.
+.expo\metro\shims\react-native-web\dist\exports\AppRegistry\AppContainer.js, code is 7, comment is 3, blank is 2.
+.expo\metro\shims\react-native-web\dist\exports\BackHandler\index.js, code is 7, comment is 0, blank is 0.
+.expo\README.md, code is 9, comment is 0, blank is 6.
+.expo\settings.json, code is 8, comment is 0, blank is 0.
+.gitignore, code is 27, comment is 1, blank is 8.
+App.js, code is 12, comment is 0, blank is 6.
+app.json, code is 33, comment is 0, blank is 2.
+assets\images\adaptive-icon.png, it is a binary file.
+assets\images\blood_drop.svg, code is 3, comment is 0, blank is 0.
+assets\images\daily_tasks.png, it is a binary file.
+assets\images\emergency_features.png, it is a binary file.
+assets\images\favicon.png, it is a binary file.
+assets\images\femaleImage.png, it is a binary file.
+assets\images\icon.png, it is a binary file.
+assets\images\logo.png, it is a binary file.
+assets\images\maleImage.png, it is a binary file.
+assets\images\splash.png, it is a binary file.
+assets\images\tips_info.png, it is a binary file.
+assets\videos\BloodPressureInstructions.mp4, it is a binary file.
+assets\videos\HeartRateInstructions.mp4, it is a binary file.
+babel.config.js, code is 7, comment is 0, blank is 0.
+components\heart-rate-info\HeartRateGraph.js, code is 97, comment is 6, blank is 14.
+components\home-page-setup\WelcomeHeader.js, code is 54, comment is 0, blank is 10.
+components\sign-up\SignUpForm.js, code is 45, comment is 0, blank is 5.
+components\user-setup-process\Start\StartButton.js, code is 6, comment is 0, blank is 1.
+components\user-setup-process\UserInfoSetup\ContactList.js, code is 69, comment is 0, blank is 7.
+components\user-setup-process\UserInfoSetup\EmergencyContactForm.js, code is 81, comment is 0, blank is 8.
+components\user-setup-process\UserInfoSetup\TextInputWithLabel.js, code is 43, comment is 0, blank is 9.
+firebaseConfig.js, code is 13, comment is 2, blank is 4.
+functions\dailytasks-process\taskUtils.js, code is 7, comment is 1, blank is 0.
+functions\db-data-loading\DefibData.js, code is 22, comment is 1, blank is 2.
+functions\user-setup-process\UserInfoSetup\utils.js, code is 8, comment is 0, blank is 2.
+Models\HeartRateModel.js, code is 11, comment is 0, blank is 1.
+Models\UserProfile.js, code is 47, comment is 6, blank is 13.
+navigation\AdminNav.js, code is 15, comment is 0, blank is 4.
+navigation\AppNavigator.js, code is 89, comment is 0, blank is 6.
+navigation\AuthNavigator.js, code is 44, comment is 0, blank is 7.
+navigation\BottomTabNavigator.js, code is 81, comment is 1, blank is 11.
+package-lock.json, code is 19237, comment is 0, blank is 19.
+package.json, code is 71, comment is 0, blank is 0.
+react-native.config.js, code is 15, comment is 0, blank is 0.
+README.md, code is 2, comment is 0, blank is 0.
+screens\AdminDefib.js, code is 153, comment is 5, blank is 12.
+screens\AdminHome.js, code is 0, comment is 0, blank is 0.
+screens\BloodPressure.js, code is 177, comment is 11, blank is 27.
+screens\BPHistory.js, code is 79, comment is 0, blank is 9.
+screens\BPResult.js, code is 83, comment is 2, blank is 9.
+screens\ContactView.js, code is 75, comment is 1, blank is 12.
+screens\DailyTasks.js, code is 149, comment is 13, blank is 29.
+screens\Dashboard.js, code is 119, comment is 0, blank is 23.
+screens\DefibLocation.js, code is 122, comment is 1, blank is 21.
+screens\Emergency.js, code is 75, comment is 2, blank is 17.
+screens\HeartRate.js, code is 136, comment is 7, blank is 16.
+screens\HRHistory.js, code is 64, comment is 0, blank is 9.
+screens\HRResult.js, code is 60, comment is 3, blank is 13.
+screens\Login.js, code is 124, comment is 12, blank is 15.
+screens\Profile.js, code is 130, comment is 1, blank is 18.
+screens\Reminder.js, code is 218, comment is 7, blank is 33.
+screens\Settings.js, code is 199, comment is 4, blank is 25.
+screens\Setup.js, code is 169, comment is 0, blank is 28.
+screens\SignUp.js, code is 143, comment is 16, blank is 26.
+screens\Start.js, code is 69, comment is 0, blank is 10.
+screens\Tips.js, code is 193, comment is 3, blank is 29.
+styles\BloodPressure\bPHistoryStyles.js, code is 104, comment is 22, blank is 3.
+styles\BloodPressure\bPStyles.js, code is 135, comment is 11, blank is 2.
+styles\BottomTabNav\tabStyles.js, code is 22, comment is 4, blank is 1.
+styles\buttonStyles.js, code is 31, comment is 4, blank is 3.
+styles\DailyTasks\taskStyles.js, code is 124, comment is 8, blank is 2.
+styles\Dashboard\dashboardStyles.js, code is 167, comment is 13, blank is 2.
+styles\Dashboard\welcomeStyles.js, code is 63, comment is 0, blank is 3.
+styles\Emergency\contactStyles.js, code is 150, comment is 10, blank is 2.
+styles\Emergency\defibStyles.js, code is 59, comment is 4, blank is 2.
+styles\Emergency\emergencyStyles.js, code is 81, comment is 4, blank is 2.
+styles\FontStyles.js, code is 8, comment is 0, blank is 3.
+styles\graphStyles.js, code is 15, comment is 2, blank is 2.
+styles\HeartRate\hRHistoryStyles.js, code is 105, comment is 6, blank is 3.
+styles\HeartRate\hRStyles.js, code is 127, comment is 10, blank is 2.
+styles\PickerStyles.js, code is 24, comment is 0, blank is 2.
+styles\Profile\profileStyles.js, code is 158, comment is 3, blank is 2.
+styles\Reminder\reminderStyles.js, code is 169, comment is 10, blank is 2.
+styles\Settings\themeStyles.js, code is 59, comment is 0, blank is 2.
+styles\Setup\setupStyles.js, code is 201, comment is 11, blank is 2.
+styles\textLabel.js, code is 39, comment is 4, blank is 3.
+styles\Tips\tipsStyles.js, code is 117, comment is 11, blank is 2.
+tailwind.config.js, code is 7, comment is 1, blank is 1.
+ViewModels\useHeartRateViewModel.js, code is 119, comment is 13, blank is 23.
+ViewModels\useSetupViewModel.js, code is 119, comment is 7, blank is 18.
+===============================================================================

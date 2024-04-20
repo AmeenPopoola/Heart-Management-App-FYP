@@ -1,13 +1,13 @@
-import React, { useState, useRef,useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { useFonts, PTSerif_700Bold, PTSerif_400Regular } from '@expo-google-fonts/pt-serif';
 import TextInputWithLabel from '../components/user-setup-process/UserInfoSetup/TextInputWithLabel';
-import { lightThemeStyles,darkThemeStyles } from '../styles/HeartRate/hRStyles';
+import { lightThemeStyles, darkThemeStyles } from '../styles/HeartRate/hRStyles';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { Video } from 'expo-av';
 import { useHeartRateViewModel } from '../ViewModels/useHeartRateViewModel';
-import { darkThemeButtonStyles,lightThemeButtonStyles } from '../styles/buttonStyles';
+import { darkThemeButtonStyles, lightThemeButtonStyles } from '../styles/buttonStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -19,6 +19,7 @@ const HeartRate = () => {
   const [timer, setTimer] = useState(30);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false); // State to manage button disablement
 
   useEffect(() => {
     const loadTheme = async () => {
@@ -33,7 +34,7 @@ const HeartRate = () => {
       }
     };
     loadTheme();
-    }, []);
+  }, []);
 
   useEffect(() => {
     if (isTimerRunning) {
@@ -41,7 +42,7 @@ const HeartRate = () => {
         setTimer(prevTimer => {
           if (prevTimer === 1) {
             clearInterval(interval); // Stop the timer when it reaches 0
-            setIsTimerRunning(false); 
+            setIsTimerRunning(false);
             return 30;
           }
           return prevTimer - 1;
@@ -56,14 +57,25 @@ const HeartRate = () => {
     setIsTimerRunning(true); // Start the timer
   };
 
+  const handleButtonPress = async () => {
+    // Disable the button to prevent multiple presses
+    setIsButtonDisabled(true);
 
+    try {
+      await handleEnterHeartRate();
+    } catch (error) {
+      console.error('Error handling heart rate:', error);
+    } finally {
+      // Enable the button after handling the heart rate
+      setIsButtonDisabled(false);
+    }
+  };
 
   let [fontsLoaded] = useFonts({ PTSerif_400Regular, PTSerif_700Bold });
 
   if (!fontsLoaded) {
     return null;
   }
-
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -125,7 +137,11 @@ const HeartRate = () => {
           {isTimerRunning ? (
             <Text style={styles.timer}>{timer} seconds remaining</Text>
           ) : (
-            <TouchableOpacity style={ButtonStyles.button} onPress={startTimer}>
+            <TouchableOpacity
+              style={ButtonStyles.button}
+              onPress={startTimer}
+              disabled={isButtonDisabled} // Disable the button when the timer is not running
+            >
               <Text style={ButtonStyles.buttonText}>Start Timer</Text>
             </TouchableOpacity>
           )}
@@ -135,10 +151,12 @@ const HeartRate = () => {
             placeholder="Enter your heart rate(bpm)"
             keyboardType="numeric"
             onChangeText={setHeartRate}
+            editable={!isButtonDisabled} // Disable editing when the button is disabled
           />
           <TouchableOpacity
             style={ButtonStyles.button}
-            onPress={handleEnterHeartRate}
+            onPress={handleButtonPress}
+            disabled={isButtonDisabled} // Disable the button when it's already pressed
           >
             <Text style={ButtonStyles.buttonText}>Enter Heart Rate</Text>
           </TouchableOpacity>

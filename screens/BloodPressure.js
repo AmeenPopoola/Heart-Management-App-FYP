@@ -83,6 +83,9 @@ const BloodPressure = ({ navigation }) => {
 
     const handleCalculateBP = async () => {
         if (systolic && diastolic) {
+            // Disable the button to prevent multiple presses
+            setIsButtonDisabled(true);
+    
             const category = checkBloodPressureCategory(systolic, diastolic);
             const time = new Date().toLocaleString();
             const newRecord = { systolic, diastolic, category, time };
@@ -94,16 +97,16 @@ const BloodPressure = ({ navigation }) => {
                 // Parse existing records
                 updatedRecords = JSON.parse(storedRecords);
             }
-                updatedRecords.push(newRecord);
+            updatedRecords.push(newRecord);
     
-                // Store the updated records back to AsyncStorage
-                await AsyncStorage.setItem('bpRecords', JSON.stringify(updatedRecords));
+            // Store the updated records back to AsyncStorage
+            await AsyncStorage.setItem('bpRecords', JSON.stringify(updatedRecords));
     
-                // Update the state with the new records
-                setBpRecords(updatedRecords);
-                
+            // Update the state with the new records
+            setBpRecords(updatedRecords);
+    
             if (isLoggedIn) {
-                try { // Add missing try block
+                try {
                     // Retrieve existing records from Firestore
                     const userBPReadingsRef = doc(db, 'userBPReadings', uid);
                     const userBPReadingsSnapshot = await getDoc(userBPReadingsRef);
@@ -120,6 +123,9 @@ const BloodPressure = ({ navigation }) => {
                     console.error('Error saving blood pressure records:', error);
                 }
             }
+    
+            // Enable the button after handling the blood pressure
+            setIsButtonDisabled(false);
     
             navigation.navigate('BPResult', { resultData: newRecord });
         }
