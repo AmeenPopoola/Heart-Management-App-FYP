@@ -47,7 +47,17 @@ export const lightThemeStyles = StyleSheet.create({
       height: 20,
       borderRadius: 5,
       marginLeft: 10,
-    }
+    },
+    legendRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: 10,
+    },
+    legendText: {
+      fontFamily: 'PTSerif_400Regular',
+      fontSize: 16,
+      marginLeft: 5,
+    },
   });
   
   export const darkThemeStyles = StyleSheet.create({
@@ -102,7 +112,18 @@ export const lightThemeStyles = StyleSheet.create({
       borderRadius: 5,
       marginLeft: 10,
       backgroundColor: '#FFFFFF', // Adjusted background color for dark mode
-    }
+    },
+    legendRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: 10,
+    },
+    legendText: {
+      fontFamily: 'PTSerif_400Regular',
+      fontSize: 16,
+      marginLeft: 5,
+      color: '#FFFFFF', // Adjusted text color for dark mode
+    },
   });
   
   export default darkThemeStyles;

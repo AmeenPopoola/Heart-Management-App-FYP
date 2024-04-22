@@ -54,6 +54,12 @@ const HRHistory = () => {
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
       <Text style={styles.header}>Heart Rate History</Text>
+      <View style={styles.legendRow}>
+        <View style={[styles.square, { backgroundColor: 'green' }]} />
+        <Text style={styles.legendText}>Good Result</Text>
+        <View style={[styles.square, { backgroundColor: 'red' }]} />
+        <Text style={styles.legendText}>Bad Result</Text>
+      </View>
       <Text style={styles.listHeader}>BPM                      Date</Text>
       <FlatList
         data={heartRateHistory}

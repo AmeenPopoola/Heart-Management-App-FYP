@@ -49,8 +49,45 @@ square: {
     borderRadius: 5,
     marginRight: 10, // Add spacing between the square and the content
 },
+legendContainer: {
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    legendItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginRight: 20,
+    },
+    legendSquare: {
+        width: 10,
+        height: 10,
+        borderRadius: 2,
+        marginRight: 5,
+    },
+    legendText: {
+        fontFamily: 'PTSerif_400Regular',
+        fontSize: 14,
+    },
+    legendContainer: {
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    legendItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginRight: 20,
+    },
+    legendSquare: {
+        width: 10,
+        height: 10,
+        borderRadius: 2,
+        marginRight: 5,
+    },
+    legendText: {
+        fontFamily: 'PTSerif_400Regular',
+        fontSize: 15,
+    },
 });
-
 export const darkThemeStyles = StyleSheet.create({
     container: {
         flex: 1,
@@ -102,6 +139,31 @@ export const darkThemeStyles = StyleSheet.create({
         height: 20,
         borderRadius: 5,
         marginRight: 10, // Add spacing between the square and the content
+    },
+    legendContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    legendScrollView: {
+        flexDirection: 'row',
+        flexGrow: 1,
+    },
+    legendItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginRight: 20,
+    },
+    legendSquare: {
+        width: 10,
+        height: 10,
+        borderRadius: 2,
+        marginRight: 5,
+    },
+    legendText: {
+        fontFamily: 'PTSerif_400Regular',
+        fontSize: 15,
+        color: 'white',
     },
 });
 

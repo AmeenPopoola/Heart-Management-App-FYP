@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity,ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -52,6 +52,13 @@ const BPHistory = () => {
         return <View style={[styles.square, { backgroundColor: squareColor }]} />;
     };
 
+    const renderLegendItem = (category, color) => (
+        <View style={styles.legendItem}>
+            <View style={[styles.legendSquare, { backgroundColor: color }]} />
+            <Text style={styles.legendText}>{category}</Text>
+        </View>
+    );
+
     const styles = isDarkMode ? darkThemeStyles : lightThemeStyles;
     const ButtonStyles = isDarkMode ? darkThemeButtonStyles : lightThemeButtonStyles;
 
@@ -65,6 +72,11 @@ const BPHistory = () => {
                 <Text style={styles.backButtonText}>Back</Text>
             </TouchableOpacity>
             <Text style={styles.header}>Blood Pressure History</Text>
+            <View style={styles.legendContainer}>
+                {renderLegendItem('High Blood Pressure', 'red')}
+                {renderLegendItem('Normal Blood Pressure', 'lightgreen')}
+                {renderLegendItem('Ideal Blood Pressure', 'green')}
+            </View>
             <FlatList
                 data={bpRecords}
                 renderItem={({ item }) => (
