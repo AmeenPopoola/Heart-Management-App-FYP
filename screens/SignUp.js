@@ -74,11 +74,16 @@ const SignUp = () => {
   const handleSignUp = async (email, password) => {
     const auth = getAuth(app);
     try {
-      const userCredential = await createUserWithEmailAndPassword(
+      if (!isValidPassword(password)) {
+        console.error("Password must be at least 8 characters long and contain at least one capital letter and one number.");
+        return;
+    }
+
+    const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
-      );
+    );
       const user = userCredential.user;
 
       // After successful sign-up, retrieve heart rate data from AsyncStorage
@@ -140,6 +145,16 @@ console.log('User UID:', userUid);
       console.error("Error signing up user:", error);
     }
   };
+
+  const isValidPassword = (password) => {
+    // Minimum length is 8 characters
+    if (password.length < 8) return false;
+    // Must contain at least one capital letter
+    if (!/[A-Z]/.test(password)) return false;
+    // Must contain at least one number
+    if (!/\d/.test(password)) return false;
+    return true;
+};
 
   return (
     <View style={styles.container}>

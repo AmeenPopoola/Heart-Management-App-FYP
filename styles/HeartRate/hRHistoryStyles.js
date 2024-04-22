@@ -79,14 +79,14 @@ export const lightThemeStyles = StyleSheet.create({
       fontFamily: 'PTSerif_400Regular',
       fontSize: 16,
       marginLeft: 5,
-      color: '#FFFFFF', // Adjusted text color for dark mode
+      color: '#FFFFFF', 
     },
     header: {
       fontFamily: 'PTSerif_700Bold',
       fontSize: 20,
       marginTop: 60,
       marginBottom: 10,
-      color: '#FFFFFF', // Adjusted text color for dark mode
+      color: '#FFFFFF', 
     },
     listHeader: {
       fontFamily: 'PTSerif_700Bold',
@@ -98,20 +98,20 @@ export const lightThemeStyles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-between',
       borderBottomWidth: 1,
-      borderColor: '#555555', // Adjusted border color for dark mode
+      borderColor: '#555555', 
       paddingVertical: 10,
     },
     itemText: {
       fontFamily: 'PTSerif_400Regular',
       fontSize: 16,
-      color: '#FFFFFF', // Adjusted text color for dark mode
+      color: '#FFFFFF', 
     },
     square: {
       width: 20,
       height: 20,
       borderRadius: 5,
       marginLeft: 10,
-      backgroundColor: '#FFFFFF', // Adjusted background color for dark mode
+      backgroundColor: '#FFFFFF', 
     },
     legendRow: {
       flexDirection: 'row',
@@ -122,7 +122,7 @@ export const lightThemeStyles = StyleSheet.create({
       fontFamily: 'PTSerif_400Regular',
       fontSize: 16,
       marginLeft: 5,
-      color: '#FFFFFF', // Adjusted text color for dark mode
+      color: '#FFFFFF', 
     },
   });
   
