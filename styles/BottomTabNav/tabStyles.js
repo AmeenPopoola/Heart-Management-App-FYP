@@ -7,7 +7,7 @@ export const lightThemeStyles = {
       fontFamily: 'PTSerif_700Bold',
     },
     tabBarStyle: {
-      backgroundColor: '#ffffff', // Background color for light mode
+      backgroundColor: '#ffffff', 
     },
   };
   
@@ -20,6 +20,6 @@ export const lightThemeStyles = {
       fontFamily: 'PTSerif_700Bold',
     },
     tabBarStyle: {
-      backgroundColor: '#333', // Background color for dark mode
+      backgroundColor: '#333', 
     },
   };

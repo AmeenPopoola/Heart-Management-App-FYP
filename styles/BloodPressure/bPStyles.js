@@ -41,7 +41,7 @@ export const lightThemeStyles = StyleSheet.create({
     },
     note: {
         marginBottom: 10,
-        color: '#666', // Adjust color as needed
+        color: '#666', 
         fontFamily:'PTSerif_400Regular_Italic',
         fontSize: 15,
     },
@@ -90,27 +90,27 @@ export const lightThemeStyles = StyleSheet.create({
       color: '#ffffff',
   },
       contentContainer: {
-        backgroundColor: '#292929', // Darker content background color
+        backgroundColor: '#292929', 
         borderRadius: 10,
         padding: 20,
         width: '80%',
       },
       input: {
         borderWidth: 1,
-        borderColor: '#555', // Darker border color
+        borderColor: '#555',
         borderRadius: 5,
         padding: 10,
         marginBottom: 10,
         width: '100%',
-        backgroundColor: '#1f1f1f', // Dark input background color
-        color: '#ffffff', // Dark text color
+        backgroundColor: '#1f1f1f', 
+        color: '#ffffff', 
       },
       placeholderText: {
-        color: '#FFFFFF', // Placeholder text color
+        color: '#FFFFFF', 
     },
       note: {
         marginBottom: 10,
-        color: '#999999', // Darker text color
+        color: '#999999',
         fontFamily: 'PTSerif_400Regular_Italic',
         fontSize: 15,
       },
@@ -125,11 +125,11 @@ export const lightThemeStyles = StyleSheet.create({
         fontFamily: 'PTSerif_400Regular',
         fontSize: 16,
         marginLeft: 5,
-        color: '#ffffff', // Lighter text color for better visibility
+        color: '#ffffff', 
       },
       dateTime: {
         marginBottom: 10,
-        color: '#cccccc', // Lighter text color for better visibility
+        color: '#cccccc', 
         fontFamily: 'PTSerif_700Bold',
         fontSize: 14,
         textAlign: 'center',

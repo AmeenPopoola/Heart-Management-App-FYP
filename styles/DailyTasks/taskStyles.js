@@ -65,7 +65,7 @@ export const lightThemeStyles = StyleSheet.create({
     container: {
       flex: 1,
       padding: 20,
-      backgroundColor: '#333333', // Dark background color
+      backgroundColor: '#333333', 
       justifyContent: 'center',
       alignItems: 'center',
     },
@@ -73,10 +73,10 @@ export const lightThemeStyles = StyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center',
       marginBottom: 10,
-      borderColor: '#666666', // Adjust border color
-      borderWidth: 1, // Add border
-      borderRadius: 5, // Add border radius
-      padding: 10, // Add padding
+      borderColor: '#666666', 
+      borderWidth: 1, 
+      borderRadius: 5, 
+      padding: 10,
     },
     backButton: {
       flexDirection: 'row',
@@ -89,19 +89,19 @@ export const lightThemeStyles = StyleSheet.create({
       fontFamily: 'PTSerif_700Bold',
       fontSize: 20,
       marginBottom: 20,
-      color: '#FFFFFF', // Adjust text color
+      color: '#FFFFFF', 
     },
     backButtonText: {
       fontFamily: 'PTSerif_400Regular',
       fontSize: 16,
       marginLeft: 5,
-      color: '#CCCCCC', // Adjust text color
+      color: '#CCCCCC', 
     },
     taskText: {
       fontFamily: 'PTSerif_400Regular',
       fontSize: 16,
       marginRight: 10,
-      color: '#FFFFFF', // Adjust text color
+      color: '#FFFFFF', 
     },
     completeTaskButton: {
       backgroundColor: '#F21E1E',

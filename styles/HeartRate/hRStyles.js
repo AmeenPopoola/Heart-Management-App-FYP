@@ -29,7 +29,7 @@ export const lightThemeStyles = StyleSheet.create({
     contentContainer: {
       justifyContent: 'center',
       alignItems: 'center',
-      paddingBottom: 20, // Add padding to prevent content from being covered by the back button when scrolling
+      paddingBottom: 20, 
     },
     videoContainer: {
       justifyContent: 'center',
@@ -38,7 +38,7 @@ export const lightThemeStyles = StyleSheet.create({
     },
     video: {
       width: 300,
-      height: 200, // Adjust the height as needed
+      height: 200, 
     },
     timer: {
       fontFamily: 'PTSerif_700Bold',
@@ -65,7 +65,7 @@ export const lightThemeStyles = StyleSheet.create({
   export const darkThemeStyles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#333333', // Dark background color
+      backgroundColor: '#333333', 
       marginTop: 20,
     },
     header: {
@@ -82,18 +82,18 @@ export const lightThemeStyles = StyleSheet.create({
       fontFamily: 'PTSerif_400Regular',
       fontSize: 16,
       marginLeft: 5,
-      color: '#FFFFFF', // Adjusted text color
+      color: '#FFFFFF', 
     },
     currentDate: {
       fontFamily: 'PTSerif_400Regular',
       fontSize: 16,
       marginLeft: 10,
-      color: '#FFFFFF', // Adjusted text color
+      color: '#FFFFFF', 
     },
     contentContainer: {
       justifyContent: 'center',
       alignItems: 'center',
-      paddingBottom: 20, // Add padding to prevent content from being covered by the back button when scrolling
+      paddingBottom: 20, 
     },
     videoContainer: {
       justifyContent: 'center',
@@ -102,20 +102,20 @@ export const lightThemeStyles = StyleSheet.create({
     },
     video: {
       width: 300,
-      height: 200, // Adjust the height as needed
+      height: 200, 
     },
     timer: {
       fontFamily: 'PTSerif_700Bold',
       fontSize: 20,
       marginBottom: 20,
-      color: '#FFFFFF', // Adjusted text color
+      color: '#FFFFFF', 
     },
     scrollView: {
       flex: 1,
       width: '100%',
     },
     instructionBox: {
-      backgroundColor: '#444444', // Adjusted background color
+      backgroundColor: '#444444', 
       padding: 10,
       marginTop: 20,
       borderRadius: 10,
@@ -124,6 +124,6 @@ export const lightThemeStyles = StyleSheet.create({
       fontFamily: 'PTSerif_400Regular',
       fontSize: 14,
       textAlign: 'left',
-      color: '#FFFFFF', // Adjusted text color
+      color: '#FFFFFF', 
     },
   });

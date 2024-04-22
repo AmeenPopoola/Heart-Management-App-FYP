@@ -51,8 +51,8 @@ const HeartRate = () => {
 
       return () => clearInterval(interval); // Clean up the interval on unmount
     }
-  }, [isTimerRunning]);// Empty dependency array ensures that this effect runs only once on mount
-
+  }, [isTimerRunning]);
+  
   const startTimer = () => {
     setIsTimerRunning(true); // Start the timer
   };

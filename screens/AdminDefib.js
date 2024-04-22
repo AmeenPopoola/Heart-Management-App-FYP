@@ -41,7 +41,7 @@ const AdminDefib = () => {
       setDefibLocations(updatedDefibLocations);
     } catch (error) {
       console.error('Error adding defibrillator location:', error);
-      // Handle error (e.g., display error message)
+
     }
   };
 
@@ -54,7 +54,7 @@ const AdminDefib = () => {
       setDefibLocations(updatedDefibLocations);
     } catch (error) {
       console.error('Error deleting defibrillator location:', error);
-      // Handle error (e.g., display error message)
+     
     }
   };
 

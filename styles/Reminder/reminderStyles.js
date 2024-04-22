@@ -88,11 +88,11 @@ export const darkThemeStyles = StyleSheet.create({
     flex: 1,
     padding: 20,
     marginTop: 10,
-    backgroundColor: '#333', // Dark background color
+    backgroundColor: '#333',
   },
   section: {
     marginBottom: 20,
-    backgroundColor: '#555', // Dark grey box background color
+    backgroundColor: '#555', 
     padding: 10,
     borderRadius: 10,
   },
@@ -101,7 +101,7 @@ export const darkThemeStyles = StyleSheet.create({
     fontFamily: 'PTSerif_700Bold',
     marginBottom: 10,
     marginTop: 30,
-    color: '#fff', // White text color
+    color: '#fff', 
   },
   addReminderContainer: {
     flexDirection: 'row',
@@ -117,13 +117,13 @@ export const darkThemeStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#555', // Dark grey modal background color
+    backgroundColor: '#555', 
   },
   modalTitle: {
     fontSize: 24,
     fontFamily: 'PTSerif_700Bold',
     marginBottom: 20,
-    color: '#fff', // White text color
+    color: '#fff', 
   },
   reminderItem: {
     flexDirection: 'row',
@@ -132,7 +132,7 @@ export const darkThemeStyles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: '#666', // Darker border color
+    borderColor: '#666', 
     borderRadius: 5,
   },
   reminderInfoContainer: {
@@ -141,7 +141,7 @@ export const darkThemeStyles = StyleSheet.create({
   reminderInfo: {
     fontSize: 18,
     fontFamily: 'PTSerif_700Bold',
-    color: '#fff', // White text color
+    color: '#fff', 
   },
   backButton: {
     flexDirection: 'row',
@@ -155,7 +155,7 @@ export const darkThemeStyles = StyleSheet.create({
     fontFamily: 'PTSerif_400Regular',
     fontSize: 16,
     marginLeft: 5,
-    color: '#fff', // White text color
+    color: '#fff',
   },
   setTimeButton: {
     backgroundColor: '#F21E1E',

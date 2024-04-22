@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const lightThemeButtonStyles = StyleSheet.create({
   button: {
-    backgroundColor: '#F21E1E', // Light mode button color
+    backgroundColor: '#F21E1E', 
     borderRadius: 5,
     padding: 15,
     alignItems: 'center',
@@ -10,7 +10,7 @@ export const lightThemeButtonStyles = StyleSheet.create({
     marginBottom: 10,
   },
   buttonText: {
-    color: 'white', // Light mode text color
+    color: 'white',
     fontFamily: 'PTSerif_400Regular',
     fontSize: 16,
   },
@@ -18,7 +18,7 @@ export const lightThemeButtonStyles = StyleSheet.create({
 
 export const darkThemeButtonStyles = StyleSheet.create({
   button: {
-    backgroundColor: 'black', // Dark mode button color
+    backgroundColor: 'black', 
     borderRadius: 5,
     padding: 15,
     alignItems: 'center',
@@ -26,7 +26,7 @@ export const darkThemeButtonStyles = StyleSheet.create({
     marginBottom: 10,
   },
   buttonText: {
-    color: 'white', // Dark mode text color
+    color: 'white', 
     fontFamily: 'PTSerif_400Regular',
     fontSize: 16,
   },

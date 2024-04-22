@@ -98,7 +98,7 @@ export const darkThemeStyles = StyleSheet.create({
     heading: {
       fontSize: 20,
       fontFamily: 'PTSerif_700Bold',
-      color: 'white', // White text color
+      color: 'white',
     },
     backButton: {
       flexDirection: 'row',

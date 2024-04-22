@@ -44,7 +44,7 @@ export const lightThemeStyles= StyleSheet.create({
   export const darkThemeStyles = {
     container: {
       flex: 1,
-      backgroundColor: '#333333', // Dark background color
+      backgroundColor: '#333333',
       marginTop: 20,
       paddingHorizontal: 20,
     },
@@ -59,7 +59,7 @@ export const lightThemeStyles= StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       marginBottom: 20,
-      backgroundColor: '#666666', // Adjusted background color
+      backgroundColor: '#666666', 
       borderRadius: 10,
     },
     iconContainer: {
@@ -69,7 +69,7 @@ export const lightThemeStyles= StyleSheet.create({
       width: 70,
       height: 70,
       borderRadius: 35,
-      backgroundColor: '#F21E1E', // Adjusted background color
+      backgroundColor: '#F21E1E', 
       justifyContent: 'center',
       alignItems: 'center',
       marginBottom: 10,
@@ -77,7 +77,7 @@ export const lightThemeStyles= StyleSheet.create({
     cardText: {
       fontFamily: 'PTSerif_400Regular',
       fontSize: 18,
-      color: '#FFFFFF', // Adjusted text color
+      color: '#FFFFFF', 
       textAlign: 'center',
     },
   };

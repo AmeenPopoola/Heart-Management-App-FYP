@@ -36,7 +36,7 @@ const ContactView = ({ contact }) => {
       };
 
       const handleAddContact = () => {
-        navigation.navigate('Setup'); // Navigate to the setup page
+        navigation.navigate('Setup'); 
       };
 
       let [fontsLoaded] = useFonts({

@@ -63,7 +63,7 @@ export const lightThemeStyles = StyleSheet.create({
   export const darkThemeStyles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#333333', // Dark background color
+      backgroundColor: '#333333', 
       paddingHorizontal: 20,
       paddingTop: 20,
     },

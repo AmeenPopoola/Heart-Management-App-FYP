@@ -108,14 +108,14 @@ export const lightThemeStyles = StyleSheet.create({
       flex: 1,
       padding: 20,
       justifyContent: 'center',
-      backgroundColor: '#333333', // Dark background color
+      backgroundColor: '#333333', 
     },
     headerText: {
       fontFamily: 'PTSerif_700Bold',
       fontSize: 20,
       fontWeight: 'bold',
       marginBottom: 20,
-      color: '#FFFFFF', // White text color
+      color: '#FFFFFF', 
     },
     inputContainer: {
       marginBottom: 12,
@@ -124,15 +124,15 @@ export const lightThemeStyles = StyleSheet.create({
       fontFamily: 'PTSerif_400Regular',
       fontSize: 14,
       marginBottom: 5,
-      color: '#FFFFFF', // White text color
+      color: '#FFFFFF', 
     },
     input: {
       height: 40,
       borderWidth: 1,
-      borderColor: '#666666', // Darker border color
+      borderColor: '#666666', 
       borderRadius: 5,
       padding: 10,
-      color: '#FFFFFF', // White text color
+      color: '#FFFFFF', 
     },
     button: {
       backgroundColor: '#007BFF',
@@ -143,7 +143,7 @@ export const lightThemeStyles = StyleSheet.create({
     },
     buttonText: {
       fontFamily: 'PTSerif_400Regular',
-      color: '#FFFFFF', // White text color
+      color: '#FFFFFF', 
       fontSize: 16,
     },
     sectionHeading: {
@@ -152,14 +152,14 @@ export const lightThemeStyles = StyleSheet.create({
       fontWeight: 'bold',
       marginTop: 20,
       marginBottom: 10,
-      color: '#FFFFFF', // White text color
+      color: '#FFFFFF', 
     },
     contactItem: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
       borderWidth: 1,
-      borderColor: '#666666', // Darker border color
+      borderColor: '#666666', 
       borderRadius: 5,
       padding: 10,
       marginBottom: 10,
@@ -173,11 +173,11 @@ export const lightThemeStyles = StyleSheet.create({
       fontSize: 16,
       fontWeight: 'bold',
       marginBottom: 5,
-      color: '#FFFFFF', // White text color
+      color: '#FFFFFF', 
     },
     contactNumber: {
       fontSize: 16,
-      color: '#FFFFFF', // White text color
+      color: '#FFFFFF', 
     },
     contactsList: {
       flex: 1,
@@ -191,7 +191,7 @@ export const lightThemeStyles = StyleSheet.create({
     },
     deleteButtonText: {
       fontFamily: 'PTSerif_400Regular',
-      color: '#FFFFFF', // White text color
+      color: '#FFFFFF', 
       fontSize: 12,
     },
     errorMessage: {

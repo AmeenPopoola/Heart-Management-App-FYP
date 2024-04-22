@@ -29,7 +29,7 @@ export const lightThemeStyles = StyleSheet.create({
       borderRadius: 5,
       padding: 10,
       marginBottom: 10,
-      backgroundColor: '#f5f5f5', // Grey background color
+      backgroundColor: '#f5f5f5', 
     },
     contactInfo: {
       flex: 1,
@@ -76,7 +76,7 @@ export const lightThemeStyles = StyleSheet.create({
   export const darkThemeStyles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#333333', // Dark background color
+      backgroundColor: '#333333',
       padding: 20,
       marginTop: 20,
     },
@@ -88,7 +88,7 @@ export const lightThemeStyles = StyleSheet.create({
     header: {
       fontSize: 20,
       fontWeight: 'bold',
-      color: '#FFFFFF', // Adjusted text color
+      color: '#FFFFFF', 
       marginLeft: 10,
     },
     backButton: {
@@ -99,11 +99,11 @@ export const lightThemeStyles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'space-between',
       borderWidth: 1,
-      borderColor: '#666666', // Adjusted border color
+      borderColor: '#666666', 
       borderRadius: 5,
       padding: 10,
       marginBottom: 10,
-      backgroundColor: '#444444', // Adjusted background color
+      backgroundColor: '#444444', 
     },
     contactInfo: {
       flex: 1,
@@ -111,12 +111,12 @@ export const lightThemeStyles = StyleSheet.create({
     name: {
       fontSize: 18,
       fontWeight: 'bold',
-      color: '#FFFFFF', // Adjusted text color
+      color: '#FFFFFF', 
       marginBottom: 5,
     },
     number: {
       fontSize: 16,
-      color: '#FFFFFF', // Adjusted text color
+      color: '#FFFFFF', 
     },
     phoneIcon: {
       backgroundColor: 'red',
@@ -127,13 +127,13 @@ export const lightThemeStyles = StyleSheet.create({
       fontFamily: 'PTSerif_400Regular',
       fontSize: 16,
       marginLeft: 5,
-      color: '#FFFFFF', // Adjusted text color
+      color: '#FFFFFF', 
     },
     addContactContainer: {
       flexDirection: 'row',
       alignItems: 'center',
       borderWidth: 1,
-      borderColor: '#666666', // Adjusted border color
+      borderColor: '#666666', 
       borderRadius: 5,
       padding: 10,
       marginBottom: 10,
@@ -141,7 +141,7 @@ export const lightThemeStyles = StyleSheet.create({
     addContactText: {
       fontSize: 18,
       fontWeight: 'bold',
-      color: '#FFFFFF', // Adjusted text color
+      color: '#FFFFFF', 
       marginLeft: 10,
     },
     plusIcon: {

@@ -27,16 +27,16 @@ header: {
     marginBottom: 10,
 },
 item: {
-    flexDirection: 'row', // Align square and content horizontally
-    backgroundColor: '#f0f0f0', // Grey background color
-    borderRadius: 10, // Rounded corners
-    padding: 15, // Padding inside the card
-    marginBottom: 10, // Spacing between cards
-    borderWidth: 1, // Border around the card
-    borderColor: '#ccc', // Border color
+    flexDirection: 'row', 
+    backgroundColor: '#f0f0f0', 
+    borderRadius: 10, 
+    padding: 15, 
+    marginBottom: 10, 
+    borderWidth: 1, 
+    borderColor: '#ccc', 
 },
 cardContent: {
-    flex: 1, // Take up remaining space
+    flex: 1, 
 },
 itemText: {
     fontFamily: 'PTSerif_400Regular',
@@ -47,7 +47,7 @@ square: {
     width: 20,
     height: 20,
     borderRadius: 5,
-    marginRight: 10, // Add spacing between the square and the content
+    marginRight: 10, 
 },
 legendContainer: {
         alignItems: 'center',
@@ -91,7 +91,7 @@ legendContainer: {
 export const darkThemeStyles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#121212', // Dark background color
+        backgroundColor: '#121212', 
         paddingHorizontal: 20,
         paddingTop: 20,
     },
@@ -107,38 +107,38 @@ export const darkThemeStyles = StyleSheet.create({
         fontFamily: 'PTSerif_400Regular',
         fontSize: 16,
         marginLeft: 5,
-        color: 'white', // Text color for dark theme
+        color: 'white', 
     },
     header: {
         fontFamily: 'PTSerif_700Bold',
         fontSize: 20,
         marginTop: 60,
         marginBottom: 10,
-        color: 'white', // Text color for dark theme
+        color: 'white',
     },
     item: {
-        flexDirection: 'row', // Align square and content horizontally
-        backgroundColor: '#333', // Dark grey background color
-        borderRadius: 10, // Rounded corners
-        padding: 15, // Padding inside the card
-        marginBottom: 10, // Spacing between cards
-        borderWidth: 1, // Border around the card
-        borderColor: '#555', // Border color for dark theme
+        flexDirection: 'row', 
+        backgroundColor: '#333', 
+        borderRadius: 10,
+        padding: 15, 
+        marginBottom: 10, 
+        borderWidth: 1,
+        borderColor: '#555', 
     },
     cardContent: {
-        flex: 1, // Take up remaining space
+        flex: 1, 
     },
     itemText: {
         fontFamily: 'PTSerif_400Regular',
         fontSize: 16,
         marginBottom: 5,
-        color: 'white', // Text color for dark theme
+        color: 'white', 
     },
     square: {
         width: 20,
         height: 20,
         borderRadius: 5,
-        marginRight: 10, // Add spacing between the square and the content
+        marginRight: 10, 
     },
     legendContainer: {
         flexDirection: 'row',

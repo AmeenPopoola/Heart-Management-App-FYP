@@ -53,8 +53,6 @@ const Settings = () => {
     };
 
     const handleLogout = async () => {
-      // Perform logout actions here
-    
       // Set isLoggedIn to false
       setIsLoggedIn(false);
       AsyncStorage.setItem('isLoggedIn', 'false');

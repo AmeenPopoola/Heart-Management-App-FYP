@@ -16,7 +16,7 @@ export const lightThemeStyles = StyleSheet.create({
     backButtonText: {
       fontFamily: 'PTSerif_400Regular',
       fontSize: 16,
-      marginLeft: 5, // Adjusted text color
+      marginLeft: 5, 
     },
     header: {
       fontSize: 20,
@@ -32,7 +32,7 @@ export const lightThemeStyles = StyleSheet.create({
   export const darkThemeStyles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#333333', // Dark background color
+      backgroundColor: '#333333', 
       alignItems: 'center',
       justifyContent: 'center',
       marginTop: 20,
@@ -46,13 +46,13 @@ export const lightThemeStyles = StyleSheet.create({
         fontFamily: 'PTSerif_400Regular',
         fontSize: 16,
         marginLeft: 5,
-        color: '#FFFFFF', // Adjusted text color
+        color: '#FFFFFF', 
       },
     header: {
       fontSize: 20,
       fontWeight: 'bold',
       marginBottom: 10,
-      color: '#FFFFFF', // Adjusted text color
+      color: '#FFFFFF', 
     },
     map: {
       width: '100%',

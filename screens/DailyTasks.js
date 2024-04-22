@@ -78,13 +78,9 @@ const DailyTasks = () => {
       const updatedCompletedTasks = completedTasks.filter((task) => task !== taskName);
       setCompletedTasks(updatedCompletedTasks);
     
-      // Decrement completedTasksCount if the task is marked as incomplete
-      
     
-      // Other task completion logic...
     
       // Save the completed tasks in AsyncStorage or any other storage mechanism
-      // You can add your logic here to save completed tasks
     
       if (taskName === 'HeartRate') {
         navigation.navigate('HeartRate');

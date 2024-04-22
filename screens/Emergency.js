@@ -35,13 +35,11 @@ const Emergency = () => {
   };
 
   const handleDefibMap = () => {
-    // Navigate to the defibrillator map screen
     navigation.navigate('DefibLocation');
   };
 
   
   const handleContacts = () => {
-    // Navigate to the defibrillator map screen
     navigation.navigate('ContactView');
   };
 

@@ -169,13 +169,13 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     width: '100%',
-    maxWidth: 400, // Example max width for the form container
+    maxWidth: 400, 
   },
   backButton: {
     position: 'absolute',
     top: 20,
     left: 20,
-    zIndex: 999, // Ensure the button is above other components
+    zIndex: 999, 
   },
 });
 

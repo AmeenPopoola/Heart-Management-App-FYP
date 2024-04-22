@@ -49,7 +49,6 @@ const Profile = () => {
 
 
   const handleEditProfile = () => {
-    // Navigate to the Setup screen
     navigation.navigate('Setup');
   };
 

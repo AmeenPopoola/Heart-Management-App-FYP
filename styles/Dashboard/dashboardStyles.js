@@ -4,14 +4,14 @@ export const lightThemeStyles = StyleSheet.create({
         container: {
           marginTop: 10,
           padding: 20,
-          backgroundColor: 'white', // Set background color to white
+          backgroundColor: 'white', 
           paddingBottom: 60,
         },
         sectionContainer: {
-          backgroundColor: '#f0f0f0', // Grey background color
+          backgroundColor: '#f0f0f0', 
           padding: 20,
           borderRadius: 8,
-          marginBottom: 5, // Adjust as needed
+          marginBottom: 5, 
         },
         progressContainer: {
           alignItems: 'center',
@@ -87,14 +87,14 @@ export const darkThemeStyles = StyleSheet.create({
     container: {
         marginTop: 10,
         padding: 20,
-        backgroundColor: '#121212', // Set background color to dark gray
+        backgroundColor: '#121212', 
         paddingBottom: 60,
       },
       sectionContainer: {
-        backgroundColor: '#333', // Darker background color
+        backgroundColor: '#333', 
         padding: 20,
         borderRadius: 8,
-        marginBottom: 5, // Adjust as needed
+        marginBottom: 5, 
       },
       progressContainer: {
         alignItems: 'center',
@@ -104,7 +104,7 @@ export const darkThemeStyles = StyleSheet.create({
         marginTop: 10,
         fontSize: 16,
         fontFamily: 'PTSerif_400Regular',
-        color: '#fff', // Text color to white
+        color: '#fff', 
       },
       button: {
         backgroundColor: '#F21E1E',
@@ -113,14 +113,14 @@ export const darkThemeStyles = StyleSheet.create({
         marginTop: 20,
       },
       buttonText: {
-        color: '#fff', // Text color to white
+        color: '#fff', 
         textAlign: 'center',
         fontFamily: 'PTSerif_400Regular',
         fontSize: 16,
       },
       header: {
         marginTop: 15,
-        color: '#fff', // Text color to white
+        color: '#fff', 
         fontFamily: 'PTSerif_700Bold',
         fontSize: 20,
       },
@@ -131,7 +131,7 @@ export const darkThemeStyles = StyleSheet.create({
         marginTop: 10,
       },
       sectionHeader: {
-        color: '#fff', // Text color to white
+        color: '#fff', 
         fontFamily: 'PTSerif_700Bold',
         fontSize: 17,
       },
@@ -142,13 +142,13 @@ export const darkThemeStyles = StyleSheet.create({
         borderRadius: 5,
       },
       viewHistoryButtonText: {
-        color: '#fff', // Text color to white
+        color: '#fff', 
         fontFamily: 'PTSerif_400Regular',
         fontSize: 14,
       },
       dataContainer: {
         marginTop: 10,
-        backgroundColor: '#1a1a1a', // Darker background color
+        backgroundColor: '#1a1a1a', 
         borderRadius: 8,
       },
       data: {
@@ -164,6 +164,6 @@ export const darkThemeStyles = StyleSheet.create({
       dataItemText: {
         fontFamily: 'PTSerif_400Regular',
         fontSize: 16,
-        color: '#fff', // Text color to white
+        color: '#fff', 
       },
 })

@@ -38,7 +38,7 @@ const HRResult = ({ route }) => {
 
               
   const goToDashboard = () => {
-    navigation.navigate('Dashboard'); // Navigate to the Dashboard screen
+    navigation.navigate('Dashboard'); 
   };
 
   const ButtonStyles = isDarkMode ? darkThemeButtonStyles : lightThemeButtonStyles;
