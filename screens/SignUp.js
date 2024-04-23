@@ -57,7 +57,6 @@ const SignUp = () => {
         gender: profileData.gender,
         height: profileData.height,
         weight: profileData.weight,
-        themeState: profileData.themeState,
         emergencyContacts: emergencyContacts,
       };
   
@@ -108,14 +107,13 @@ const SignUp = () => {
       const weight = await AsyncStorage.getItem('weight');
       const themeState = await AsyncStorage.getItem('themeState');
       const emergencyContacts = await AsyncStorage.getItem('emergencyContacts');
-      if (user && firstName && age && gender && height && weight && themeState && emergencyContacts) {
+      if (user && firstName && age && gender && height && weight && emergencyContacts) {
         await uploadProfileDataToFirestore(user.uid, {
           firstName: firstName,
           age: age,
           gender: gender,
           height: height,
           weight: weight,
-          themeState: themeState,
         }, JSON.parse(emergencyContacts));
       }
       

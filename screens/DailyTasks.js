@@ -56,15 +56,20 @@ const DailyTasks = () => {
     console.log(lastHeartRateDateString);
 
     useEffect(() => {
+      let heartRateTasksCount = 0;
+      let bloodPressureTasksCount = 0;
+    
       if (lastHeartRateDateString === currentDateString) {
-        setCompletedTasksCount(prevCount => prevCount + 1);
+        heartRateTasksCount = 1;
       }
     
-      // Check if the last blood pressure result matches the current date
       if (lastBloodPressureDateString === currentDateString) {
-        setCompletedTasksCount(prevCount => prevCount + 1);
+        bloodPressureTasksCount = 1;
       }
-    }, [heartRateHistory, bPHistory]);
+    
+      // Update the completedTasksCount by adding heart rate and blood pressure tasks counts
+      setCompletedTasksCount(heartRateTasksCount + bloodPressureTasksCount);
+    }, [heartRateHistory, bPHistory, currentDateString, lastHeartRateDateString, lastBloodPressureDateString]);
 
     console.log(completedTasksCount);
 

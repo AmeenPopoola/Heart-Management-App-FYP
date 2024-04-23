@@ -46,7 +46,7 @@ const Dashboard = () => {
       };
   
       fetchData();
-    }, [isFocused,isDarkMode,heartRateData]);
+    }, [isFocused,isDarkMode,heartRateData,taskCount]);
 
 
   const totalDailyTasks = 3;

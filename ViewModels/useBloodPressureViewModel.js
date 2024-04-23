@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState, useEffect, useRef } from 'react';
-import { doc, updateDoc, getDoc } from 'firebase/firestore';
+import { doc, updateDoc, getDoc,setDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import BloodPressureModel from '../Models/BloodPressureModel';
 import { useNavigation } from '@react-navigation/native';
@@ -88,15 +88,21 @@ const useBloodPressureViewModel = () => {
           // Retrieve existing records from Firestore
           const userBPReadingsRef = doc(db, 'userBPReadings', uid);
           const userBPReadingsSnapshot = await getDoc(userBPReadingsRef);
-          const existingBloodPressureData = userBPReadingsSnapshot.data().bloodPressureData || [];
 
-          // Add the new record to the existing data
-          const updatedBloodPressureData = [...existingBloodPressureData, newRecord];
+           if (userBPReadingsSnapshot.exists()) {
+      // If the document exists, update it by adding new blood pressure results to the 'bloodPressureData' array
+      const existingBloodPressureData = userBPReadingsSnapshot.data().bloodPressureData || [];
+      const updatedBloodPressureData = [...existingBloodPressureData, newRecord];
 
-          // Update the document with the updated data
-          await updateDoc(userBPReadingsRef, {
-            bloodPressureData: updatedBloodPressureData,
-          });
+      await updateDoc(userBPReadingsRef, {
+        bloodPressureData: updatedBloodPressureData,
+      });
+    } else {
+      // If the document doesn't exist, create it with the initial blood pressure data
+      await setDoc(userBPReadingsRef, {
+        bloodPressureData: [newRecord],
+      });
+    }
         } catch (error) {
           console.error('Error saving blood pressure records:', error);
         }

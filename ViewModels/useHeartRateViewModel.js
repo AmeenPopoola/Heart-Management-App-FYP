@@ -3,7 +3,7 @@ import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { db } from '../firebaseConfig'; 
-import { doc, updateDoc,getDoc } from 'firebase/firestore';
+import { doc, updateDoc,getDoc,setDoc } from 'firebase/firestore';
 
 export const useHeartRateViewModel = () => {
   const [heartRate, setHeartRate] = useState('');
@@ -100,13 +100,19 @@ export const useHeartRateViewModel = () => {
           // Upload heart rate data to Firestore
           const userHRReadingsRef = doc(db, 'userHRReadings', uid);
           const userHRReadingsSnapshot = await getDoc(userHRReadingsRef);
-          const existingHeartRateData = userHRReadingsSnapshot.data().heartRateData || [];
 
-
-          // Update the document by adding new heart rate results to the 'heartRateData' array
-          await updateDoc(userHRReadingsRef, {
-            heartRateData: [...existingHeartRateData, resultData],
-          });
+          if (userHRReadingsSnapshot.exists()) {
+            // If the document exists, update it by adding new heart rate results to the 'heartRateData' array
+            const existingHeartRateData = userHRReadingsSnapshot.data().heartRateData || [];
+            await updateDoc(userHRReadingsRef, {
+              heartRateData: [...existingHeartRateData, resultData],
+            });
+          } else {
+            // If the document doesn't exist, create it with the initial heart rate data
+            await setDoc(userHRReadingsRef, {
+              heartRateData: [resultData],
+            });
+          }
         }
 
         navigation.navigate('HRResult', { resultData });
@@ -131,12 +137,18 @@ export const useHeartRateViewModel = () => {
         if (isLoggedIn) {
           const userHRReadingsRef = doc(db, 'userHRReadings', uid);
           const userHRReadingsSnapshot = await getDoc(userHRReadingsRef);
-          const existingHeartRateData = userHRReadingsSnapshot.data().heartRateData || [];
-
-          // Update the document by adding new heart rate results to the 'heartRateData' array
-          await updateDoc(userHRReadingsRef, {
-            heartRateData: [...existingHeartRateData, resultData],
-          });
+          if (userHRReadingsSnapshot.exists()) {
+            // If the document exists, update it by adding new heart rate results to the 'heartRateData' array
+            const existingHeartRateData = userHRReadingsSnapshot.data().heartRateData || [];
+            await updateDoc(userHRReadingsRef, {
+              heartRateData: [...existingHeartRateData, resultData],
+            });
+          } else {
+            // If the document doesn't exist, create it with the initial heart rate data
+            await setDoc(userHRReadingsRef, {
+              heartRateData: [resultData],
+            });
+          }
         }
 
         navigation.navigate('HRResult', { resultData });
